@@ -24,9 +24,7 @@ import Pojos.Estados;
 
 
 public class MBAColaborador {
-
-	
-	
+//cv	
 	 private Transaction transaction;    
 	 private Session session;
 	 private List<ColaboradoresHistorial>listaColab;
