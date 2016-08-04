@@ -7,23 +7,24 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-import BeanAplicacion.MBAEstados;
-import BeanAplicacion.MBAUsuarios;
-import Pojos.Estados;
-import Pojos.Usuarios;
+import BeanAplicacion.MBACodigos;
+import Pojos.CodigoPostal;
 
 
-@FacesConverter("estadosConverter")
-public class ConvertidorEstado implements Converter{
+
+
+@FacesConverter("CodigosConverter")
+public class ConvertidorCodigos  implements Converter{
+	
 	
 
 	  @Override
-    public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
-        if(value != null && value.trim().length() > 0) {
+  public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
+      if(value != null && value.trim().length() > 0) {
 	          try {
-	                MBAEstados mbAEstados = (MBAEstados) fc.getExternalContext().getApplicationMap().get("mBAEstados");
-	                //System.out.println("Valor"+value);
-	                for(Estados u : mbAEstados.getEstadosIniciales()){
+	                MBACodigos mbACodigos = (MBACodigos) fc.getExternalContext().getApplicationMap().get("mBACodigos");
+	                //System.out.println(value);
+	                for(CodigoPostal u : mbACodigos.getCodigosIniciales()){
 	                    if(u.getId().equals(Integer.parseInt(value))){
 	                        return u;
 	                    }
@@ -39,11 +40,12 @@ public class ConvertidorEstado implements Converter{
 	        }
 	    }
 	  
-	  
+	
+	
 	    @Override
 	public String getAsString(FacesContext fc, UIComponent uic, Object object) {
 	        if(object != null) {
-	            return String.valueOf(((Estados) object).getId());
+	            return String.valueOf(((CodigoPostal) object).getId());
 	        }
 	        else {
 	            return null;
@@ -51,15 +53,7 @@ public class ConvertidorEstado implements Converter{
 	    }  
 	   
 	
+	
+	
 
 }
-
-
-
-
-    
-
-    
-    
-
-
