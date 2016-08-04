@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+   xmlns:pe="http://primefaces.org/ui/extensions">  
+    
+    
+    <body>
+        <ui:composition template="./../template/templateSiab.xhtml">
+            <ui:define name="content">  
+                
+              
+                         <h1 id="h1Submenus">Localidades</h1>
+                <hr/>
+              <br/>
+                 
+              <h:form>
+                                      
+                        <h:panelGrid   columns="2"  cellpadding="5"  style=" margin: 0 auto;"   >
+                  
+                          <p:outputLabel   value="Estado :"  />
+                          
+                          <p:selectOneMenu id="estado" value="#{mBLocalidades.idEstado}">
+                                <f:selectItem itemLabel="-Seleciona un Estado-" itemValue="" />
+                                <f:selectItems value="#{mBLocalidades.listaEstados}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.id}"/>
+                                <p:ajax event="change"    listener="#{mBLocalidades.generaMunicipios()}" update="municipio"/>
+                              
+                          </p:selectOneMenu>
+                          
+                          
+                          <p:outputLabel   value="Municipio :" />
+                          
+                          <p:selectOneMenu id="municipio"  value="#{mBLocalidades.idMunicipio}" label="Municipio">
+                                 <f:selectItem itemLabel="-Seleciona un Municipio-" itemValue="" />
+                                 <f:selectItems value="#{mBLocalidades.listaMunicipios}" var="m" itemLabel="#{m.nombre}"  itemValue="#{m.id}" />
+                                 <p:ajax event="change"    listener="#{mBLocalidades.generaLocalidades()}" update=":forma:tabla"   />
+                              
+                          </p:selectOneMenu>
+                          
+                      
+                        
+                </h:panelGrid>
+              </h:form>
+              
+              
+              
+            
+              
+                    <h:form id="forma">
+                                 
+                        <p:growl autoUpdate="true" sticky="true" showDetail="true" life="3500" />   
+                                 
+                           <br/>    
+                            <br/>
+                             <br/>
+                          
+                             <p:remoteCommand name="cd" update="tabla" actionListener="#{mBLocalidades.generaLocalidades()}"/> 
+                             
+                             <p:dataTable    id="tabla"    editable="true" var="fila"  value="#{mBLocalidades.datosTabla}" emptyMessage="Localidades no Encontradas" style=" width: 1024px; margin: 0 auto; font-family: Century Gothic, sans-serif;">
+                         
+                             <f:facet name="header">
+                                 <p:commandButton id="grow2" value="Agrega Localidad" icon="ui-icon-disk"  onclick="PF('dgl').show();" styleClass="ui-priority-primary"/>   
+
+                                  <p:tooltip id="toolTipGrow" for="grow2" value="Agrega Localidad en caso de No aparacer en la lista"
+                                            showEffect="clip" hideEffect="explode" />
+                                 </f:facet> 
+                          
+                                 <p:column headerText="Localidad" width="500"  >
+                                         <h:outputText value="#{fila.localidad}" />
+                                        </p:column> 
+                          
+                                 <p:column headerText="Codigo Postal" width="300" >
+                                                  <h:outputText value="#{fila.cp}" />
+                                            </p:column> 
+                                 
+                                        <p:column style="width:25px">
+                                            <p:commandButton id="editar"  icon="ui-icon-pencil"  update=":forma"   oncomplete="PF('edita').show();" title="Editar registro">  
+                                                <f:setPropertyActionListener value="#{fila}" target="#{mBLocalidades.local}"/>
+                                            </p:commandButton>
+                                       </p:column>
+                                 
+
+                                        <p:column style="width:25px">
+                                        <p:commandButton  update="tabla"   oncomplete="ac()" icon="ui-icon-trash"      actionListener="#{mBLocalidades.borrar(fila.id)}"  title="Borrar registro" /> 
+                                        </p:column>
+                        </p:dataTable>
+                              
+                        <p:remoteCommand name="ac" update="tabla" actionListener="#{mBLocalidades.generaLocalidades()}"/> 
+                  
+                            
+                              <p:dialog id="edd"   header="Modifica Datos  Localidad"  widgetVar="edita" hideEffect="explode" showEffect="explode" modal="true">
+                              <h:panelGrid columns="2"  cellpadding="5" rendered="#{not empty mBLocalidades.local}">
+                              
+                                <p:outputLabel value="Localidad :"/>
+                                <p:inputText id="nom" value="#{mBLocalidades.local.localidad}"/>
+                                
+                                 <p:outputLabel value="Estado :"/>
+                                 <p:selectOneMenu   id="editaEstado" value="#{mBLocalidades.estadoEdit}">
+                                     <f:selectItem itemLabel="-Seleciona un Estado-" itemValue="" />
+                                    <f:selectItems value="#{mBLocalidades.listaEstados}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.id}"/>
+                                <p:ajax event="change"    listener="#{mBLocalidades.generaMunicipiosE()}" update="editaMun"/>
+                                     
+                                 </p:selectOneMenu>
+                                  
+                                 <p:outputLabel value="Municipio :"/>
+                                 
+                                 <p:selectOneMenu  id="editaMun"  value="#{mBLocalidades.munEdit}" label="Municipio">
+                                     <f:selectItem itemLabel="-Seleciona un Municipio-" itemValue="" />
+                                 <f:selectItems value="#{mBLocalidades.listaMunicipios}" var="m" itemLabel="#{m.nombre}"  itemValue="#{m.id}" />
+                             
+                                     
+                                 </p:selectOneMenu>
+                                  
+                                  
+                               <br/>
+                                 
+                               <p:commandButton value="Editar Localidad" update=":forma"  oncomplete="PF('edita').hide();cd()"    actionListener="#{mBLocalidades.editarLocalidad()}"  styleClass="ui-priority-primary" />
+                                
+                                
+                                
+                            </h:panelGrid>
+                           
+                        </p:dialog>
+                        
+                     
+                    
+                    <p:dialog  id="add"     header="Agrega Localidad" widgetVar="dgl" resizable="false" modal="true"  hideEffect="explode" showEffect="explode" >
+                    <h:panelGrid columns="2" cellpadding="5"> 
+                              
+                                <p:outputLabel  for="nombre"   value="Nombre Localidad :" />
+                             
+                                <p:inputText id="nombre" value="#{mBLocalidades.nombre}"  label="Nombre" style="text-transform: uppercase" />
+                               
+                                <p:outputLabel value="Estado :" /> 
+                              
+                                <p:selectOneMenu id="es" value="#{mBLocalidades.idEstA}">
+                                <f:selectItem itemLabel="-Seleciona un Estado-" itemValue="" />
+                                <f:selectItems value="#{mBLocalidades.listaEstados}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.id}"/>
+                                <p:ajax event="change"    listener="#{mBLocalidades.generaMunicipiosADD()}" update="mun"/>
+                              
+                             </p:selectOneMenu>
+                            <p:outputLabel value="Municipio :" />
+                              
+                              <p:selectOneMenu id="mun" value="#{mBLocalidades.idMunA}" label="Municipio">
+                                 <f:selectItem itemLabel="-Seleciona un Municipio-" itemValue="" />
+                                 <f:selectItems value="#{mBLocalidades.listaMunicipios}" var="m" itemLabel="#{m.nombre}"  itemValue="#{m.id}" />
+                             </p:selectOneMenu> 
+                              
+                            
+                             <p:commandButton   value=" Cancelar "  update="add"   action="#{mBSesion.refresh()}" actionListener="#{mBLocalidades.cancelar()}" immediate="true"  onclick="PF('dgl').hide();"    style="margin-right:50px; margin-left: 40px;"  styleClass="ui-priority-primary" />
+                           <p:commandButton   value=" Agregar" update="@(form)" actionListener="#{mBLocalidades.agrega()}"   oncomplete="PF('dgl').hide();cd()"  style="margin-right:50px; margin-left: 40px;" styleClass="ui-priority-primary" />
+                        </h:panelGrid>
+                    </p:dialog>
+                      
+                       
+                        
+                        
+                     
+                 </h:form> 
+                 
+                 
+            
+            
+            </ui:define>
+                  
+               
+                
+            
+        </ui:composition>
+        
+        
+        
+        
+        
+   
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Traspasos" table="traspasos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idReferenciaOrigen" type="java.lang.Integer">
+            <column name="id_referencia_origen">
+                <comment>Indica al colaborador que le fue retirado el pago.</comment>
+            </column>
+        </property>
+        <property name="idColaboradorAsigno" type="java.lang.Integer">
+            <column name="id_colaborador_asigno">
+                <comment>Imndica el colaborador al que le fue reasignado su pago.</comment>
+            </column>
+        </property>
+        <property name="monto" type="java.lang.Integer">
+            <column name="monto">
+                <comment>Indica la cantidad monetaria que le fue devuelto al promotor.</comment>
+            </column>
+        </property>
+        <property name="fechaPago" type="date">
+            <column name="fecha_pago" length="10" not-null="true">
+                <comment>Indica la fecha en la cual se realiz&#243; el pago de la ficha.</comment>
+            </column>
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19">
+                <comment>Indica la fecha y hora en la que el traspaso fue registrado en el sistema.</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica el usuario que realiz&#243; el traspaso en el sistema.</comment>
+            </column>
+        </property>
+        <property name="idPagoOrigen" type="java.lang.Integer">
+            <column name="id_pago_origen" />
+        </property>
+        <property name="idPagoDestino" type="java.lang.Integer">
+            <column name="id_pago_destino" />
+        </property>
+    </class>
+</hibernate-mapping>

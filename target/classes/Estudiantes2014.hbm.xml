@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Estudiantes2014" table="estudiantes2014" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="solMatricula" type="string">
+            <column name="sol_matricula" length="50" />
+        </property>
+        <property name="aspCurp" type="string">
+            <column name="asp_curp" length="50" />
+        </property>
+        <property name="aspNombres" type="string">
+            <column name="asp_nombres" length="50" />
+        </property>
+        <property name="aspApellidopaterno" type="string">
+            <column name="asp_apellidopaterno" length="50" />
+        </property>
+        <property name="aspApellidomaterno" type="string">
+            <column name="asp_apellidomaterno" length="50" />
+        </property>
+        <property name="aspSexo" type="string">
+            <column name="asp_sexo" length="50" />
+        </property>
+        <property name="aspFechanacimiento" type="timestamp">
+            <column name="asp_fechanacimiento" length="19" />
+        </property>
+        <property name="aspLada" type="java.lang.Integer">
+            <column name="asp_lada" />
+        </property>
+        <property name="aspTelefono" type="java.lang.Integer">
+            <column name="asp_telefono" />
+        </property>
+        <property name="aspCelular" type="java.lang.Long">
+            <column name="asp_celular" />
+        </property>
+        <property name="aspDomicilio" type="string">
+            <column name="asp_domicilio" length="107" />
+        </property>
+        <property name="aspLocalidaddomicilio" type="string">
+            <column name="asp_localidaddomicilio" length="67" />
+        </property>
+        <property name="aspMunicipiodomicilio" type="string">
+            <column name="asp_municipiodomicilio" length="62" />
+        </property>
+        <property name="estadonacimiento" type="string">
+            <column name="estadonacimiento" length="50" />
+        </property>
+        <property name="carNombreregion" type="string">
+            <column name="car_nombreregion" length="50" />
+        </property>
+        <property name="carNombrearea" type="string">
+            <column name="car_nombrearea" length="80" />
+        </property>
+        <property name="carNombrenivel" type="string">
+            <column name="car_nombrenivel" length="80" />
+        </property>
+        <property name="carNombrecarrera" type="string">
+            <column name="car_nombrecarrera" length="80" />
+        </property>
+        <property name="carModalidad" type="string">
+            <column name="car_modalidad" length="80" />
+        </property>
+        <property name="carNombrecampus" type="string">
+            <column name="car_nombrecampus" length="80" />
+        </property>
+        <property name="solLugarcarrera" type="java.lang.Integer">
+            <column name="sol_lugarcarrera" />
+        </property>
+        <property name="idSector" type="java.lang.Integer">
+            <column name="id_sector" />
+        </property>
+        <property name="usado" type="int">
+            <column name="usado" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

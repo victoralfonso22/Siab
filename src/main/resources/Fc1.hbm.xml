@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Fc1" table="fc1" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="folio" type="string">
+            <column name="folio" length="11" not-null="true">
+                <comment>Indica el n&#250;mero del folio asignado por el sistema.</comment>
+            </column>
+        </property>
+        <property name="idPromotor" type="int">
+            <column name="id_promotor" not-null="true">
+                <comment>Indica el promotor que le asignaron carteras.</comment>
+            </column>
+        </property>
+        <property name="fechaEntrega" type="date">
+            <column name="fecha_entrega" length="10" not-null="true">
+                <comment>Indica la fecha en la que le fue asignada la cartera al promotor.</comment>
+            </column>
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" not-null="true">
+                <comment>Indica la fecha y hora en la que fue registrada la entrega.</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica el usuario que le asign&#243; las carteras al promotor.</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

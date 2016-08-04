@@ -1,0 +1,93 @@
+
+package Dao;
+
+import Pojos.Estados;
+import Pojos.Municipios;
+import Pojos.ViewLocalidadCp;
+import Pojos.ViewLocalizacion;
+
+import Pojos.Localidades;
+
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+/**
+ *
+ * @author Soporte 07
+ */
+public class DaoLocalidades {
+    
+     
+    public List<Estados> getEstados (Session session) throws Exception{
+        String hql = "select  e from Estados e order by nombre ";
+        Query query = session.createQuery(hql);
+      // query.setParameter("nombre", hql);
+    return (List<Estados>) query.list();
+        
+    }
+    
+    
+    public List<Municipios>getMunicipios(Session session, int idEstado) throws Exception{
+     String hql = " select m from Municipios m where idEstado =:idEstado order by nombre";
+    Query query = session.createQuery(hql);
+    query.setParameter("idEstado", idEstado);
+    return (List<Municipios>) query.list();
+    }
+    
+      public List<ViewLocalidadCp> getLocalidades(Session session, int idMun) throws Exception{
+      String hql = "from ViewLocalidadCp where idMunicipio=:idMun order by localidad";
+         //String hql = "select f from ViewLocalizacion f where idMunicipio =:idMun  group by f.localidad"; group by cp
+      Query query = session.createQuery(hql);
+      query.setParameter("idMun", idMun);
+      // query.setParameter("nombre", hql);
+      return (List<ViewLocalidadCp>) query.list();
+        
+    }
+      
+      public void RegistraLocalidad(Session session,String nombre,int idMunicipio){
+       Localidades localidad= new Localidades(nombre.toUpperCase(), idMunicipio);
+       session.save(localidad);
+          
+      }
+      
+      public Localidades validaNombre(Session session,String nombre)throws Exception{
+      String hql = "from Localidades where nombre =:nombre ";
+      Query query = session.createQuery(hql);
+      query.setParameter("nombre", nombre);
+     Localidades localidad = (Localidades) query.uniqueResult();
+      return localidad;
+      }
+      //@Override
+    public void borrarLocalidad(Session session,int id) throws Exception {
+        
+        //System.out.print(localidad);
+        //session.delete(localidad);
+    
+        String hql = "delete  from Localidades where id =:id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            query.executeUpdate();
+                
+                
+    }
+    
+    
+       public void actualiza(Session sesion,int id, String nombre, int idMuncipio)throws Exception{
+      
+        String hql="update Localidades set nombre=:nombre ,idMunicipio =:idMunicipio where id =:id ";
+        Query query = sesion.createQuery(hql);
+        query.setParameter("id", id);
+        query.setParameter("nombre", nombre);
+        query.setParameter("idMunicipio", idMuncipio);
+        query.executeUpdate();
+       
+        
+    }
+    
+
+      
+      
+      
+    
+}

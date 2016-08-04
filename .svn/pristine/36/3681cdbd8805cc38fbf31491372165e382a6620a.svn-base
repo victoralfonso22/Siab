@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+   
+    
+    <body>
+         <ui:composition template="./../template/templateSiab.xhtml">
+        <ui:define name="content">
+            <h1 id="h1Submenus">Registro de Colaboradores </h1>
+            <hr/>
+            
+           <h:form>
+           
+              <h:panelGrid columns="3" columnClasses="label, value" style=" margin: 0 auto;">
+           
+               <p:outputLabel value="Colaborador :" />
+               <p:autoComplete size="45"  id="colaboradorH"  value="#{mBAdministracionColab.colaborador}" />
+               
+               
+               
+           
+           
+           </h:panelGrid>
+           
+           </h:form>
+            
+            
+            
+       
+            
+           
+            <!--  
+            <h:form>
+            
+        
+            
+                 <p:growl id="growl" sticky="true" showDetail="true"/>   
+                
+                 <p:wizard   style="width:700px; margin-left:350px;">
+                     <p:tab id="personal" title=" Personal" titleStyle="">
+                         
+                         <p:panel header="Datos Personales">
+                             
+                              <h:panelGrid columns="3" columnClasses="label, value" >
+                    
+                    <p:outputLabel for="RFC" value="RFC:"  />
+                        <p:inputText id="RFC" value="#{mBAdminstracionE.rfc}" required="true" label="RFC"  maxlength="13" style="text-transform: uppercase; width:100PX "  >
+                        <f:validateLength     minimum="10" maximum="13"  />
+                        <pe:keyFilter  regEx="/[a-z0-9]/i" testFunction="" />
+                      
+                        </p:inputText>
+                    
+                        <h:message for="RFC" errorStyle="color: red"  />
+                   
+                        <p:outputLabel for="nombres" value="Nombre(s):"  />
+                        <p:inputText id="nombres"   value="#{mBAdminstracionE.nombre}" required="true" label="Nombres" style="text-transform: uppercase" >
+                        <pe:keyFilter  regEx="/[a-z\ñ\s]/i"/>
+                        </p:inputText>
+                         <p:message for="nombres" display="icon"/>
+                     
+
+                        <p:outputLabel for="apellidop" value="Apellido Paterno:" />
+                        <p:inputText id="apellidop" value="#{mBAdminstracionE.paterno}" required="true" label="Apellido Paterno" style="text-transform: uppercase" >
+                             <pe:keyFilter  regEx="/[a-z\ñ\s]/i"/>
+                            
+                        </p:inputText>
+                        <p:message for="apellidop" display="icon"/>
+                       
+
+                        <p:outputLabel for="apellidom" value="Apellido Materno:" />
+                        <p:inputText id="apellidom"  value="#{mBAdminstracionE.materno}"   required="true" label="Apellido Materno" style="text-transform: uppercase" >
+                        
+                             <pe:keyFilter  regEx="/[a-z\ñ\s]/i"/>
+                            
+                        </p:inputText>
+                        <p:message for="nombres" display="icon"/>
+                         
+                          <p:outputLabel for="fechan" value="Fecha Nac. :"/>
+                       <p:calendar id="fechan"   required="true"   value="#{mBAdminstracionE.fechanaci}" navigator="true" mask="true" pattern="dd-MM-yyyy"/>
+                       <p:message for="fechan" />
+                       
+                         
+                         
+                </h:panelGrid>
+              </p:panel>
+               </p:tab>
+                     
+                     
+                     
+                     <p:tab id="address" title="Dirección">
+            <p:panel header="Datos Dirección">
+                <p:messages />
+                <h:panelGrid columns="3" columnClasses="label, value">
+                 
+                    
+                       <p:outputLabel for="calle" value="Calle :" />
+                       <p:inputText id="calle"  value="#{mBAdminstracionE.calle}"  required="true" label="Calle" style="text-transform: uppercase;">
+                       <pe:keyFilter  regEx="/[a-z\ñ\.\s]/i"/>
+                       </p:inputText>    
+                       <p:message for="calle" display="icon"/>
+                        
+                        
+                        <p:outputLabel for="numeroe" value="Numero Ext. :" />
+                       
+                        
+                        <p:inputText id="numeroe"  value="#{mBAdminstracionE.numE}"  required="true" label="numero ex" style="width: 40px">
+                        
+                            <pe:keyFilter regEx="/[\d\-\.]/"/>
+                        
+                        </p:inputText>
+                        <p:message for="numeroe" display="icon"/>
+
+                       <p:outputLabel for="numeroi" value="Numero Int. :" />
+                       <p:inputText id="numeroi" value="#{mBAdminstracionE.numI}"     label="numeroi"  style="width: 40px">
+                           
+                           <pe:keyFilter regEx="/[\d\-\.]/"/>
+                           
+                       </p:inputText>
+                       <p:message for="numeroi" display="icon"/>
+                       
+                       
+                           
+                         <p:outputLabel for="estado" value="Estado :" />
+                         
+                         <p:selectOneMenu value="#{mBAdminstracionE.idestado}"   id="estado"  required="true" label="estado"   >
+                             <f:selectItem itemLabel="-Seleciona un Estado-" itemValue="" />
+                             <f:selectItems value="#{mBAdminstracionE.listaestados}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.id}"/>
+                             <p:ajax event="change"   listener="#{mBAdminstracionE.generaMunicipios()}" update="municipio,col"   partialSubmit="true" />
+                        </p:selectOneMenu>
+                          <p:message for="estado" display="icon"/>
+                         
+                         
+                     <p:outputLabel for="municipio"  value="Municipio :" />
+                          
+                       <p:selectOneMenu id="municipio" required="true"   value="#{mBAdminstracionE.idMun}" label="Municipio">
+                                 <f:selectItem itemLabel="-Seleciona un Municipio-" itemValue="" />
+                                 <f:selectItems value="#{mBAdminstracionE.listamunicipios}" var="m" itemLabel="#{m.nombre}"  itemValue="#{m.id}" />
+                                 <p:ajax event="change" listener="#{mBAdminstracionE.generaColonias()}" update="col,codigo"   />
+                              
+                          </p:selectOneMenu>
+                      <p:message for="municipio" display="icon"/>
+                     
+                
+                     <p:outputLabel for="col" value="Colonia:" />
+                         <p:selectOneMenu value="#{mBAdminstracionE.localidad}"  id="col" label="Colonia">
+                             <f:selectItem itemLabel="-Seleciona una Colonia-" itemValue="" />
+                             <f:selectItems value="#{mBAdminstracionE.listaColonias}" var="c" itemLabel="#{c.nombre}"  itemValue="#{c.id}" />
+                                 <p:ajax event="change" listener="#{mBAdminstracionE.generaCp()}" update="codigo"   />
+                        </p:selectOneMenu>
+                     <p:message for="col" display="icon"/>
+                       
+                        
+                         <p:outputLabel for="codigo" value="Codigo Postal:" />
+                         <p:selectOneMenu  value="#{mBAdminstracionE.cp}"   id="codigo"  label="Codigo Postal" style="width: 90px">
+                              <f:selectItem itemLabel="-Seleciona C.P.-" itemValue="" />
+                              <f:selectItems value="#{mBAdminstracionE.listacodigos}" var="cp" itemLabel="#{cp.cp}"  itemValue="#{cp.id}" />
+                        </p:selectOneMenu>
+                          <p:message for="codigo" display="icon"/>
+                          
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+                     
+                 
+          <p:tab id="contact" title="Contacto">
+            <p:panel header="Contact Information">
+                <p:messages />
+                <h:panelGrid columns="3" columnClasses="label, value">
+                    
+                      <p:outputLabel for="correo" value="Correo:" />
+                       <p:inputText id="correo"  value="#{mBAdminstracionE.correo}" >
+                           
+                           <pe:keyFilter  regEx="/[a-z0-9_\.\-@]/"/>
+                       </p:inputText>
+                       <p:message for="correo" display="icon"/>
+                    
+                      <p:outputLabel for="telC" value="Telefono Casa:" />
+                      <p:inputText id="telC" value="#{mBAdminstracionE.telC}" label="Telefono Casa" maxlength="10" >
+                          <p:clientValidator/>
+                      </p:inputText>
+                       <p:message for="telC"   />
+                        
+                         <p:outputLabel for="telO" value="Telefono Oficina:" />
+                         <p:inputText id="telO" value="#{mBAdminstracionE.telO}" label="Telefono Oficina" />
+                          <p:message for="telO"   />
+                          
+                          <p:outputLabel for="ext" value="Ext.:" />
+                          <p:inputText id="ext"  value="#{mBAdminstracionE.ext}"  label="Ext. "  style="width: 30px"/>
+                          <p:message for="ext"   />
+                          
+                        
+                         <p:outputLabel for="cel" value="Celular:" />
+                         <p:inputText id="cel"  value="#{mBAdminstracionE.cel}" required="true" label="Celular" />  
+                          <p:message for="cel"   />
+                 </h:panelGrid>
+            </p:panel>
+        </p:tab>           
+                     
+                     
+                     
+                     
+ 
+                     
+                  
+                 </p:wizard>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </h:form>-->
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+              </ui:define>
+         </ui:composition>
+  
+    </body>
+</html>

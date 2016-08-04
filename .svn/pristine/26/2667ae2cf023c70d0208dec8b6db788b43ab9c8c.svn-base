@@ -1,0 +1,32 @@
+package Dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+
+import java.util.List;
+
+import org.hibernate.Query;
+
+import Interfaces.InterfaceSectores;
+import Pojos.Sectores;
+
+public class DaoSectores implements InterfaceSectores {
+
+	@Override
+	public List<Sectores> sectoresPadreMayor(Session session) throws Exception {
+		String hql = "from Sectores where id_sector_padre = 0";
+        Query query = session.createQuery(hql);
+        return (List<Sectores>) query.list();
+
+	}
+
+	@Override
+	public List<Sectores> sectoresHijos(Session session, int id)throws Exception {
+	String hql = "from Sectores where id_sector_padre =:id ";	
+    Query query = session.createQuery(hql);
+    query.setParameter("id", id);
+    return (List<Sectores>) query.list();
+	}
+
+}

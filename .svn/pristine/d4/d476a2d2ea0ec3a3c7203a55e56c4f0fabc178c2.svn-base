@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.SaldoColaboradorLocal" table="saldoColaboradorLocal" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.SaldoColaboradorLocalId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="nombres" type="string">
+                <column name="nombres" length="100" />
+            </key-property>
+            <key-property name="apellidoPaterno" type="string">
+                <column name="apellido_paterno" length="100" />
+            </key-property>
+            <key-property name="apellidoMaterno" type="string">
+                <column name="apellido_materno" length="100" />
+            </key-property>
+            <key-property name="rfc" type="string">
+                <column name="rfc" length="20" />
+            </key-property>
+            <key-property name="referencia" type="string">
+                <column name="referencia" length="20" />
+            </key-property>
+            <key-property name="saldo" type="java.lang.Double">
+                <column name="saldo" precision="10" />
+            </key-property>
+            <key-property name="celular" type="string">
+                <column name="celular" length="100" />
+            </key-property>
+            <key-property name="correo" type="string">
+                <column name="correo" length="100" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

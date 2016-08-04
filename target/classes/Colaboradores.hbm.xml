@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Colaboradores" table="colaboradores" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombres" type="string">
+            <column name="nombres" length="50" not-null="true">
+                <comment>Indica el(los) nombre(s) del colaborador.</comment>
+            </column>
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="apellido_paterno" length="50" not-null="true">
+                <comment>Indica el apellido paterno del colaborador.</comment>
+            </column>
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="apellido_materno" length="50">
+                <comment>Indica el apellido materno del colaborador.</comment>
+            </column>
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="fecha_nacimiento" length="10">
+                <comment>Indica la fecha en la que naci&#243; el colaborador.</comment>
+            </column>
+        </property>
+        <property name="calle" type="string">
+            <column name="calle" length="100" not-null="true">
+                <comment>Indica el domicilio donde habita el colaborador.</comment>
+            </column>
+        </property>
+        <property name="numeroInterior" type="string">
+            <column name="numero_interior" length="11">
+                <comment>Indica el n&#250;mero interior del domicilio de donde habita el colaborador.</comment>
+            </column>
+        </property>
+        <property name="numeroExterior" type="string">
+            <column name="numero_exterior" length="11" not-null="true">
+                <comment>Indica el n&#250;mero exterior de la casa de donde habita el colaborador.</comment>
+            </column>
+        </property>
+        <property name="idEstado" type="int">
+            <column name="id_estado" not-null="true">
+                <comment>Indica el id del estado al cual pertenece el colaborador</comment>
+            </column>
+        </property>
+        <property name="idMunicipio" type="int">
+            <column name="id_municipio" not-null="true">
+                <comment>Indica el id de la tabla municipio</comment>
+            </column>
+        </property>
+        <property name="idLocalidad" type="int">
+            <column name="id_localidad" not-null="true">
+                <comment>Indica el nombre de la localidad de donde habita el colaborador.</comment>
+            </column>
+        </property>
+        <property name="idCodigoPostal" type="string">
+            <column name="id_codigo_postal" length="11" not-null="true">
+                <comment>Indica id del c&#243;digo postal de donde habita el colaborador.</comment>
+            </column>
+        </property>
+        <property name="idPromotor" type="int">
+            <column name="id_promotor" not-null="true">
+                <comment>Indica que promotor patrocina al colaborador.</comment>
+            </column>
+        </property>
+        <property name="tipo" type="int">
+            <column name="tipo" not-null="true">
+                <comment>Indica el tipo de colaborador (1 colaborador, 2 promovendedor, 3 alianzas, 4 estudiantes).</comment>
+            </column>
+        </property>
+        <property name="idTipoColaborador" type="java.lang.Integer">
+            <column name="id_tipo_colaborador">
+                <comment>Si en caso que el tipo de colaborador sea 2, aqu&#237; se indicar&#237;a que tipo de colaborador es, 1</comment>
+            </column>
+        </property>
+        <property name="telefonoCasa" type="string">
+            <column name="telefono_casa" length="13">
+                <comment>Indica el n&#250;mero telef&#243;nico de donde habita el colaborador.</comment>
+            </column>
+        </property>
+        <property name="telefonoOficina" type="string">
+            <column name="telefono_oficina" length="13">
+                <comment>Indica el n&#250;mero telef&#243;nico donde labora el colaborador.</comment>
+            </column>
+        </property>
+        <property name="extensionOficina" type="string">
+            <column name="extension_oficina" length="10">
+                <comment>Indica la extensi&#243;n de telefono de la oficina donde labora el colaborador.</comment>
+            </column>
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="13">
+                <comment>Indica el n&#250;mero de celular con el que cuenta el colaborador.</comment>
+            </column>
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="100">
+                <comment>Indica correo electr&#243;nico con el que cuenta el colaborador.</comment>
+            </column>
+        </property>
+        <property name="idReferencia" type="java.lang.Integer">
+            <column name="id_referencia" unique="true">
+                <comment>Indica la referencia bancaria con la cual el colaborador realizar&#225; sus pagos correspondientes.</comment>
+            </column>
+        </property>
+        <property name="rfc" type="string">
+            <column name="rfc" length="14" not-null="true" unique="true">
+                <comment>Indica el Registro Federal de Contribuyente del colaborador.</comment>
+            </column>
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" not-null="true">
+                <comment>Indica la fecha y hora en la que el colaborador fue dado de alta en el sistema.</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica el usuario que di&#243; de alta al colaborador.</comment>
+            </column>
+        </property>
+        <property name="documentacionMinima" type="java.lang.Integer">
+            <column name="documentacion_minima">
+                <comment>0 No cuenta con la documentaci&#243;n m&#237;nima - 1 Si cuenta con la documentaci&#243;n m&#237;nima requerida.</comment>
+            </column>
+        </property>
+        <property name="estatus" type="int">
+            <column name="estatus" not-null="true">
+                <comment>1 habilitado, 2 inabilitado.</comment>
+            </column>
+        </property>
+        <property name="observaciones" type="string">
+            <column name="observaciones" length="100" />
+        </property>
+        <property name="numeroPersonal" type="string">
+            <column name="numero_personal" length="11" not-null="true" />
+        </property>
+        <property name="idTipoContratacion" type="java.lang.Integer">
+            <column name="id_tipo_contratacion" />
+        </property>
+        <property name="idTipoPersonal" type="java.lang.Integer">
+            <column name="id_tipo_personal" />
+        </property>
+        <property name="replica" type="java.lang.Integer">
+            <column name="replica">
+                <comment>1 indica que el colaborador ya existia.</comment>
+            </column>
+        </property>
+        <property name="egresadoUv" type="int">
+            <column name="egresado_uv" not-null="true">
+                <comment>Indica si el colaborador es Egresado UV (1) o no (0)</comment>
+            </column>
+        </property>
+        <property name="preregistro" type="string">
+            <column name="preregistro" length="5">
+                <comment>Indica si el registro fue dado de alta en preregistro (1 - Si, 0 - No)</comment>
+            </column>
+        </property>
+        <property name="idEstudiante" type="java.lang.Integer">
+            <column name="id_estudiante" />
+        </property>
+    </class>
+</hibernate-mapping>

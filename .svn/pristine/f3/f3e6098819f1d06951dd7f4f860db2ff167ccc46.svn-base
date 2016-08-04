@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.EnlacesEstudiantes" table="enlaces_estudiantes" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idCartera" type="java.lang.Integer">
+            <column name="id_cartera" />
+        </property>
+        <property name="idBoleto" type="string">
+            <column name="id_boleto" length="11" not-null="true" />
+        </property>
+        <property name="matricula" type="string">
+            <column name="matricula" length="15" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="150" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="100" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="20" />
+        </property>
+        <property name="idSector" type="java.lang.Integer">
+            <column name="id_sector" />
+        </property>
+        <property name="idFc1b" type="int">
+            <column name="id_fc1b" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

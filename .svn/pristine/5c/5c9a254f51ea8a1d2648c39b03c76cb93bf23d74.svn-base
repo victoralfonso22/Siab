@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Fc1b" table="fc1b" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="folio" type="string">
+            <column name="folio" length="11" />
+        </property>
+        <property name="idPromotorEnlace" type="java.lang.Integer">
+            <column name="id_promotor_enlace" />
+        </property>
+        <property name="idPromotorPadre" type="java.lang.Integer">
+            <column name="id_promotor_padre" />
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" />
+        </property>
+        <property name="fechaImpresion" type="timestamp">
+            <column name="fecha_impresion" length="19" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="12">
+                <comment>1.- Indica que es una asignacion Definitiva, 2.- Indica que es asignacion Temporal, 3.- Indica que es sustitucion</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="java.lang.Integer">
+            <column name="id_usuario" />
+        </property>
+        <property name="idSector" type="java.lang.Integer">
+            <column name="id_sector" />
+        </property>
+        <property name="externoSector" type="java.lang.Integer">
+            <column name="externo_sector" />
+        </property>
+        <property name="externoDependencia" type="java.lang.Integer">
+            <column name="externo_dependencia" />
+        </property>
+        <property name="uvOfiIns" type="java.lang.Integer">
+            <column name="uv_ofi_ins" />
+        </property>
+    </class>
+</hibernate-mapping>

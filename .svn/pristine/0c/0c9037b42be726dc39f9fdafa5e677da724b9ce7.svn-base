@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Siab</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="resources/images/favicon.ico" />
+	<link href="#{rutasAplicacion.baseUrl}resources/css/login.css"
+		type="text/css" rel="stylesheet" />
+    <h:outputStylesheet name="webjars/font-awesome/4.5.0/css/font-awesome.css"/>
+	<script type="text/javascript">
+	function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+
+
+document.onkeydown = checkKeycode
+function checkKeycode(e) {
+    var keycode;
+    if (window.event)
+        keycode = window.event.keyCode;
+    else if (e)
+        keycode = e.which;
+
+    // Mozilla firefox
+    if ($.browser.mozilla) {
+        if (keycode == 116 || (e.ctrlKey &amp; keycode == 82)) {
+            if (e.preventDefault)
+            {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }
+    } 
+    // IE
+    else if ($.browser.msie) {
+        if (keycode == 116 || (window.event.ctrlKey &amp; keycode == 82)) {
+            window.event.returnValue = false;
+            window.event.keyCode = 0;
+            window.status = "Refresh is disabled";
+        }
+    }
+
+/////nuevo/////
+    switch (event.keyCode){
+    case 116 : //F5 button
+        event.returnValue = false;
+        event.keyCode = 0;
+        return false;
+    case 82 : //R button
+        if (event.ctrlKey){ 
+            event.returnValue = false;
+            event.keyCode = 0;
+            return false;
+        }
+}
+}
+    /////////////
+
+
+</script>
+</h:head>
+<h:body >
+	<div class="conteiner">
+		<p:growl id="grow1" showDetail="true" life="3000" />
+		<h:form id="formLogin" class="formulario" >
+			<p:panel header="Ingreso de usuario y contraseña"
+				style="background-color: transparent; font-family: Century Gothic, sans-serif;">
+				<hr />
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:outputLabel style="font-family: Century Gothic, sans-serif;"
+						for="username" value="Usuario : " />
+					<p:inputText style="font-family: Century Gothic, sans-serif; color:#009A3C; font-weight: bold;"
+						value="#{mBSesion.username}" id="username" required="true"
+						label="username" requiredMessage="" />
+					<p:message style="font-family: Century Gothic, sans-serif;"
+						for="username" />
+
+					<p:outputLabel style="font-family: Century Gothic, sans-serif;"
+						for="password" value="Contraseña : " />
+					<p:password style="font-family: Century Gothic, sans-serif; color:#009A3C; font-weight: bold;"
+						value="#{mBSesion.password}" id="password" required="true"
+						label="password" requiredMessage="" />
+					<p:message style="font-family: Century Gothic, sans-serif;"
+						for="password" />
+
+					<f:facet name="footer">
+						<p:commandButton style="font-family: Century Gothic, sans-serif;"
+							id="loginBoton" value="Ingresar" ajax="false" update="formLogin"
+							action="#{mBSesion.login()}" styleClass="ui-priority-primary"  />
+					</f:facet>
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+	</div>
+</h:body>
+
+</html>

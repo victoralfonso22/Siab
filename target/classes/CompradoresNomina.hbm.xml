@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.CompradoresNomina" table="compradores_nomina" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombres" type="string">
+            <column name="nombres" length="50" not-null="true">
+                <comment>Indica el nombre del comprador</comment>
+            </column>
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="apellido_paterno" length="50" not-null="true">
+                <comment>Indica el apellido peterno del comprador</comment>
+            </column>
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="apellido_materno" length="50">
+                <comment>Indica el apellido materno del comprador</comment>
+            </column>
+        </property>
+        <property name="rfc" type="string">
+            <column name="rfc" length="13">
+                <comment>Indica el RFC del colaborador</comment>
+            </column>
+        </property>
+        <property name="numeroPersonal" type="java.lang.Integer">
+            <column name="numero_personal">
+                <comment>Indica el tipo de contrataci&#243;n con la que cuenta el comprador</comment>
+            </column>
+        </property>
+        <property name="idTipoContratacion" type="java.lang.Integer">
+            <column name="id_tipo_contratacion">
+                <comment>Indica el tipo de contrataci&#243;n con la cual labora el comprador en la UV</comment>
+            </column>
+        </property>
+        <property name="idTipoPersonal" type="java.lang.Integer">
+            <column name="id_tipo_personal">
+                <comment>Indica como funge el comprador dentro de la UV</comment>
+            </column>
+        </property>
+        <property name="tipoComprador" type="int">
+            <column name="tipo_comprador" not-null="true">
+                <comment>1 Administrativo - 2 Docente - 3 Operativo - 4 Funcionario - 5 FUV</comment>
+            </column>
+        </property>
+        <property name="idSector" type="java.lang.Integer">
+            <column name="id_sector">
+                <comment>Indica el sector d&#243;nde labora el comprador</comment>
+            </column>
+        </property>
+        <property name="programa" type="java.lang.Integer">
+            <column name="programa">
+                <comment>Si el tipo de comprador es 5 (FUV); este campo indica en qu&#233; programa trabaja el comprador al que se le har&#225; el descuento en
+                n&#243;mina.</comment>
+            </column>
+        </property>
+        <property name="idRegion" type="int">
+            <column name="id_region" not-null="true">
+                <comment>Indica la regi&#243;n del comprador</comment>
+            </column>
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="19" not-null="true">
+                <comment>Indica le fecha de registro del DPN</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica el usuario que registr&#243; el DPN</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

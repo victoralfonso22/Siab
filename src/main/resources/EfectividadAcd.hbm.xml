@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.EfectividadAcd" table="efectividad_acd" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.EfectividadAcdId">
+            <key-property name="idColaborador" type="int">
+                <column name="id_colaborador" />
+            </key-property>
+            <key-property name="tipoSector" type="int">
+                <column name="tipo_sector" />
+            </key-property>
+            <key-property name="idRegion" type="int">
+                <column name="id_region" />
+            </key-property>
+            <key-property name="tipo" type="int">
+                <column name="tipo" />
+            </key-property>
+            <key-property name="fechaLlamada" type="timestamp">
+                <column name="fecha_llamada" length="19" />
+            </key-property>
+            <key-property name="telefonoContacto" type="string">
+                <column name="telefono_contacto" length="10" />
+            </key-property>
+            <key-property name="estatus" type="int">
+                <column name="estatus" />
+            </key-property>
+            <key-property name="duracion" type="int">
+                <column name="duracion" />
+            </key-property>
+            <key-property name="fechaCampana" type="date">
+                <column name="fecha_campana" length="10" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

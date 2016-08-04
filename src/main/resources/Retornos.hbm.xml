@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Retornos" table="retornos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idColaborador" type="java.lang.Integer">
+            <column name="id_colaborador">
+                <comment>Indica el colaborador que realiz&#243; regres&#243; una cartera.</comment>
+            </column>
+        </property>
+        <property name="tipoRetorno" type="string">
+            <column name="tipo_retorno" length="4" not-null="true">
+                <comment>Indica el tipo de regreso que realiz&#243; el colaborador (fc3 toda la cartera fue vendida - fc4 carteras sin vender - fc4b carteras parcialmente
+                vendidas).</comment>
+            </column>
+        </property>
+        <property name="fechaRetorno" type="date">
+            <column name="fecha_retorno" length="10" not-null="true">
+                <comment>Indica la fecha en que fue realizado el proceso de retorno en el oficio correspondiente.</comment>
+            </column>
+        </property>
+        <property name="folio" type="string">
+            <column name="folio" length="11" not-null="true">
+                <comment>Indica el n&#250;mero del oficio del reterno.</comment>
+            </column>
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" not-null="true">
+                <comment>Indica la fecha en en la que fue registrada al sistema el retorno.</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica el usuario que registr&#243; al sistema dicho retorno.</comment>
+            </column>
+        </property>
+        <property name="idFc2" type="int">
+            <column name="id_fc2" not-null="true">
+                <comment>Indica el id del fc2 al cual pertenece el talonario.</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

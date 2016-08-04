@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.ViewCompradoresNomina" table="view_compradores_nomina" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.ViewCompradoresNominaId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="nombreCompleto" type="string">
+                <column name="nombre_completo" length="152" />
+            </key-property>
+            <key-property name="rfc" type="string">
+                <column name="rfc" length="13" />
+            </key-property>
+            <key-property name="numeroPersonal" type="java.lang.Integer">
+                <column name="numero_personal" />
+            </key-property>
+            <key-property name="idTipoContratacion" type="java.lang.Integer">
+                <column name="id_tipo_contratacion" />
+            </key-property>
+            <key-property name="idTipoPersonal" type="java.lang.Integer">
+                <column name="id_tipo_personal" />
+            </key-property>
+            <key-property name="tipoComprador" type="int">
+                <column name="tipo_comprador" />
+            </key-property>
+            <key-property name="idSector" type="java.lang.Integer">
+                <column name="id_sector" />
+            </key-property>
+            <key-property name="idRegion" type="int">
+                <column name="id_region" />
+            </key-property>
+            <key-property name="fechaRegistro" type="timestamp">
+                <column name="fecha_registro" length="19" />
+            </key-property>
+            <key-property name="idUsuario" type="int">
+                <column name="id_usuario" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

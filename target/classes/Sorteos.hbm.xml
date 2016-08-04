@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Sorteos" table="sorteos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="200" not-null="true">
+                <comment>nombre y numero de sorteo</comment>
+            </column>
+        </property>
+        <property name="fechaSorteo" type="date">
+            <column name="fecha_sorteo" length="10" not-null="true">
+                <comment>fecha a realizar el sorteo</comment>
+            </column>
+        </property>
+        <property name="permisoGobernacion" type="string">
+            <column name="permiso_gobernacion" length="100" not-null="true">
+                <comment>permiso designado por la secretaria de gobernacion</comment>
+            </column>
+        </property>
+        <property name="cuenta" type="string">
+            <column name="cuenta" length="100" />
+        </property>
+        <property name="folioInicial" type="java.lang.Integer">
+            <column name="folio_inicial" />
+        </property>
+        <property name="folioFinal" type="java.lang.Integer">
+            <column name="folio_final" />
+        </property>
+        <property name="folioMaximo" type="java.lang.Integer">
+            <column name="folio_maximo">
+                <comment>Indica el folio m&#225;ximo que se puede generar para registrar boletos.</comment>
+            </column>
+        </property>
+        <property name="vigente" type="java.lang.Integer">
+            <column name="vigente" />
+        </property>
+        <property name="tipo" type="java.lang.Integer">
+            <column name="tipo" />
+        </property>
+        <property name="precioReal" type="int">
+            <column name="precio_real" not-null="true">
+                <comment>Indica el precio real del boleto</comment>
+            </column>
+        </property>
+        <property name="precioComision" type="int">
+            <column name="precio_comision" not-null="true">
+                <comment>Indica el precio del boleto, menos la comisi&#243;n que se le asigna de forma general</comment>
+            </column>
+        </property>
+        <property name="numeroColaboradores" type="java.lang.Integer">
+            <column name="numero_colaboradores" />
+        </property>
+        <property name="fechaEntrega" type="date">
+            <column name="fecha_entrega" length="10">
+                <comment>Indica la fecha en la que tienen todos los colaboradores para regresar los talonarios que les fueron asignados.</comment>
+            </column>
+        </property>
+        <property name="fechaLimitePago" type="date">
+            <column name="fecha_limite_pago" length="10">
+                <comment>Indica la fecha l&#237;mite de pago.</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

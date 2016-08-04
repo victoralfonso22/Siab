@@ -1,0 +1,585 @@
+package BeanVista;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+
+
+
+
+
+
+
+
+
+
+
+
+import Dao.DaoAdministracionColab;
+import Dao.DaoAdministracionE;
+import HibernateUtil.HibernateUtil;
+import Pojos.CodigoPostal;
+import Pojos.ColaboradoresHistorial;
+import Pojos.Estados;
+import Pojos.Localidades;
+import Pojos.Municipios;
+import Pojos.Referencias;
+
+
+
+@ManagedBean
+@Named(value = "mBAdministracionColab")
+@ViewScoped
+
+public class MBAdministracionColab implements Serializable{
+
+	  private Session session;
+	  private Transaction transaction;
+	  private ColaboradoresHistorial colaborador;
+	  private List<ColaboradoresHistorial>listaColab;
+	  private List<ColaboradoresHistorial>colabprep = new  ArrayList();
+	
+	  
+	  private String rfc;
+	  private String nombre;
+	  private String paterno;
+	  private String materno;
+	  private Date nacimiento;
+	  private String correo;
+	  
+	  private String calle;
+	  private String nexterior;
+	  private  String ninterior;
+	   
+	  
+	  private int estado;
+	  private Estados lugar;
+	  
+	  private int municipio;
+	  private Municipios muni;
+	  private int colonia;
+	  private Localidades coloni;
+	  private int cp;
+	  
+	  
+	  private String tel;
+	  private  String telO;
+	  private String  ext;
+	  private String cel;
+	  
+	  
+	  private int tipocol;
+	   
+	  private Referencias ref;
+	  
+	  private ColaboradoresHistorial colab;
+	  private List<ColaboradoresHistorial>listacolab;
+	  
+	  private List<Estados>listaestados;
+	  private List<Municipios>listamunicipios;
+	  private List<Localidades>listaColonias;
+	  private List<CodigoPostal>listacodigos;
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+
+	public List<CodigoPostal> getListacodigos() {
+		return listacodigos;
+	}
+	public void setListacodigos(List<CodigoPostal> listacodigos) {
+		this.listacodigos = listacodigos;
+	}
+	public Localidades getColoni() {
+		return coloni;
+	}
+	public void setColoni(Localidades coloni) {
+		this.coloni = coloni;
+	}
+	public Municipios getMuni() {
+		return muni;
+	}
+	public void setMuni(Municipios muni) {
+		this.muni = muni;
+	}
+	public List<Municipios> getListamunicipios() {
+		return listamunicipios;
+	}
+	public void setListamunicipios(List<Municipios> listamunicipios) {
+		this.listamunicipios = listamunicipios;
+	}
+	public Estados getLugar() {
+		return lugar;
+	}
+	public void setLugar(Estados lugar) {
+		this.lugar = lugar;
+	}
+	public List<Estados> getListaestados() {
+		return listaestados;
+	}
+	public void setListaestados(List<Estados> listaestados) {
+		this.listaestados = listaestados;
+	}
+	public List<ColaboradoresHistorial> getColabprep() {
+		return colabprep;
+	}
+	public void setColabprep(List<ColaboradoresHistorial> colabprep) {
+		this.colabprep = colabprep;
+	}
+	public Session getSession() {
+		return session;
+	}
+	public void setSession(Session session) {
+		this.session = session;
+	}
+	public Transaction getTransaction() {
+		return transaction;
+	}
+	public void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
+	}
+	public List<ColaboradoresHistorial> getListaColab() {
+		return listaColab;
+	}
+	public void setListaColab(List<ColaboradoresHistorial> listaColab) {
+		this.listaColab = listaColab;
+	}
+	public Date getNacimiento() {
+		return nacimiento;
+	}
+	public void setNacimiento(Date nacimiento) {
+		this.nacimiento = nacimiento;
+	}
+	public String getCorreo() {
+		return correo;
+	}
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+	public String getCalle() {
+		return calle;
+	}
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+	public String getNexterior() {
+		return nexterior;
+	}
+	public void setNexterior(String nexterior) {
+		this.nexterior = nexterior;
+	}
+	public String getNinterior() {
+		return ninterior;
+	}
+	public void setNinterior(String ninterior) {
+		this.ninterior = ninterior;
+	}
+	public int getEstado() {
+		return estado;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	public int getMunicipio() {
+		return municipio;
+	}
+	public void setMunicipio(int municipio) {
+		this.municipio = municipio;
+	}
+	public int getColonia() {
+		return colonia;
+	}
+	public void setColonia(int colonia) {
+		this.colonia = colonia;
+	}
+	public int getCp() {
+		return cp;
+	}
+	public void setCp(int cp) {
+		this.cp = cp;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getTelO() {
+		return telO;
+	}
+	public void setTelO(String telO) {
+		this.telO = telO;
+	}
+	public String getExt() {
+		return ext;
+	}
+	public void setExt(String ext) {
+		this.ext = ext;
+	}
+	public String getCel() {
+		return cel;
+	}
+	public void setCel(String cel) {
+		this.cel = cel;
+	}
+	public int getTipocol() {
+		return tipocol;
+	}
+	public void setTipocol(int tipocol) {
+		this.tipocol = tipocol;
+	}
+	public Referencias getRef() {
+		return ref;
+	}
+	public void setRef(Referencias ref) {
+		this.ref = ref;
+	}
+	public ColaboradoresHistorial getColaborador() {
+		return colaborador;
+	}
+	public void setColaborador(ColaboradoresHistorial colaborador) {
+		this.colaborador = colaborador;
+	}
+	public String getRfc() {
+		return rfc;
+	}
+	public void setRfc(String rfc) {
+		this.rfc = rfc;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getPaterno() {
+		return paterno;
+	}
+	public void setPaterno(String paterno) {
+		this.paterno = paterno;
+	}
+	public String getMaterno() {
+		return materno;
+	}
+	public void setMaterno(String materno) {
+		this.materno = materno;
+	}
+
+    
+    public List<ColaboradoresHistorial> completeColab(String query) {
+        List<ColaboradoresHistorial> allColab = getColaboradores();
+        List<ColaboradoresHistorial> filteredColab = new ArrayList<ColaboradoresHistorial>();
+                 
+        for (int i = 0; i < allColab.size(); i++) {
+            ColaboradoresHistorial us = allColab.get(i);
+            if (us.getNombres().toLowerCase().startsWith(query)) {
+                filteredColab.add(us);
+            }
+        }
+        return filteredColab;
+    }
+    
+
+    public List<ColaboradoresHistorial> getColaboradores() {
+        this.session = null;
+        this.transaction = null;
+
+        try {
+        	DaoAdministracionColab daoColab=new DaoAdministracionColab();
+            
+        	
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+
+            listacolab = daoColab.getcolaboradores(this.session);
+
+            this.transaction.commit();
+
+            return listacolab;
+
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+            return null;
+        } finally {
+            if (this.session != null) {
+                session.close();
+            }
+        }
+
+    }
+    
+    
+    
+    
+    
+    public  void  agregacolab(){
+    	
+    	this.colabprep.add(this.colaborador);
+   }
+    
+    public List<Estados> completeLugar(String query) {
+        List<Estados> allEstados = getEstados();
+        List<Estados> filteredEstados = new ArrayList<Estados>();
+                 
+        for (int i = 0; i < allEstados.size(); i++) {
+            Estados us = allEstados.get(i);
+            if (us.getNombre().toLowerCase().startsWith(query)) {
+                filteredEstados.add(us);
+            }
+        }
+        return filteredEstados;
+    }
+    
+    
+    
+    
+    
+    public List<Estados> getEstados() {
+    this.session = null;
+    this.transaction = null;
+
+    try {
+        DaoAdministracionE daoadministracionE = new DaoAdministracionE();
+
+        this.session = HibernateUtil.getSessionFactory().openSession();
+        this.transaction = this.session.beginTransaction();
+
+        listaestados= daoadministracionE.getEstados(this.session);
+        
+      this.transaction.commit();
+
+        return this.listaestados;
+
+    } catch (Exception e) {
+        if (this.transaction != null) {
+            this.transaction.rollback();
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+        return null;
+    } finally {
+        if (this.session != null) {
+            session.close();
+        }
+    }
+}
+    
+    
+    
+public  void generaMunicipios(){   
+
+System.out.print("aki esta el estado "+lugar.getNombre()+"jejeje");
+this.listamunicipios=getMunicipios(this.lugar.getId());
+System.out.print(listamunicipios);
+} 
+
+
+public List<Municipios> completeMuni(String query) {
+	List<Municipios> allMunicipios = getMunicipios(this.lugar.getId());
+    List<Municipios> filteredMunicipios = new ArrayList<Municipios>();
+    for (int i = 0; i < allMunicipios.size(); i++) {
+        Municipios us = allMunicipios.get(i);
+        if (us.getNombre().toLowerCase().startsWith(query)) {
+            filteredMunicipios.add(us);
+        }
+    }
+    return filteredMunicipios;
+}
+
+
+
+public  List<Municipios>getMunicipios(int idEstadoM){
+    
+    this.session = null;
+    this.transaction = null;
+    
+    try {
+        DaoAdministracionE daoAdministracion = new DaoAdministracionE();
+
+        this.session = HibernateUtil.getSessionFactory().openSession();
+        this.transaction = this.session.beginTransaction();
+
+        listamunicipios= daoAdministracion.getMunicipios(this.session,idEstadoM);
+       this.transaction.commit();
+
+        return this.listamunicipios;
+
+    } catch (Exception e) {
+        if (this.transaction != null) {
+            this.transaction.rollback();
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+        return null;
+    } finally {
+        if (this.session != null) {
+            session.close();
+        }
+    }
+
+     
+}
+
+
+public  void generaColonias(){   
+System.out.print("aki esta el id de municipio jajaja"+ " "+muni.getNombre()+muni.getId());
+listaColonias=getLocalidades(muni.getId());
+
+}
+
+public List<Localidades> completeColonia(String query) {
+    List<Localidades> allColonias = getLocalidades(muni.getId());
+    List<Localidades> filteredColonias = new ArrayList<Localidades>();
+             
+    for (int i = 0; i < allColonias.size(); i++) {
+        Localidades us = allColonias.get(i);
+        if (us.getNombre().toLowerCase().startsWith(query)) {
+            filteredColonias.add(us);
+        }
+    }
+    return filteredColonias;
+}
+
+
+
+
+
+
+public  List<Localidades>getLocalidades(int idMunR ){
+    
+    this.session = null;
+    this.transaction = null;
+    
+    try {
+        DaoAdministracionE daoAdministracion = new DaoAdministracionE();
+
+        this.session = HibernateUtil.getSessionFactory().openSession();
+        this.transaction = this.session.beginTransaction();
+
+       listaColonias= daoAdministracion.getLocalidades(session, idMunR);
+        
+       this.transaction.commit();
+
+        return listaColonias;
+
+    } catch (Exception e) {
+        if (this.transaction != null) {
+            this.transaction.rollback();
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+        return null;
+    } finally {
+        if (this.session != null) {
+            session.close();
+        }
+    }
+
+
+
+}
+
+
+
+
+
+////genera   codigos postales
+
+
+
+public  List<CodigoPostal>getCodigos(int idcolonia ){
+    
+  this.session = null;
+  this.transaction = null;
+  
+  try {
+      DaoAdministracionE daoAdministracion = new DaoAdministracionE();
+
+      this.session = HibernateUtil.getSessionFactory().openSession();
+      this.transaction = this.session.beginTransaction();
+      
+      
+      
+      //this.colonia=daoAdministracion.getColonia(session, idcolonia);
+      //System.out.print("aki va el obejto colonia"+colonia.getId());
+      
+
+     listacodigos= daoAdministracion.getCodigos(session, idcolonia);
+      
+     this.transaction.commit();
+
+      return listacodigos;
+
+  } catch (Exception e) {
+      if (this.transaction != null) {
+          this.transaction.rollback();
+      }
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+      return null;
+  } finally {
+      if (this.session != null) {
+          session.close();
+      }
+  }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public void AltaColaborador(){
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    }
+    
+	  
+	  
+	  
+	  
+	
+}

@@ -1,0 +1,43 @@
+body {
+    background-color: #EEEEEE;
+    font-size: 12px;
+    font-family: Century Gothic, sans-serif;   
+    color: #000000;  
+    margin: 10px;
+}
+
+h1 
+{
+    color: white;    
+    font-family: Century Gothic, sans-serif;
+}
+
+#h1Submenus
+{
+    color: #036FAB;
+    text-align: center;
+    font-family: Century Gothic, sans-serif;
+}
+
+.first-row {
+     background-color: #036FAB;
+     font-weight:bold;
+     color: white;
+     text-align: center;
+     margin: 0 auto;
+     font-family: Century Gothic, sans-serif;
+}
+                
+.second-row {
+    background-color: white;
+     font-weight:bold;
+     color: black;
+     font-family: Century Gothic, sans-serif;
+}
+
+.centrado
+{
+    text-align: center;
+     margin: 0 auto;
+     font-family: Century Gothic, sans-serif;
+}

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+    <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+   xmlns:pe="http://primefaces.org/ui/extensions">
+        
+        
+        
+        <body>
+            <ui:composition template="./../template/templateSiab.xhtml">
+                <ui:define name="content">
+                    
+                    <h1 id="h1Submenus">Tipos de Incidencias</h1>
+                       <hr/>
+                     <h:form id="forma">
+                         
+                         <p:growl autoUpdate="true"   sticky="false" showDetail="true" life="2000" />
+                           
+                           
+                           <p:remoteCommand name="rc" update="tabla" actionListener="#{mBIncidencias.generaLista()}"/> 
+                           
+                            <p:dataTable id="tabla" var="dato"  value="#{mBIncidencias.listaIncidencias}"   style=" width: 1024px; margin: 0 auto; font-family: Century Gothic, sans-serif;" >
+                             
+                            <f:facet name="header">
+                            <p:commandButton id="grow2" value="Agrega Incidencia " icon="ui-icon-disk"  onclick="PF('dg').show();" styleClass="ui-priority-primary"/>   
+
+                            <p:tooltip id="toolTipGrow" for="grow2" value="Agrega Incidencia  en caso de No aparacer en la lista"
+                                            showEffect="clip" hideEffect="explode" />
+                            </f:facet>  
+                             
+                           <!--  
+                             <p:column headerText="numero"  >
+                            <h:outputText value="{dato.id}"/>
+                            </p:column>-->
+                             
+                             <p:column headerText="Incidencia"  >
+                                 <h:outputText value="#{dato.tipo}"/>
+                            </p:column>
+                             
+                           <p:column style="width:25px">
+                            <p:commandButton id="edit"  icon="ui-icon-pencil"   update=":forma"  oncomplete="PF('editar').show();" title="Editar registro">  
+                                <f:setPropertyActionListener value="#{dato}" target="#{mBIncidencias.incidencia}"/>
+                            </p:commandButton>
+                            </p:column>
+                           
+                             <p:column style="width:25px">
+                                 <p:commandButton    icon="ui-icon-trash"   oncomplete="rc()" update="@(forma)"  actionListener="#{mBIncidencias.borrarIncidencia(dato.id)}"   title="Borrar registro"/> 
+                           </p:column>
+                             
+                             
+                         </p:dataTable>
+                         
+                           <!-- <p:remoteCommand name="act" update="tabla" actionListener="{mBMunicipio.generaLista()}"/> -->
+                         
+                         
+                            <p:dialog  widgetVar="editar"   header="Editar Incidencia" modal="true"  hideEffect="explode" showEffect="explode" >
+                             
+                                <h:panelGrid columns="2" cellpadding="2"  rendered="#{not empty mBIncidencias.incidencia}">
+                              <p:outputLabel value="Incidencia: " />
+                              <p:inputText id="inciden" style="text-transform: uppercase"   value="#{mBIncidencias.incidencia.tipo}" />
+                               
+                               <br/>
+                               <br/>
+                               
+                               <p:commandButton   value="Guardar Cambios"  update="tabla"  oncomplete="PF('editar').hide();"      actionListener="#{mBIncidencias.editarIncidencia()}" styleClass="ui-priority-primary" />
+                                 
+                           </h:panelGrid>
+                             
+                        </p:dialog>
+                           
+                           <p:dialog id="dga" header="Agrega Incidencia"   widgetVar="dg" modal="true"  hideEffect="explode" showEffect="explode" >
+                               <h:panelGrid columns="3" cellpadding="2" >
+                                   <p:outputLabel value="Incidencia : "/>
+                                   <p:inputText    value="#{mBIncidencias.tipo}" style="text-transform: uppercase"    label="Incidencia"/>
+                                    <!--<p:commandButton value="Cancelar " immediate="true" update="dga" onclick="PF('dg').hide();"   action="{mBSesion.refresh()}"/>-->
+                                  <br/>
+                                  <br/>
+                                  <p:commandButton value="Cancelar" style="margin-left: 25px;"   update="dga" oncomplete="PF('dg').hide();"   action="#{mBIncidencias.cancelar()}"  styleClass="ui-priority-primary" />
+                                   
+                                         <p:commandButton value="Agregar"  update="@(form)"  oncomplete="PF('dg').hide();rc()" action="#{mBSesion.refresh()}"   style="margin-right:50px; margin-left: 50px;"    actionListener="#{mBIncidencias.agregarIncidencia()}"  styleClass="ui-priority-primary" />
+                                   
+                                   
+                                   
+                               </h:panelGrid>
+                               
+                               
+                              
+                           </p:dialog>
+                           
+                           
+                           
+                           
+                           
+                           
+                      
+                     </h:form>
+                    
+                    
+                    
+      
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                </ui:define>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </ui:composition>   
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </body>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </html>
+        
+        
+        

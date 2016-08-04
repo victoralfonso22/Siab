@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+	<h:outputScript library="primefaces" name="jquery/jquery.js"
+		target="head" />
+	<h:outputScript library="primefaces" name="jquery/jquery-plugins.js"
+		target="head" />
+	<script type='text/javascript'>
+
+      </script>
+</h:head>
+<body>
+
+	<ui:composition template="./../template/templateSiab.xhtml">
+
+
+		<ui:define name="content">
+
+			<h:form id="carteras">
+				<p:growl showDetail="true" autoUpdate="true" id="mensajeCarteras"
+					sticky="false" />
+				<h1 id="h1Submenus">Verificación de carteras y boletos</h1>
+				<hr />
+
+				<h:panelGrid columns="2" class=" centrado" id="folCarteras">
+
+
+					<p:outputLabel for="folioCartera" value="Folio de cartera &nbsp;">
+						<p:inputText id="folioCartera"
+							value="#{mBCarteras.carteras.folio}" maxlength="6" type="text"
+							onkeyup="if(this.value.length == this.getAttribute('maxlength')) {$('input[type=text]:eq(1)').focus();return false;}">
+							<p:ajax event="keyup" listener="#{mBCarteras.verificaFolio()}"
+								onsuccess="" delay="300"
+								onerror="$('input[type=text]:eq(0)').focus();"
+								update=":carteras:capturaBoletos" />
+						</p:inputText>
+						<p:focus for="folioCartera"></p:focus>
+					</p:outputLabel>
+				</h:panelGrid>
+				<br />
+				<br />
+				<h:panelGrid columns="1" class="centrado" id="etiquetaBoletos">
+					<p:outputLabel>
+						<b>El número de boletos para esta cartera es :</b>
+						<b style="color: #0063AA;">"#{mBCarteras.numBoletos}"</b>
+					</p:outputLabel>
+				</h:panelGrid>
+				<br />
+				<br />
+				<h:panelGrid columns="2" class=" centrado" id="inputs">
+					<p:outputLabel value="Boleto"></p:outputLabel>
+
+					<p:inputText type="text" maxlength="13"
+						name="#{mBCarteras.contador}" id="Bol0"
+						value="#{mBBoletos.boletos.folio}"
+						onkeyup="if(this.value.length == this.getAttribute('maxlength')) {$('input[type=text]:eq(1)').focus();return false;return false;}">
+						<p:ajax event="keyup"
+							listener="#{mBBoletos.verificaFolioBoleto()}" process="@this"
+							delay="50" oncomplete="" />
+					</p:inputText>
+
+				</h:panelGrid>
+
+				<br />
+				<br />
+
+				<h:panelGrid columns="2" class="centrado" id="capturaBoletos">
+
+					<p:dataTable emptyMessage="Sin registros." var="bol"
+						value="#{mBBoletos.tablaBoletos}" rowIndexVar="indice"
+						style=" width: 600px; text-align: center; margin: 0 auto; font-family: Century Gothic, sans-serif;">
+						<p:column headerText="#">
+							<h:outputText
+								style="font-weight:bold; font-family: Century Gothic, sans-serif;"
+								value="#{indice+1}" />
+						</p:column>
+
+						<p:column headerText="Cartera">
+							<h:outputText value="#{bol.cartera}" styleClass="outouttext" />
+						</p:column>
+
+						<p:column headerText="Boleto">
+							<h:outputText value="#{bol.boleto}" styleClass="outouttext" />
+						</p:column>
+
+						<p:column headerText="Verificación">
+							<h:outputText
+								style="font-weight:bold; color:#009A3C;font-family: Century Gothic, sans-serif; margin-left: auto;margin-right: auto"
+								styleClass="ui-icon ui-icon-check"></h:outputText>
+						</p:column>
+
+					</p:dataTable>
+
+
+					<br />
+
+
+				</h:panelGrid>
+				
+			</h:form>
+			<h:form id="boton">
+			<h:panelGrid columns="2" class="centrado" id="botonGuarda">
+				<p:commandButton value="Guardar" id="guardaBoleto" actionListener="#{mBCarteras.guardaCartera()}"  styleClass="ui-priority-primary" style="#{mBBoletos.mostrarBoton}" />
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+
+
+	</ui:composition>
+
+</body>
+</html>

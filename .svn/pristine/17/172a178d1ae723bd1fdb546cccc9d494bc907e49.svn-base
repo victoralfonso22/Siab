@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+ <!--   <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+   xmlns:pe="http://primefaces.org/ui/extensions"
+   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">-->
+ 
+ <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+   xmlns:pe="http://primefaces.org/ui/extensions"
+       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">  
+        
+        
+        
+        
+   
+    <body>
+      
+        <ui:composition template="./../template/templateSiab.xhtml">
+              
+        <ui:define name="content">
+            
+            <h2 id="h1Submenus">Registro de Ejecutivos de Venta</h2>
+            <hr/>
+    
+ 			<h:form>
+ 			
+ 			
+ 			<p:commandButton value="Ajax Submit"  styleClass="ui-priority-primary"  actionListener="#{mBAdminstracionE.direccion()}"  ajax="false"/>
+ 
+ 			 <p:menubar>
+               <p:menuitem value="Ir a Cambios.. "  outcome="/eventas/CambiosEventas" />
+                  
+              
+                
+                </p:menubar>
+ 			
+ 			
+ 			<p:growl id="growl" sticky="false" showDetail="true" autoUpdate="true"  life="4000" severity="info,warn" />   
+    
+    
+    
+  		
+  			 
+  			 <h:panelGrid  id="grid"    columns="12"  cellpadding="5"  style="margin-left:10px;">
+  			 	
+  			 	<f:facet name="header">
+  			 	    <h3 id="h1Submenus">Datos generales</h3>
+  			 	
+  			 	</f:facet>
+  			 	
+  			 	
+                    <p:outputLabel for="RFC" value="RFC:"  />
+                    <p:inputText id="RFC" value="#{mBAdminstracionE.rfc}" required="true" label="RFC"  maxlength="13" style="text-transform: uppercase; width:100PX "  >
+                    <f:validateLength     minimum="10" maximum="13"  />
+                    <pe:keyFilter  regEx="/[a-z0-9]/i" testFunction="" />
+                    </p:inputText>
+                     <h:message  display="tooltip"/>
+                  
+                   
+                    <p:outputLabel for="nombres" value="Nombre(s):"  />
+                    <p:inputText id="nombres"   value="#{mBAdminstracionE.nombre}" required="true" label="Nombres" style="text-transform: uppercase" >
+                    <pe:keyFilter  regEx="/[a-z\ñ\r\s]/i"/>
+                    </p:inputText>
+                     <h:message  display="tooltip"/>
+                 
+                    
+                    <p:outputLabel for="apellidop" value="Apellido Paterno:" />
+                  	<p:inputText id="apellidop" value="#{mBAdminstracionE.paterno}" required="true" label="Apellido Paterno" style="text-transform: uppercase" >
+                  	 <pe:keyFilter  regEx="/[a-z\ñ\s]/i"/>
+                  	 </p:inputText>
+                    <h:message  display="tooltip"/>
+                       
+
+                    <p:outputLabel for="apellidom" value="Apellido Materno:" />
+                   	<p:inputText id="apellidom"  value="#{mBAdminstracionE.materno}"   required="true" label="Apellido Materno" style="text-transform: uppercase" >
+                     <pe:keyFilter  regEx="/[a-z\ñ\s]/i"/>
+                     </p:inputText>
+                     <h:message  display="tooltip"/>
+                         
+                    <p:outputLabel for="fechan" value="Fecha Nac. :"/>
+                    <p:calendar id="fechan"   required="true"   value="#{mBAdminstracionE.fechanaci}" navigator="true" mask="true" pattern="dd-MM-yyyy"/>
+                   <h:message  display="tooltip"/>
+                    
+                    
+                    <p:outputLabel for="calle" value="Calle :" />
+                    <p:inputText id="calle"  value="#{mBAdminstracionE.calle}"  required="true" label="Calle" style="text-transform: uppercase;">
+                    <pe:keyFilter  regEx="/[a-z\ñ\.\s]/i"/>
+                    </p:inputText>
+                     <h:message  display="tooltip"/>
+                        
+                        
+                  	<p:outputLabel for="numeroe" value="Numero Ext. :" />
+                    <p:inputText id="numeroe"  value="#{mBAdminstracionE.numE}"  required="true" label="numero ex" style="width: 40px">
+                    <pe:keyFilter regEx="/[\d\-\.]/"/>
+                   </p:inputText>
+                     <h:message  display="tooltip"/>
+
+                    <p:outputLabel for="numeroi" value="Numero Int. :" />
+                    <p:inputText id="numeroi" value="#{mBAdminstracionE.numI}" label="numeroi"  style="width: 40px">
+                    <pe:keyFilter regEx="/[\d\-\.]/"/>
+                    </p:inputText>
+                      <h:message  display="tooltip"/>
+                      
+                      
+                     <p:outputLabel for="estado" value="Estado :" />
+                    
+                <p:selectOneMenu value="#{mBAdminstracionE.idestado}"   id="estado"  required="true" label="estado"   >
+                             <f:selectItem itemLabel="-Seleciona un Estado-" itemValue="" />
+                             <f:selectItems value="#{mBAdminstracionE.listaestados}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.id}"/>
+                             <p:ajax event="change"   listener="#{mBAdminstracionE.generaMunicipios()}" update="municipio,col"   partialSubmit="true" />
+                      </p:selectOneMenu>
+                      <h:message  display="tooltip"/>
+                         
+                         
+                     <p:outputLabel for="municipio"  value="Municipio :" />
+                     <p:selectOneMenu id="municipio" required="true"   value="#{mBAdminstracionE.idMun}" label="Municipio">
+                                 <f:selectItem itemLabel="-Seleciona un Municipio-" itemValue="" />
+                                 <f:selectItems value="#{mBAdminstracionE.listamunicipios}" var="m" itemLabel="#{m.nombre}"  itemValue="#{m.id}" />
+                                 <p:ajax event="change" listener="#{mBAdminstracionE.generaColonias()}" update="col,codigo"   />
+                          </p:selectOneMenu>
+             		<h:message  display="tooltip"/>
+                     
+                
+                     <p:outputLabel for="col" value="Colonia:" />
+                         <p:selectOneMenu value="#{mBAdminstracionE.localidad}" required="true"  id="col" label="Colonia">
+                             <f:selectItem itemLabel="-Seleciona una Colonia-" itemValue="" />
+                             <f:selectItems value="#{mBAdminstracionE.listaColonias}" var="c" itemLabel="#{c.nombre}"  itemValue="#{c.id}" />
+                                 <p:ajax event="change" listener="#{mBAdminstracionE.generaCp()}" update="codigo"   />
+                        </p:selectOneMenu>
+                      <h:message  display="tooltip"/>
+                       
+                        
+                      <p:outputLabel for="codigo" value="Codigo Postal:" />
+                         <p:selectOneMenu  value="#{mBAdminstracionE.cp}"  required="true" id="codigo"  label="Codigo Postal" style="width: 90px">
+                              <f:selectItem itemLabel="-Seleciona C.P.-" itemValue="" />
+                              <f:selectItems value="#{mBAdminstracionE.listacodigos}" var="cp" itemLabel="#{cp.cp}"  itemValue="#{cp.id}" />
+                        </p:selectOneMenu>
+                       <h:message  display="tooltip"/>
+                      
+                      
+                    
+                      <p:outputLabel for="correo" value="Correo:" />
+                      <p:inputText id="correo"  value="#{mBAdminstracionE.correo}" />
+                      <h:message  display="tooltip"/>
+                    
+                      <p:outputLabel for="telC" value="Telefono Casa:" />
+                      <p:inputText id="telC" value="#{mBAdminstracionE.telC}" label="Telefono Casa" maxlength="10" >
+                   <pe:keyFilter regEx="/[\d\-\.]/"/>
+                      </p:inputText>
+                     <h:message  display="tooltip"/>
+                        
+                      <p:outputLabel for="telO" value="Telefono Oficina:" />
+                      <p:inputText id="telO" value="#{mBAdminstracionE.telO}" label="Telefono Oficina" >
+                      <pe:keyFilter regEx="/[\d\-\.]/"/>
+                      </p:inputText>
+                      <h:message  display="tooltip"/>
+                          
+                      <p:outputLabel for="ext" value="Ext.:" />
+                      <p:inputText id="ext"  value="#{mBAdminstracionE.ext}"  label="Ext. "  style="width: 30px">
+                      <pe:keyFilter regEx="/[\d\-\.]/"/>
+                      </p:inputText>
+                       <h:message  display="tooltip"/>
+                          
+                        
+                      <p:outputLabel for="cel" value="Celular:" />
+                      <p:inputText id="cel"  value="#{mBAdminstracionE.cel}" required="true" label="Celular" > 
+                      <pe:keyFilter regEx="/[\d\-\.]/"/>
+                      </p:inputText> 
+                       <h:message  display="tooltip"/>
+                      
+                      
+                      
+                      <p:outputLabel for="region" value="Región:" />
+                      <p:selectOneMenu    id="region"  value="#{mBAdminstracionE.idregion}"  required="true" label="Region" >
+                      <f:selectItem itemLabel="-Seleciona una Región-" itemValue="" />
+                      <f:selectItems value="#{mBAdminstracionE.regiones}" var="r" itemLabel="#{r.region}"  itemValue="#{r.id}" />
+                      </p:selectOneMenu>
+                     <h:message  display="tooltip"/>
+                  
+                	  <p:outputLabel for="tipo" value="Tipo Promotor:" />
+                      <p:selectOneMenu   id="tipo" value="#{mBAdminstracionE.tipo}" required="true" label="Tipo Promotor" >
+                      <f:selectItem itemLabel="-Seleciona un Tipo-" itemValue="" />
+                      <f:selectItem itemLabel="EJECUTIVO DE VENTA" itemValue="1" />
+                      <f:selectItem itemLabel="ENLACE" itemValue="2" />
+                      </p:selectOneMenu>
+                      <h:message  display="tooltip"/>
+                  
+           
+                  	 <p:outputLabel for="meta" value="Meta:" />
+                     <p:inputText id="meta"  value="#{mBAdminstracionE.meta}" required="true" label="Meta" >
+                     <pe:keyFilter regEx="/[\d\-\.]/"/>
+                     </p:inputText>
+                      <h:message  display="tooltip"/>
+                  
+                  
+                    <p:outputLabel for="comi" value="Comisión:" />
+                    <p:inputText id="comi" required="true"  value="#{mBAdminstracionE.comision}"   label="Comisión" >
+                    <pe:keyFilter regEx="/[\d\-\.]/"/>
+                    </p:inputText>
+                <h:message  display="tooltip"/>
+                
+                
+        		<!--  
+                <p:outputLabel  value="Lugar" />
+                <p:autoComplete size="20"  value="#{mBAdminstracionE.estado}" completeMethod="#{mBAdminstracionE.completeEsta}"
+                var="esta" itemLabel="#{esta.nombre}" itemValue="#{esta}" converter="estadosConverter" forceSelection="true" minQueryLength="3" effect="explode"    scrollHeight="250" />
+                     <h:message  display="tooltip"/>
+                  
+                 
+                     
+         		 <p:outputLabel  value="Municipio2" />
+                <p:autoComplete size="20" value="#{mBAdminstracionE.municipio}" completeMethod="#{mBAdminstracionE.completeMuni}"
+                var="mun"  itemLabel="#{mun.nombre}" itemValue="#{mun}" converter="municipiosConverter" forceSelection="true" minQueryLength="3" efect="explode" scrollHeight="250" maxResults="15"/>
+                     <h:message  display="tooltip"/>
+          
+                <p:outputLabel  value="Colonia2" />
+                
+                <p:autoComplete size="20" value="#{mBAdminstracionE.colonia}" completeMethod="#{mBAdminstracionE.completeColonia}"
+                var="col" itemLabel="#{col.nombre}" itemValue="#{col}" converter="coloniasConverter" forceSelection="true" minQueryLength="4" efect="explode" scrollHeight="250" maxResults="15"/>
+                <h:message  display="tooltip"/>-->
+          
+                   <f:facet name="footer">
+                    
+                <!--   <p:commandButton value="Guardar" update="growl" actionListener="#{mBAdminstracionE.agregarUS()}" />-->
+  			  
+  			   <p:commandButton value="Guardar" id="ajax" update="grid" actionListener="#{mBAdminstracionE.agregarUS()}"  styleClass="ui-priority-primary"  style="margin-left:600px;"/>
+  			 
+  			
+   
+  			 </f:facet>
+  			 
+  			  </h:panelGrid>
+   
+  
+ 
+    
+ 		
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 		
+ 			
+ 			
+ 			
+ 			</h:form>
+
+            
+  
+            
+            
+            
+                     
+
+
+  
+ 
+               
+          
+      
+        </ui:define>
+     
+        </ui:composition>
+  
+        
+    </body>
+</html>

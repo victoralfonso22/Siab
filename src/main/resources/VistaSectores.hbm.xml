@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 30, 2016 12:59:18 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.VistaSectores" table="vistaSectores" catalog="SorteoUVWeb">
+        
+            <id name="id" type="java.lang.Integer">
+                <column name="id" />
+            </id>
+            <property name="sector" type="string">
+                <column name="sector" length="250" />
+            </property>
+            <property name="comision" type="string">
+                <column name="comision" length="6" />
+            </property>
+            <property name="meta" type="java.lang.Integer">
+                <column name="meta" />
+            </property>
+            <property name="idSectorPadre" type="java.lang.Integer">
+                <column name="id_sector_padre" />
+            </property>
+            <property name="idRegion" type="java.lang.Integer">
+                <column name="id_region" />
+            </property>
+            <property name="tipo" type="java.lang.Integer">
+                <column name="tipo" />
+            </property>
+            <property name="nivel" type="java.lang.Integer">
+                <column name="nivel" />
+            </property>
+            <property name="sectorRegion" type="string">
+                <column name="sector_region" length="351" />
+            </property>
+            <property name="region" type="string">
+                <column name="region" length="100" />
+            </property>
+            <property name="sectorPadre" type="string">
+                <column name="sector_padre" length="250" />
+            </property>
+            <property name="ultimo" type="int">
+            <column name="ultimo" /> 
+        </property>
+        
+    </class>
+</hibernate-mapping>

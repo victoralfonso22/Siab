@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+   xmlns:pe="http://primefaces.org/ui/extensions">
+   
+    <body>
+        <ui:composition template="./../template/templateSiab.xhtml">
+             <ui:define name="content"> 
+                 
+                          <h1 id="h1Submenus">Tipos de Pagos</h1>
+                <hr/>
+              <br/>
+              
+              <h:form id="msjforma">
+                  
+                  <p:growl  id="msj" autoUpdate="true"    sticky="false" showDetail="true" life="2500" />
+               
+                  
+                 
+                  
+              </h:form>
+              
+              
+              
+              <h:form id="forma">
+                  
+                    <!--<p:growl   sticky="false" showDetail="true" life="2000" />-->
+                  
+                   <p:remoteCommand name="rc" update="tabla" actionListener="#{mBTpagos.generaPagos()}"/> 
+                   
+                   
+                  <p:dataTable  id="tabla"  var="dato" value="#{mBTpagos.listaPagos}"      style=" width: 1024px; margin: 0 auto; font-family: Century Gothic, sans-serif;">
+                      
+                      <f:facet name="header">
+                            <p:commandButton id="grow2" value="Agrega Tipo Pago" icon="ui-icon-disk"  onclick="PF('add').show();" styleClass="ui-priority-primary" />   
+
+                            <p:tooltip id="toolTipGrow" for="grow2" value="Agrega pago en caso de No aparacer en la lista"
+                                            showEffect="clip" hideEffect="explode" />
+                            </f:facet> 
+                      
+                    <p:column headerText="Pago"  >
+                        <h:outputText value="#{dato.tipo}"/>
+                            </p:column>
+                      
+                      <p:column headerText="Movimiento"  style="width:200px">
+                          <h:outputText value="#{dato.movimiento}"/>
+                      </p:column>
+                      
+                      
+                            <p:column style="width:25px">
+                            <p:commandButton id="edit"  icon="ui-icon-pencil"   update=":forma"  oncomplete="PF('edit').show();" title="Editar registro">  
+                                <f:setPropertyActionListener value="#{dato}" target="#{mBTpagos.pago}"/>
+                            </p:commandButton>
+                            </p:column>
+                           
+                             <p:column style="width:25px">
+                                 <p:commandButton    icon="ui-icon-trash"   oncomplete="rc()" update=":msjforma:msj"  actionListener="#{mBTpagos.eliminarPago(dato.id)}"   title="Borrar registro"/> 
+                           </p:column>
+                             
+                   
+                  </p:dataTable>
+                  
+                  
+                  <p:dialog id="edd" header="Editar Pago"     widgetVar="edit" modal="true"  hideEffect="explode" showEffect="explode" >
+                      <h:panelGrid columns="2" cellpadding="2" rendered="#{not empty mBTpagos.pago}" >
+                          
+                          <p:outputLabel value="Pago :"/>
+                          <p:inputText value="#{mBTpagos.pago.tipo}"/>
+                           <p:outputLabel value="Movimiento: "/>
+                           <p:selectOneMenu value="#{mBTpagos.mov}">
+                                <f:selectItem itemLabel="Seleciona una opcion" itemValue="" />
+                                 <f:selectItem itemLabel="Abono" itemValue="A" />
+                                 <f:selectItem itemLabel="Cargo" itemValue="C" />
+                               
+                           </p:selectOneMenu>
+                           
+                           <br/>
+                               <br/>
+                           <p:commandButton   value="Guardar Cambios"  update="@form"  oncomplete="PF('edit').hide();rc()"      actionListener="#{mBTpagos.editarPago()}"  styleClass="ui-priority-primary" />
+                          
+                          
+                          
+                      </h:panelGrid>    
+                </p:dialog>
+                  
+                  
+                  <p:dialog id="pagoA" widgetVar="add"  header="Agrega Tipo de Pago" modal="true"  hideEffect="explode" showEffect="explode" >
+                      <h:panelGrid columns="2" cellpadding="2">
+                         
+                          <p:outputLabel value=" Pago: "/>
+                          <p:inputText  value="#{mBTpagos.tipo}"     style="text-transform: uppercase"/>
+                          <p:outputLabel value=" Movimiento: "/>
+                          
+                          <p:selectOneMenu   value="#{mBTpagos.movimiento}"     label="movimiento">
+                                <f:selectItem itemLabel="Seleciona una opcion" itemValue="" />
+                                 <f:selectItem itemLabel="Abono" itemValue="A" />
+                                 <f:selectItem itemLabel="Cargo" itemValue="C" />
+                               
+                            </p:selectOneMenu>
+                          
+                          
+                          <p:commandButton value="Cancelar" style="margin-left: 25px;"   update="@(form)" oncomplete="PF('add').hide();"  action="#{mBTpagos.cancelar()}"  styleClass="ui-priority-primary" />
+                                   
+                          <p:commandButton value="Agregar"  update="@(form)"  oncomplete="PF('add').hide();rc()" action="#{mBSesion.refresh()}"   style="margin-right:50px; margin-left: 50px;"    actionListener="#{mBTpagos.agregaPago()}"  styleClass="ui-priority-primary" />
+                                   
+                                   
+                          
+                          
+                          
+                          
+                      </h:panelGrid>
+                  </p:dialog>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+              </h:form>
+                 
+             
+                 
+             </ui:define>
+      </ui:composition>
+        
+    </body>
+</html>

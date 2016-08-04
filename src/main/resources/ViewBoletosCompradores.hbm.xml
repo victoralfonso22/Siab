@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.ViewBoletosCompradores" table="view_boletos_compradores" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.ViewBoletosCompradoresId">
+            <key-property name="boleto" type="string">
+                <column name="boleto" length="8" />
+            </key-property>
+            <key-property name="cartera" type="string">
+                <column name="cartera" length="6" />
+            </key-property>
+            <key-property name="tipoComprador" type="string">
+                <column name="tipo_comprador" length="19" />
+            </key-property>
+            <key-property name="nombres" type="string">
+                <column name="nombres" length="60" />
+            </key-property>
+            <key-property name="apellidoPaterno" type="string">
+                <column name="apellido_paterno" length="30" />
+            </key-property>
+            <key-property name="apellidoMaterno" type="string">
+                <column name="apellido_materno" length="30" />
+            </key-property>
+            <key-property name="domicilio" type="string">
+                <column name="domicilio" length="100" />
+            </key-property>
+            <key-property name="colonia" type="string">
+                <column name="colonia" length="50" />
+            </key-property>
+            <key-property name="codigoPostal" type="string">
+                <column name="codigo_postal" length="5" />
+            </key-property>
+            <key-property name="ciudad" type="string">
+                <column name="ciudad" length="50" />
+            </key-property>
+            <key-property name="nombre" type="string">
+                <column name="nombre" length="30" />
+            </key-property>
+            <key-property name="telefono" type="string">
+                <column name="telefono" length="10" />
+            </key-property>
+            <key-property name="celular" type="string">
+                <column name="celular" length="10" />
+            </key-property>
+            <key-property name="correo" type="string">
+                <column name="correo" length="100" />
+            </key-property>
+            <key-property name="sexo" type="string">
+                <column name="sexo" length="9" />
+            </key-property>
+            <key-property name="exalumnouv" type="string">
+                <column name="exalumnouv" length="13" />
+            </key-property>
+            <key-property name="fechaNacimiento" type="date">
+                <column name="fecha_nacimiento" length="10" />
+            </key-property>
+            <key-property name="sorteo" type="string">
+                <column name="sorteo" length="31" />
+            </key-property>
+            <key-property name="usuario" type="string">
+                <column name="usuario" length="50" />
+            </key-property>
+            <key-property name="fechaRegistro" type="string">
+                <column name="fecha_registro" length="10" />
+            </key-property>
+            <key-property name="nombreCompleto" type="string">
+                <column name="nombre_completo" length="122" />
+            </key-property>
+            <key-property name="idUsuario" type="java.lang.Integer">
+                <column name="id_usuario" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

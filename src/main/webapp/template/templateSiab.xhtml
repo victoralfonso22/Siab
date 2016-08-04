@@ -1,0 +1,462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<h:head>
+	<title>Siab</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="../resources/images/favicon.ico" />
+	<h:outputStylesheet name="./css/default.css" />
+	<h:outputStylesheet name="./css/cssLayout.css" />
+	<h:outputStylesheet name="webjars/font-awesome/4.5.0/css/font-awesome.css"/>
+	<style>
+	.ui-outputlabel{
+	font-family: Century Gothic, sans-serif ;
+	font-weight: bold ;}
+	.outouttext{
+	font-weight:bold; font-family: Century Gothic, sans-serif;color:#0063AA !important;;
+	}
+    .estilosMenu .ui-menuitem-text{color:black; font-weight: bold; padding-left: 20px } 
+    .menubar {cursor: pointer; border-bottom-style:outset; } 
+    .centeredMenuBar.ui-menubar {
+    text-align: center; font-size: 12px; border-bottom-style: inset; }
+	.centeredMenuBar .ui-menu-list {
+    display: inline-block; } 
+    .ui-menubar .ui-menuitem-text{padding: 3px; padding-left:25px; margin-left: 22px;text-align: right;
+    margin-right: 22px;} 
+    ul.ui-widget-content.ui-menu-list.ui-menu-child {
+   width: 200px;}
+   .ui-inputfield{
+   font-family: Century Gothic, sans-serif; text-transform: uppercase;font-weight:bold; color:#009A3C !important;
+   }
+	</style>
+	/**   .ui-menubar,.ui-menu-child,.ui-menu {
+    background: #0063AA !important; padding-left: 2px; }*/
+	
+	<script type="text/javascript">
+	function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+
+
+document.onkeydown = checkKeycode
+function checkKeycode(e) {
+    var keycode;
+    if (window.event)
+        keycode = window.event.keyCode;
+    else if (e)
+        keycode = e.which;
+
+    // Mozilla firefox
+    if ($.browser.mozilla) {
+        if (keycode == 116 ||(e.ctrlKey &amp; keycode == 82)) {
+            if (e.preventDefault)
+            {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }
+    } 
+    // IE
+    else if ($.browser.msie) {
+        if (keycode == 116 || (window.event.ctrlKey &amp; keycode == 82)) {
+            window.event.returnValue = false;
+            window.event.keyCode = 0;
+            window.status = "Refresh is disabled";
+        }
+    }
+
+    /////nuevo/////
+    else if (event.keyCode == 116 ){
+    	if (event.ctrlKey){ 
+            event.returnValue = false;
+            event.keyCode = 0;
+            return false;
+        }
+    	event.returnValue = false;
+        event.keyCode = 0;
+        return false;
+	   }
+    /////////////
+}
+
+</script> 
+
+
+</h:head>
+
+<h:body>
+
+	<ui:include src="sessionTimeOut.xhtml" />
+
+	<div id="top" class="top">
+		<h1>&nbsp;&nbsp;Sistema integral de administración de boletaje
+			(SIAB)</h1>
+		<div style="border-bottom: inset 7px #009A3C;"></div>
+		
+	
+
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    		<p:graphicImage value="../resources/images/ajax-loader.gif" />
+		</p:dialog>
+		<h:form>
+			<div id="divSesionUsuario">
+
+				<!--  <span>Sesión iniciada por: -->
+
+
+				<!--<u><p:commandLink  value="#{mBSesion.datosUsuario().nombre}" title="Click para cambiar contraseña" style="color: white" onclick="PF('dlg').show();"/></u>-->
+
+
+				<span><b>Sesión iniciada por:&nbsp;&nbsp;<u><p:commandLink
+								title="Click para cambiar contraseña"
+								style="font-family: Century Gothic, sans-serif; color: white"
+								onclick="PF('dlg').show();"
+								value="#{mBSesion.datosUsuario().nombre}" /></u></b>&nbsp; </span>
+
+
+				<p:commandButton style="font-family: Century Gothic, sans-serif; font-weight: bold;"
+					value="Cerrar sesión" action="#{mBSesion.cerrarSesion()}" />
+			</div>
+
+			<p:menubar styleClass="centeredMenuBar ui-menubar">
+
+				<p:submenu  label="Cátalogos"
+					styleClass="estilosMenu" 
+					icon="fa fa-leanpub fa-2x" >
+					
+						
+
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Rango de carteras"
+								url="#{rutasAplicacion.rutaBaseMenu}catalogos/rangoCarteras.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Municipios"
+								url="#{rutasAplicacion.rutaBaseMenu}catalogos/municipios.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Localidades"
+								url="#{rutasAplicacion.rutaBaseMenu}catalogos/localidades.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Formatos"
+								url="#{rutasAplicacion.rutaBaseMenu}catalogos/formatos.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Tipos de Incidencias"
+								url="#{rutasAplicacion.rutaBaseMenu}catalogos/incidencias.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Tipos de Pago"
+								url="#{rutasAplicacion.rutaBaseMenu}catalogos/tpagos.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Tipos de Documentación"
+								url="#{rutasAplicacion.rutaBaseMenu}catalogos/documentacion.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Sectores"
+								url="#{rutasAplicacion.rutaBaseMenu}catalogos/sectores.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Promociones"
+								url="#{rutasAplicacion.rutaBaseMenu}catalogos/promociones.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Sorteos"
+								url="#{rutasAplicacion.rutaBaseMenu}catalogos/sorteos.xhtml" />
+						
+					
+
+				</p:submenu>
+				
+				<p:submenu label="Carteras"
+					styleClass="estilosMenu"
+					icon="fa fa-book fa-2x">
+
+					
+						
+
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Verificación de Boletos"
+								url="#{rutasAplicacion.rutaBaseMenu}carteras/verificacion.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Captura boletos"
+								url="#{rutasAplicacion.rutaBaseMenu}carteras/captura.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Captura cambios"
+								url="#{rutasAplicacion.rutaBaseMenu}carteras/cambios.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Productividad de captura"
+								url="#{rutasAplicacion.rutaBaseMenu}carteras/productividad.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Seguimiento de captura"
+								url="#{rutasAplicacion.rutaBaseMenu}carteras/seguimiento.xhtml" />
+
+						
+					
+
+				</p:submenu>
+				
+				<p:submenu label="Ejecutivos de Venta"
+					styleClass="estilosMenu"
+					icon="fa fa-product-hunt fa-2x">
+
+					
+
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Administración"
+								url="#{rutasAplicacion.rutaBaseMenu}eventas/Admin.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="FC1"
+								url="#{rutasAplicacion.rutaBaseMenu}promotores/fc1.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="FC1B"
+								url="#{rutasAplicacion.rutaBaseMenu}promotores/fc1b.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Formatos"
+								url="#{rutasAplicacion.rutaBaseMenu}promotores/formatos.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Asignar sector"
+								url="#{rutasAplicacion.rutaBaseMenu}promotores/sectores.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Devoluciones"
+								url="#{rutasAplicacion.rutaBaseMenu}promotores/devolucion.xhtml" />
+
+						
+
+				</p:submenu>
+
+				<p:submenu label="Colaboradores"
+					styleClass="estilosMenu"
+					icon="fa fa-male fa-2x">
+
+
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Administración"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/administracion.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="FC2"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/fc2.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Nóminas"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/nominaUV.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Retornos"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/retorno.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Deshacer Retornos"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/deshaceRetorno.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Incidencias"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/incidencia.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Consulta de Referencias"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/consultaReferencia.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Generar Boletos Electronicos"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/boletosElectronicos.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Boletinar Colaborador"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/boletinar.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Entrega Promocional"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/promocional.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Datos de Estudiantes"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/estudiantes.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Folios por Recomendacion"
+								url="#{rutasAplicacion.rutaBaseMenu}colaboradores/boletosElectronicosRecomendacion.xhtml" />
+
+
+						
+
+				</p:submenu>
+
+				<p:submenu label="Pagos"
+					styleClass="estilosMenu"
+					icon="fa fa-money fa-2x">
+
+
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Varios"
+								url="#{rutasAplicacion.rutaBaseMenu}pagos/varios.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="TIP" url="#{rutasAplicacion.rutaBaseMenu}pagos/tip.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="TIPs no procesados"
+								url="#{rutasAplicacion.rutaBaseMenu}pagos/tipNoProcesado.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Traspasos"
+								url="#{rutasAplicacion.rutaBaseMenu}pagos/traspasos.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Aplicacion DPN"
+								url="#{rutasAplicacion.rutaBaseMenu}pagos/dpn.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="DPN no procesados"
+								url="#{rutasAplicacion.rutaBaseMenu}pagos/dpnNoProcesado.xhtml" />
+
+
+
+				</p:submenu>
+
+				<p:submenu label="Reportes"
+					styleClass="estilosMenu"
+					icon="fa fa-file-excel-o fa-2x">
+				
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Comercialización"
+								url="#{rutasAplicacion.rutaBaseMenu}reportes/comercializacion.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Sistemas"
+								url="#{rutasAplicacion.rutaBaseMenu}reportes/sistemas.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Comunicación y publicidad"
+								url="#{rutasAplicacion.rutaBaseMenu}reportes/comunicacion.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Administracion"
+								url="#{rutasAplicacion.rutaBaseMenu}reportes/administracion.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Segob"
+								url="#{rutasAplicacion.rutaBaseMenu}reportes/segob.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Generales"
+								url="#{rutasAplicacion.rutaBaseMenu}reportes/generales.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Captura por usuario"
+								url="#{rutasAplicacion.rutaBaseMenu}reportes/captura.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Telemarketing"
+								url="#{rutasAplicacion.rutaBaseMenu}reportes/telemarketing.xhtml" />
+
+
+				</p:submenu>
+
+
+
+				<p:submenu label="Usuarios"
+					styleClass="estilosMenu"
+					icon="fa fa-users fa-2x">
+
+			
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Administración"
+								url="#{rutasAplicacion.rutaBaseMenu}usuarios/administracion.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Permisos"
+								url="#{rutasAplicacion.rutaBaseMenu}usuarios/permisos.xhtml" />
+
+
+				</p:submenu>
+
+				<p:submenu  label="Gobernacion"
+					styleClass="estilosMenu"
+					icon="fa fa-university fa-2x">
+
+				
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Premios"
+								url="#{rutasAplicacion.rutaBaseMenu}segob/premios.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Ganadores"
+								url="#{rutasAplicacion.rutaBaseMenu}segob/ganadores.xhtml" />
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Ganadores magno"
+								url="#{rutasAplicacion.rutaBaseMenu}segob/ganadoresMagno.xhtml" />
+
+
+				</p:submenu>
+
+				<p:submenu label="Graficas"					
+					styleClass="estilosMenu"
+					icon="fa fa-line-chart fa-2x">
+
+					
+
+							<p:menuitem style="font-family: Century Gothic, sans-serif;"
+								value="Sectores"
+								url="#{rutasAplicacion.rutaBaseMenu}graficas/sectores.xhtml" />
+
+
+				</p:submenu>
+
+
+			</p:menubar>
+
+
+		</h:form>
+
+
+		<h:form>
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="2000" />
+			<p:dialog header="Cambio de Contraseña" widgetVar="dlg"
+				resizable="false" modal="">
+
+				<h:panelGrid columns="2" cellpadding="5">
+
+
+
+					<h:outputLabel for="txtActual" value="Contraseña Actual" />
+					<p:password id="txtActual" value="#{mBSesion.actual}"
+						required="true" label="Actual" />
+
+					<h:outputLabel for="Nueva" value="Contraseña Nueva:" />
+					<p:password id="Nueva" value="#{mBSesion.nueva}" required="true"
+						label="Contraseña Nueva" />
+
+					<h:outputLabel for="Rnueva" value="Repite Contraseña Nueva:" />
+					<p:password id="Rnueva" value="#{mBSesion.rnueva}" required="true"
+						label="Rnueva" />
+
+
+
+
+					<p:commandButton value="Confirma Cambio" update="growl"
+						actionListener="#{mBSesion.cambia()}"
+						oncomplete="handleLoginRequest(xhr, status, args)"  styleClass="ui-priority-primary"/>
+
+
+
+					<p:commandButton value="Cancelar " immediate="true"
+						onclick="PF('dlg').hide();" update="@form"
+						action="#{mBSesion.refresh()}" styleClass="ui-priority-primary"/>
+
+				</h:panelGrid>
+			</p:dialog>
+		</h:form>
+
+
+
+
+
+
+		<ui:insert name="top"></ui:insert>
+	</div>
+
+	<div id="content" class="center_content">
+		<ui:insert name="content"></ui:insert>
+	</div>
+
+	<div id="bottom">
+
+		<ui:insert name="bottom">Sorteo UV &copy; 2016</ui:insert>
+	</div>
+
+</h:body>
+<script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+        if(args.validationFailed || !args.loggedIn) {
+            PF('dlg').jq.effect("shake", {times:5}, 100);
+        }
+        else {
+            PF('dlg').hide();
+            $('#loginLink').fadeOut();
+        }
+    }
+</script>
+
+</html>

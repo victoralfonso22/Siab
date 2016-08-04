@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.SorteoMagno" table="sorteo_magno" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idBoleto" type="int">
+            <column name="id_boleto" not-null="true">
+                <comment>Indica el ID del boleto ganador del premio correspondiente</comment>
+            </column>
+        </property>
+        <property name="idCartera" type="int">
+            <column name="id_cartera" not-null="true">
+                <comment>Indica el ID de la cartera a la que pertenece el premio</comment>
+            </column>
+        </property>
+        <property name="ubicacion" type="java.lang.Character">
+            <column name="ubicacion" length="1">
+                <comment>Indica si el Talonario/Cartera se encuentra: C - "Concentrado", N - "No concentrado"</comment>
+            </column>
+        </property>
+        <property name="idColaborador" type="java.lang.Integer">
+            <column name="id_colaborador" />
+        </property>
+        <property name="idEjecutivo" type="java.lang.Integer">
+            <column name="id_ejecutivo" />
+        </property>
+        <property name="idFc2" type="java.lang.Integer">
+            <column name="id_fc2">
+                <comment>Es el id de la tabla FC2</comment>
+            </column>
+        </property>
+        <property name="idPremio" type="java.lang.Integer">
+            <column name="id_premio">
+                <comment>Indica el id del premio que gano</comment>
+            </column>
+        </property>
+        <property name="idPremioAsignado" type="java.lang.Integer">
+            <column name="id_premio_asignado">
+                <comment>Indica el id del premio asignado</comment>
+            </column>
+        </property>
+        <property name="nombreGanador" type="string">
+            <column name="nombre_ganador" length="150" />
+        </property>
+        <property name="calleGanador" type="string">
+            <column name="calle_ganador" length="550" />
+        </property>
+        <property name="ciudadGanador" type="string">
+            <column name="ciudad_ganador" length="200" />
+        </property>
+        <property name="telefonoGanador" type="string">
+            <column name="telefono_ganador" length="17" />
+        </property>
+        <property name="estatus" type="java.lang.Integer">
+            <column name="estatus">
+                <comment>Indica: 1 - Gano, 2 - No gano, 3 - Reserva, 4- Con reserva (Ganador que permite un numero de reserva)</comment>
+            </column>
+        </property>
+        <property name="boleto" type="string">
+            <column name="boleto" length="7">
+                <comment>Indica el folio del boleto</comment>
+            </column>
+        </property>
+        <property name="cartera" type="string">
+            <column name="cartera" length="6">
+                <comment>Indica el folio del talonario.</comment>
+            </column>
+        </property>
+        <property name="nombreColaborador" type="string">
+            <column name="nombre_colaborador" length="100">
+                <comment>Indica el nombre completo del colaborador.</comment>
+            </column>
+        </property>
+        <property name="folioFc2" type="java.lang.Integer">
+            <column name="folio_fc2">
+                <comment>Indica el n&#250;mero del folio del FC2.</comment>
+            </column>
+        </property>
+        <property name="premio" type="java.lang.Integer">
+            <column name="premio">
+                <comment>Indica el n&#250;mero del premio.</comment>
+            </column>
+        </property>
+        <property name="asignado" type="java.lang.Integer">
+            <column name="asignado">
+                <comment>Indica el n&#250;mero del premio asignado.</comment>
+            </column>
+        </property>
+        <property name="numExtGanador" type="string">
+            <column name="num_ext_ganador" length="45" />
+        </property>
+        <property name="numIntGanador" type="string">
+            <column name="num_int_ganador" length="45" />
+        </property>
+        <property name="cpGanador" type="string">
+            <column name="cp_ganador" length="45" />
+        </property>
+        <property name="coloniaGanador" type="string">
+            <column name="colonia_ganador" length="100" />
+        </property>
+        <property name="contacto" type="java.lang.Integer">
+            <column name="contacto">
+                <comment>1 - telemarketing, 2 - preregistro, 3 - voluntarios</comment>
+            </column>
+        </property>
+        <property name="region" type="string">
+            <column name="region" length="20" />
+        </property>
+        <property name="aclaracion" type="string">
+            <column name="aclaracion" length="500" />
+        </property>
+        <property name="donde" type="string">
+            <column name="donde" length="250" />
+        </property>
+        <property name="debe" type="string">
+            <column name="debe" length="250" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" />
+        </property>
+        <property name="nota" type="string">
+            <column name="nota" length="1000" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="15" />
+        </property>
+        <property name="aclaracionAs" type="string">
+            <column name="aclaracion_as" length="500" />
+        </property>
+        <property name="dondeAs" type="string">
+            <column name="donde_as" length="250" />
+        </property>
+        <property name="debeAs" type="string">
+            <column name="debe_as" length="250" />
+        </property>
+        <property name="notaAs" type="string">
+            <column name="nota_as" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

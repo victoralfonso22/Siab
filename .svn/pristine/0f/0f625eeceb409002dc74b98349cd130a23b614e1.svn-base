@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.BoletinadoColaborador" table="boletinado_colaborador" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idColaboradorHistorial" type="int">
+            <column name="id_colaborador_historial" not-null="true" />
+        </property>
+        <property name="tipoBoletinado" type="int">
+            <column name="tipo_boletinado" not-null="true">
+                <comment>1 - Deudor(pago,retorno,extravio), 2 - Conflictivo, 3 - Devolucion Total, 4 - Familiar Empleado</comment>
+            </column>
+        </property>
+        <property name="estatus" type="java.lang.Integer">
+            <column name="estatus">
+                <comment>(1 - boletinado, 2- Desboletinado)</comment>
+            </column>
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="observaciones" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

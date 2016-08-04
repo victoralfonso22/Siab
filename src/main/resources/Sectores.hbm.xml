@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Sectores" table="sectores" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="sector" type="string">
+            <column name="sector" length="250" not-null="true">
+                <comment>Indica el nombre de sector que se abarcan para la venta de boletaje.</comment>
+            </column>
+        </property>
+        <property name="comision" type="string">
+            <column name="comision" length="6">
+                <comment>Indica la cantidad (en porcentaje) de ganacia que se pueda ganar un colaborador por vender boletos.</comment>
+            </column>
+        </property>
+        <property name="meta" type="int">
+            <column name="meta" not-null="true">
+                <comment>Indica el n&#250;mero de boletos que se deber&#237;an de vender en cada sector.</comment>
+            </column>
+        </property>
+        <property name="idSectorPadre" type="int">
+            <column name="id_sector_padre" not-null="true">
+                <comment>Indica si el sector est&#225; subdividido por otro.</comment>
+            </column>
+        </property>
+        <property name="idRegion" type="int">
+            <column name="id_region" not-null="true">
+                <comment>Indica la region a la que pertenece</comment>
+            </column>
+        </property>
+        <property name="tipo" type="int">
+            <column name="tipo" not-null="true">
+                <comment>1 = UV, 2 = SG, 3 = GOBIERNO, 4= ALIANZAS, 5 = PUNTOS FIJOS, 6 = ESCUELAS</comment>
+            </column>
+        </property>
+        <property name="nivel" type="int">
+            <column name="nivel" not-null="true">
+                <comment>Profuncidad del arbol</comment>
+            </column>
+        </property>
+        <property name="ultimo" type="int">
+            <column name="ultimo" not-null="true">
+                <comment>ultimo nodo</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

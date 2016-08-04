@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+<body>
+
+	<ui:composition template="./../template/templateSiab.xhtml">
+
+		<ui:define name="content">
+			<h1 id="h1Submenus">Sectores</h1>
+			<hr />
+			<h:form id="formSectores">
+				<p:dataGrid columns="10" class="centrado">
+	
+					<p:treeTable id="tablaSectores" value="#{mBSectores.root}" var="sec" >
+					<f:facet name="header">
+            Document Viewer
+        </f:facet>
+						<p:column headerText="Sector">							
+							<h:outputText value="#{sec}" />
+						</p:column>
+						<p:column headerText="Meta">
+						    <h:outputText  />
+						</p:column>
+						<p:column headerText="Comisión">						
+							<h:outputText  />
+						</p:column>
+						<p:column style="width:24px">
+            <p:commandLink update=":form:documentPanel" oncomplete="PF('documentDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search">
+                <f:setPropertyActionListener value="#{document}" target="#{ttBasicView.selectedDocument}" />
+            </p:commandLink>
+        </p:column>
+
+					</p:treeTable>
+
+				</p:dataGrid>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

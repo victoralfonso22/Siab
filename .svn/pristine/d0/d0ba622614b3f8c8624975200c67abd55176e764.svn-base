@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+   xmlns:pe="http://primefaces.org/ui/extensions"> 
+    
+    <body>
+       
+        <ui:composition template="./../template/templateSiab.xhtml">
+         <ui:define name="content"> 
+             
+           <h1 id="h1Submenus">Tipos de Documentacion</h1> 
+           
+           <h:form>
+              <p:growl  autoUpdate="true" sticky="false" showDetail="true" life="2500" />
+              
+       <!---  <p:growl id="growl" showDetail="true" sticky="true" />-->
+              
+
+       
+              <p:remoteCommand name="rc" update="tablaDatos" actionListener="#{mBDocumentacion.generaLista()}"/> 
+                 
+               <p:dataTable id="tablaDatos"  var="doc"  value="#{mBDocumentacion.listatabla}" style=" width: 1024px; margin: 0 auto; font-family: Century Gothic, sans-serif;">
+                   
+                   
+                   
+                    <f:facet name="header">
+                                 <p:commandButton id="grow2" value="Agrega Documento" icon="ui-icon-disk"  onclick="PF('add').show();" styleClass="ui-priority-primary" />   
+
+                                  <p:tooltip id="toolTipGrow" for="grow2" value="Agrega Documento  en caso de No aparacer en la lista"
+                                            showEffect="clip" hideEffect="explode" />
+                  </f:facet> 
+                   
+                   
+                   <p:column headerText="Documento">
+                       <p:outputLabel value="#{doc.tipo}"/>
+                       
+                   </p:column>
+                   
+                   <p:column style="width:25px">
+                      <p:commandButton id="editar"  icon="ui-icon-pencil"  update="@form"   oncomplete="PF('edita').show();" title="Editar registro">  
+                          <f:setPropertyActionListener value="#{doc}" target="#{mBDocumentacion.identificacion}"/>
+                 </p:commandButton>
+                   </p:column>
+                   
+                    <p:column style="width:25px">
+                        <p:commandButton  update="@form"   oncomplete="rc()" icon="ui-icon-trash"      actionListener="#{mBDocumentacion.eliminarDato(doc.id)}"  title="Borrar registro" /> 
+                    </p:column>
+                   
+                   
+               </p:dataTable>
+              
+              
+               <p:dialog  widgetVar="edita" header="Editar Documento"  modal="true"  hideEffect="explode" showEffect="explode" >
+                   <h:panelGrid columns="2" cellpadding="2"  rendered="#{not empty mBDocumentacion.identificacion}">
+                   <p:outputLabel value="Documento: " />
+                   <p:inputText id="dato1" value="#{mBDocumentacion.identificacion.tipo}" style="text-transform: uppercase"/>
+                   <br/>
+                   
+                   <p:commandButton value="Guardar Cambios"  update="@form"  oncomplete="PF('edita').hide();rc()"  actionListener="#{mBDocumentacion.editarDato()}"  styleClass="ui-priority-primary" />
+                   
+                   </h:panelGrid>
+               </p:dialog>
+              
+              
+              
+              <p:dialog id="dga"   widgetVar="add" header="Agrega Documento"  modal="true"  hideEffect="explode" showEffect="explode" >
+                  <h:panelGrid columns="2" cellpadding="2" >
+                  <p:outputLabel value="Documento: " />  
+                  <p:inputText id="dato"    value="#{mBDocumentacion.documento}" style="text-transform: uppercase"/>
+                  
+                <p:commandButton value="Cancelar" style="margin-left: 25px;"   update="dga" oncomplete="PF('add').hide();"   action="#{mBDocumentacion.cancelar()}"  styleClass="ui-priority-primary" />
+                <p:commandButton value="Agregar"  update="@(form)"  oncomplete="PF('dg').hide();rc()" action="#{mBSesion.refresh()}"   style="margin-right:50px; margin-left: 50px;"    actionListener="#{mBDocumentacion.agregarDato()}"  styleClass="ui-priority-primary" />
+                      
+                      
+                      
+                      
+                  </h:panelGrid>
+                  
+                  
+              </p:dialog>
+              
+              
+              
+              
+              
+              
+              
+              
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+           </h:form>
+           
+           
+       
+         </ui:define> 
+            
+        </ui:composition>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </body>
+</html>

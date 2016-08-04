@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Deudores" table="deudores" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" not-null="true">
+                <comment>nombre del deudor</comment>
+            </column>
+        </property>
+        <property name="rfc" type="string">
+            <column name="rfc" length="15" not-null="true">
+                <comment>rfc del deudor</comment>
+            </column>
+        </property>
+        <property name="monto" type="float">
+            <column name="monto" precision="12" scale="0" not-null="true">
+                <comment>cantidad en pesos que debe la persona</comment>
+            </column>
+        </property>
+        <property name="referencia" type="int">
+            <column name="referencia" not-null="true">
+                <comment>referencia bancaria de la persona</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

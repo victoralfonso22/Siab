@@ -1,0 +1,301 @@
+package BeanVista;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import Dao.DaoAdministracionColab;
+import Dao.DaoUsuarios;
+import HibernateUtil.HibernateUtil;
+import Pojos.ColaboradoresHistorial;
+import Pojos.Estados;
+import Pojos.Referencias;
+import Pojos.Usuarios;
+
+
+@ManagedBean
+@Named(value = "mBAdministracionColab")
+@ViewScoped
+
+public class MBAdministracionColab implements Serializable{
+
+	  private Session session;
+	  private Transaction transaction;
+	  
+	  private ColaboradoresHistorial colaborador;
+	  
+	  private List<ColaboradoresHistorial>listaColab;
+	  
+	  private String rfc;
+	  private String nombre;
+	  private String paterno;
+	  private String materno;
+	  private Date nacimiento;
+	  private String correo;
+	  
+	  private String calle;
+	  private String nexterior;
+	  private  String ninterior;
+	   
+	  
+	  private int estado;
+	  private int municipio;
+	  private int colonia;
+	  private  int cp;
+	  
+	  
+	  private String tel;
+	  private  String telO;
+	  private String  ext;
+	  private String cel;
+	  
+	  
+	  private int tipocol;
+	   
+	  private Referencias ref;
+	  
+	  private ColaboradoresHistorial colab;
+	  private List<ColaboradoresHistorial>listacolab;
+	  
+	  
+	  
+	  
+	  
+	  
+	 
+	  
+	  
+	  
+	  
+	  
+	  
+
+	public Session getSession() {
+		return session;
+	}
+	public void setSession(Session session) {
+		this.session = session;
+	}
+	public Transaction getTransaction() {
+		return transaction;
+	}
+	public void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
+	}
+	public List<ColaboradoresHistorial> getListaColab() {
+		return listaColab;
+	}
+	public void setListaColab(List<ColaboradoresHistorial> listaColab) {
+		this.listaColab = listaColab;
+	}
+	public Date getNacimiento() {
+		return nacimiento;
+	}
+	public void setNacimiento(Date nacimiento) {
+		this.nacimiento = nacimiento;
+	}
+	public String getCorreo() {
+		return correo;
+	}
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+	public String getCalle() {
+		return calle;
+	}
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+	public String getNexterior() {
+		return nexterior;
+	}
+	public void setNexterior(String nexterior) {
+		this.nexterior = nexterior;
+	}
+	public String getNinterior() {
+		return ninterior;
+	}
+	public void setNinterior(String ninterior) {
+		this.ninterior = ninterior;
+	}
+	public int getEstado() {
+		return estado;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	public int getMunicipio() {
+		return municipio;
+	}
+	public void setMunicipio(int municipio) {
+		this.municipio = municipio;
+	}
+	public int getColonia() {
+		return colonia;
+	}
+	public void setColonia(int colonia) {
+		this.colonia = colonia;
+	}
+	public int getCp() {
+		return cp;
+	}
+	public void setCp(int cp) {
+		this.cp = cp;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getTelO() {
+		return telO;
+	}
+	public void setTelO(String telO) {
+		this.telO = telO;
+	}
+	public String getExt() {
+		return ext;
+	}
+	public void setExt(String ext) {
+		this.ext = ext;
+	}
+	public String getCel() {
+		return cel;
+	}
+	public void setCel(String cel) {
+		this.cel = cel;
+	}
+	public int getTipocol() {
+		return tipocol;
+	}
+	public void setTipocol(int tipocol) {
+		this.tipocol = tipocol;
+	}
+	public Referencias getRef() {
+		return ref;
+	}
+	public void setRef(Referencias ref) {
+		this.ref = ref;
+	}
+	public ColaboradoresHistorial getColaborador() {
+		return colaborador;
+	}
+	public void setColaborador(ColaboradoresHistorial colaborador) {
+		this.colaborador = colaborador;
+	}
+	public String getRfc() {
+		return rfc;
+	}
+	public void setRfc(String rfc) {
+		this.rfc = rfc;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getPaterno() {
+		return paterno;
+	}
+	public void setPaterno(String paterno) {
+		this.paterno = paterno;
+	}
+	public String getMaterno() {
+		return materno;
+	}
+	public void setMaterno(String materno) {
+		this.materno = materno;
+	}
+	
+	
+	
+    
+    public List<ColaboradoresHistorial> completeColab(String query) {
+        List<ColaboradoresHistorial> allColab = getColaboradores();
+        List<ColaboradoresHistorial> filteredColab = new ArrayList<ColaboradoresHistorial>();
+                 
+        for (int i = 0; i < allColab.size(); i++) {
+            ColaboradoresHistorial us = allColab.get(i);
+            if (us.getNombres().toLowerCase().startsWith(query)) {
+                filteredColab.add(us);
+            }
+        }
+        return filteredColab;
+    }
+	
+	
+	
+	
+	/*
+	public List<ColaboradoresHistorial>getColaboradores(){
+		 this.session = null;
+	     this.transaction = null;
+	     
+	     
+	     try {
+		
+	}*/
+	
+	  
+
+    public List<ColaboradoresHistorial> getColaboradores() {
+        this.session = null;
+        this.transaction = null;
+
+        try {
+        	DaoAdministracionColab daoColab=new DaoAdministracionColab();
+            
+        	
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+
+            listacolab = daoColab.getcolaboradores(this.session);
+
+            this.transaction.commit();
+
+            return listacolab;
+
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+            return null;
+        } finally {
+            if (this.session != null) {
+                session.close();
+            }
+        }
+
+    }
+    
+    
+    public void AltaColaborador(){
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    }
+    
+	  
+	  
+	  
+	  
+	
+}

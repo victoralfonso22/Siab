@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.ViewPermisosCatalogoMenu" table="viewPermisosCatalogoMenu" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.ViewPermisosCatalogoMenuId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="modulo" type="string">
+                <column name="modulo" length="350" />
+            </key-property>
+            <key-property name="etiqueta" type="string">
+                <column name="etiqueta" length="350" />
+            </key-property>
+            <key-property name="idCatalogoSecciones" type="java.lang.Integer">
+                <column name="id_catalogo_secciones" />
+            </key-property>
+            <key-property name="url" type="string">
+                <column name="url" length="350" />
+            </key-property>
+            <key-property name="prioridad" type="java.lang.Integer">
+                <column name="prioridad" />
+            </key-property>
+            <key-property name="idPermiso" type="int">
+                <column name="id_permiso" />
+            </key-property>
+            <key-property name="idUsuario" type="java.lang.Integer">
+                <column name="id_usuario" />
+            </key-property>
+            <key-property name="idCatalogoMenu" type="java.lang.Integer">
+                <column name="id_catalogo_menu" />
+            </key-property>
+            <key-property name="permiso" type="java.lang.Integer">
+                <column name="permiso" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

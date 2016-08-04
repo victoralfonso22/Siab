@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Formatos" table="formatos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="folio" type="int">
+            <column name="folio" not-null="true">
+                <comment>indica el n&#250;mero de asignacion que tiene el formato</comment>
+            </column>
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="4" not-null="true">
+                <comment>Tipos de formatos fc2</comment>
+            </column>
+        </property>
+        <property name="estatus" type="char">
+            <column name="estatus" length="1" not-null="true">
+                <comment>0 est&#225; en b&#243;veda - 1 est&#225; asignado - 2 ya fue registrado - 3 cancelada</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

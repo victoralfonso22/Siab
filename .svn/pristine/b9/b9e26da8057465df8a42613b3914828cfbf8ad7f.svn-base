@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Carteras" table="carteras" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="folio" type="string">
+            <column name="folio" length="6" not-null="true" unique="true">
+                <comment>Indica el n&#250;mero que tiene asignada la cartera, antecedida por la letra C.</comment>
+            </column>
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true">
+                <comment>Indica la cantidad de boletos que tiene la cartera.</comment>
+            </column>
+        </property>
+        <property name="estado" type="boolean">
+            <column name="estado" not-null="true">
+                <comment>Indica como se encuentra la cartera en todo su proceso (0 no vendida - 1 totalmente vendida - 2 parcialmente vendidad).</comment>
+            </column>
+        </property>
+        <property name="asignado" type="int">
+            <column name="asignado" not-null="true">
+                <comment>B&#243;veda (0), Ejecutivo (1), Enlace(2), Colaborador (3)</comment>
+            </column>
+        </property>
+        <property name="incidencia" type="int">
+            <column name="incidencia" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Quincenas" table="quincenas" catalog="SorteoUVWeb">
+        <id name="idquincena" type="java.lang.Integer">
+            <column name="idquincena" />
+            <generator class="identity" />
+        </id>
+        <property name="anio" type="java.lang.Integer">
+            <column name="anio">
+                <comment>Anio correspondiente a la quincena</comment>
+            </column>
+        </property>
+        <property name="numeroquincena" type="string">
+            <column name="numeroquincena" length="2">
+                <comment>Numero de la quincena</comment>
+            </column>
+        </property>
+        <property name="estatus" type="java.lang.Integer">
+            <column name="estatus">
+                <comment>Estatus de la quincena 0= Sin aplicar, 1= Aplicada</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

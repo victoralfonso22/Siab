@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.DatosColaboradorMaestro" table="datosColaboradorMaestro" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.DatosColaboradorMaestroId">
+            <key-property name="idColaborador" type="int">
+                <column name="id_colaborador" />
+            </key-property>
+            <key-property name="referencia" type="string">
+                <column name="referencia" length="11" />
+            </key-property>
+            <key-property name="nombres" type="string">
+                <column name="nombres" length="50" />
+            </key-property>
+            <key-property name="apellidoPaterno" type="string">
+                <column name="apellido_paterno" length="50" />
+            </key-property>
+            <key-property name="apellidoMaterno" type="string">
+                <column name="apellido_materno" length="50" />
+            </key-property>
+            <key-property name="comision" type="java.lang.Integer">
+                <column name="comision" />
+            </key-property>
+            <key-property name="promotor" type="string">
+                <column name="promotor" length="72" />
+            </key-property>
+            <key-property name="telefonoCasa" type="string">
+                <column name="telefono_casa" length="13" />
+            </key-property>
+            <key-property name="celular" type="string">
+                <column name="celular" length="13" />
+            </key-property>
+            <key-property name="correo" type="string">
+                <column name="correo" length="100" />
+            </key-property>
+            <key-property name="calle" type="string">
+                <column name="calle" length="100" />
+            </key-property>
+            <key-property name="numeroExterior" type="string">
+                <column name="numero_exterior" length="11" />
+            </key-property>
+            <key-property name="numeroInterior" type="string">
+                <column name="numero_interior" length="11" />
+            </key-property>
+            <key-property name="colonia" type="string">
+                <column name="colonia" length="50" />
+            </key-property>
+            <key-property name="ciudad" type="string">
+                <column name="ciudad" length="50" />
+            </key-property>
+            <key-property name="estado" type="string">
+                <column name="estado" length="30" />
+            </key-property>
+            <key-property name="replica" type="java.lang.Integer">
+                <column name="replica" />
+            </key-property>
+            <key-property name="cp" type="string">
+                <column name="cp" length="5" />
+            </key-property>
+            <key-property name="region" type="string">
+                <column name="region" length="100" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

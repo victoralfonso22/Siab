@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.SorteoMagnoHistorial" table="sorteo_magno_historial" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.SorteoMagnoHistorialId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="idBoleto" type="int">
+                <column name="id_boleto" />
+            </key-property>
+            <key-property name="idCartera" type="int">
+                <column name="id_cartera" />
+            </key-property>
+            <key-property name="ubicacion" type="java.lang.Character">
+                <column name="ubicacion" length="1" />
+            </key-property>
+            <key-property name="idColaborador" type="java.lang.Integer">
+                <column name="id_colaborador" />
+            </key-property>
+            <key-property name="idEjecutivo" type="java.lang.Integer">
+                <column name="id_ejecutivo" />
+            </key-property>
+            <key-property name="idFc2" type="java.lang.Integer">
+                <column name="id_fc2" />
+            </key-property>
+            <key-property name="idPremio" type="java.lang.Integer">
+                <column name="id_premio" />
+            </key-property>
+            <key-property name="idPremioAsignado" type="java.lang.Integer">
+                <column name="id_premio_asignado" />
+            </key-property>
+            <key-property name="nombreGanador" type="string">
+                <column name="nombre_ganador" length="150" />
+            </key-property>
+            <key-property name="calleGanador" type="string">
+                <column name="calle_ganador" length="550" />
+            </key-property>
+            <key-property name="ciudadGanador" type="string">
+                <column name="ciudad_ganador" length="200" />
+            </key-property>
+            <key-property name="telefonoGanador" type="string">
+                <column name="telefono_ganador" length="17" />
+            </key-property>
+            <key-property name="estatus" type="java.lang.Integer">
+                <column name="estatus" />
+            </key-property>
+            <key-property name="boleto" type="string">
+                <column name="boleto" length="7" />
+            </key-property>
+            <key-property name="cartera" type="string">
+                <column name="cartera" length="6" />
+            </key-property>
+            <key-property name="nombreColaborador" type="string">
+                <column name="nombre_colaborador" length="100" />
+            </key-property>
+            <key-property name="folioFc2" type="java.lang.Integer">
+                <column name="folio_fc2" />
+            </key-property>
+            <key-property name="premio" type="java.lang.Integer">
+                <column name="premio" />
+            </key-property>
+            <key-property name="asignado" type="java.lang.Integer">
+                <column name="asignado" />
+            </key-property>
+            <key-property name="numExtGanador" type="string">
+                <column name="num_ext_ganador" length="50" />
+            </key-property>
+            <key-property name="numIntGanador" type="string">
+                <column name="num_int_ganador" length="45" />
+            </key-property>
+            <key-property name="cpGanador" type="string">
+                <column name="cp_ganador" length="45" />
+            </key-property>
+            <key-property name="coloniaGanador" type="string">
+                <column name="colonia_ganador" length="100" />
+            </key-property>
+            <key-property name="contacto" type="java.lang.Integer">
+                <column name="contacto" />
+            </key-property>
+            <key-property name="anio" type="int">
+                <column name="anio" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

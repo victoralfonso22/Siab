@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+    <body>
+
+        <ui:composition template="./../template/templateSiab.xhtml">
+
+
+            <ui:define name="content">
+                <h1 id="h1Submenus">Rangos de carteras por número de boletos</h1>
+                <hr/>
+                <h:form id="ran">
+                    <h:panelGrid columns="2" class="centrado" style="display: none">
+                        <p:outputLabel for="rangoBoletos" value="Número de boletos: " style="font-weight: bold;" />                        
+                        <p:selectOneMenu id="rangoBoletos" value="#{mBeanRangosCarterasBoletos.valorSeleccionado}">
+                            <p:ajax event="change" listener="#{mBeanRangosCarterasBoletos.buscarRangoCarterasBoletosSelec()}" update="selecion" />
+                            <f:selectItem itemLabel="Seleccione una opcion" itemValue="" noSelectionOption="true"/>
+
+                            <f:selectItems value="#{mBeanRangosCarterasBoletos.items}" />
+
+                        </p:selectOneMenu>
+
+                        <br/>
+                        <p:outputLabel for="selecion" value="Valor inicial"/>
+                        <p:outputLabel id="selecion" value="#{mBeanRangosCarterasBoletos.rangosCarterasBoletos.folioInicio}"/>
+                    </h:panelGrid>
+                    <br />
+
+                    <p:growl showDetail="true" autoUpdate="true" id="mensajeGeneral" sticky="false"/>
+                    <h:panelGrid  columns="3" style="margin: 0 auto; font-family: Century Gothic, sans-serif;" >
+                        
+                        <p:outputLabel  for="numeroBoleto" value="Numero de boletos" styleClass="ui-outputlabel"/>
+                        <p:inputText style="font-family: Century Gothic, sans-serif;" id="numeroBoleto" value="#{mBeanRangosCarterasBoletos.rangosCarterasBoletos.numeroBoletos}" required="true" requiredMessage="Numero de boletos: campo obligatorio"  maxlength="2">
+
+                        </p:inputText>
+                        <p:message for="numeroBoleto"/>
+
+                        <p:outputLabel for="folioInicio" value="Folio inicial" />
+                        <p:inputText style="font-family: Century Gothic, sans-serif; text-transform: uppercase" id="folioInicio" title="Ejemplo. T00001" value="#{mBeanRangosCarterasBoletos.rangosCarterasBoletos.folioInicio}" required="true" maxlength="6">
+                            <f:validator  validatorId="validacionVacio"/>
+                            <f:validator validatorId="validacionCartera"/>
+                        </p:inputText>
+                        <h:panelGroup>
+                            <p:tooltip style="font-family: Century Gothic, sans-serif;" for="folioInicio" hideEffect="explode" showEffect="explode" />
+                            <p:message style="font-family: Century Gothic, sans-serif;" for="folioInicio"/>
+                        </h:panelGroup>
+                        <p:outputLabel  for="folioFin" value="Folio final" />
+                        <p:inputText style="font-family: Century Gothic, sans-serif; text-transform: uppercase" id="folioFin" title="Ejemplo. T15000" value="#{mBeanRangosCarterasBoletos.rangosCarterasBoletos.folioFin}" required="true"  maxlength="6">
+                            <f:validator validatorId="validacionVacio"/>
+                            <f:validator validatorId="validacionCartera"/>
+                        </p:inputText>
+                        <h:panelGroup>
+                            <p:tooltip style="font-family: Century Gothic, sans-serif;" for="folioFin" hideEffect="explode" showEffect="explode" />
+                            <p:message style="font-family: Century Gothic, sans-serif;" for="folioFin"/>
+                        </h:panelGroup>
+
+                        <p:commandButton style="font-family: Century Gothic, sans-serif;" id="guardarRango" update=":ran,:tabla:tablaRango" value="Guardar rango" immediate="false" actionListener="#{mBeanRangosCarterasBoletos.registrarRango()}"  styleClass="ui-priority-primary" /> 
+                        <h:panelGroup/>
+                        <h:panelGroup/>
+                        
+                    </h:panelGrid>
+                    <pe:keyFilter for="numeroBoleto" mask="num"/>
+
+
+                    <br/>
+                </h:form>
+                <h:form id="tabla">
+                    <p:dataTable id="tablaRango" emptyMessage="No existen registros." var="rango" value="#{mBeanRangosCarterasBoletos.rangoCatalogosBoletos}" editable="true" style=" width: 900px; text-align: center; margin: 0 auto; font-family: Century Gothic, sans-serif;">
+
+                        <p:column headerText="Numero de boletos">
+
+                            <p:outputLabel value="#{rango.numeroBoletos}" />
+                        </p:column>
+                        <p:column headerText="Folio de inicio">
+
+                            <p:outputLabel value="#{rango.folioInicio}" />
+
+                        </p:column>
+                        <p:column headerText="Folio final">
+
+                            <p:outputLabel value="#{rango.folioFin}" />                            
+
+                        </p:column>
+                        <p:column style="width:25px">
+                            <p:commandButton id="editarRango" update=":tabla:detalleRango" icon="fa fa-pencil-square-o" oncomplete="PF('edicionRango').show();" title="Editar registro">  
+                                <f:setPropertyActionListener value="#{rango}" target="#{mBeanRangosCarterasBoletos.rangosCarterasBoletos}"/>
+                            </p:commandButton>
+
+                        </p:column>
+                        <p:column style="width:25px">
+                            
+                            <p:commandButton id="borrarRango" icon="fa fa-trash" actionListener="#{mBeanRangosCarterasBoletos.borrarRango(rango.id)}" update=":tabla:tablaRango" title="Borrar registro">  
+
+                            </p:commandButton>
+                            <!-- <p:tooltip for="borrarRango" hideEffect="explode" showEffect="explode"/>-->
+                        </p:column>
+
+                    </p:dataTable>
+                    <br/>
+                    <p:dialog header="Edición de rango" closable="true" widgetVar="edicionRango" hideEffect="explode" showEffect="explode" modal="true">
+                        <p:outputPanel id="detalleRango" style="font-family: Century Gothic, sans-serif; text-align:center;">
+                            <p:panelGrid  columns="2" rendered="#{not empty mBeanRangosCarterasBoletos.rangosCarterasBoletos}" columnClasses="label,value">
+
+
+                                <p:outputLabel value="Numero de boletos: " style="font-family: Century Gothic, sans-serif; font-weight: bold;"/>
+                                <p:inputText value="#{mBeanRangosCarterasBoletos.rangosCarterasBoletos.numeroBoletos}" id="numeroBoletoE" style="font-family: Century Gothic, sans-serif; font-weight: bold; color:#009A3C"  requiredMessage="Numero de boletos: campo obligatorio" maxlength="2"/>
+                                
+                                <p:outputLabel value="Folio inicio: " style="font-family: Century Gothic, sans-serif; font-weight: bold;"/>
+                                <p:inputText value="#{mBeanRangosCarterasBoletos.rangosCarterasBoletos.folioInicio}" style="font-family: Century Gothic, sans-serif; font-weight: bold; color:#009A3C" id="folioInicioE" maxlength="6">
+                                </p:inputText>
+                                
+                                <p:outputLabel value="Folio fin: " style="font-family: Century Gothic, sans-serif; font-weight: bold;"/>
+                                <p:inputText value="#{mBeanRangosCarterasBoletos.rangosCarterasBoletos.folioFin}" style="font-family: Century Gothic, sans-serif; font-weight: bold; color:#009A3C" id="folioFinE" maxlength="6">
+                                </p:inputText>
+                                
+
+                            </p:panelGrid>
+                            <br/>
+                            <p:commandButton value="Editar rango" actionListener="#{mBeanRangosCarterasBoletos.editarRango()}" update=":tabla:tablaRango" oncomplete="PF('edicionRango').hide();"  styleClass="ui-priority-primary" />
+                        </p:outputPanel>
+                    </p:dialog>
+
+                </h:form>
+
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

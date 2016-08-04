@@ -1,0 +1,11 @@
+package Interfaces;
+
+import java.util.List;
+import org.hibernate.Session;
+import Pojos.Sectores;
+
+public interface InterfaceSectores {
+
+	public List<Sectores> sectoresPadreMayor(Session sesion) throws Exception;
+	public List<Sectores> sectoresHijos(Session sesion, int id) throws Exception;
+}

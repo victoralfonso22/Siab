@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Promociones" table="promociones" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idSorteo" type="int">
+            <column name="id_sorteo" not-null="true">
+                <comment>Indica a que sorteo pertenece, ademas de la fecha</comment>
+            </column>
+        </property>
+        <property name="fechaInicio" type="date">
+            <column name="fecha_inicio" length="10" not-null="true">
+                <comment>Indica la fecha en la que inicia la promoci&#243;n.</comment>
+            </column>
+        </property>
+        <property name="fechaFin" type="date">
+            <column name="fecha_fin" length="10" not-null="true">
+                <comment>Indica la fecha en la que termina la promoci&#243;n.</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="200" not-null="true">
+                <comment>Indica la promoci&#243;n que fue creada.</comment>
+            </column>
+        </property>
+        <property name="cantidadPagada" type="int">
+            <column name="cantidad_pagada" not-null="true">
+                <comment>Indica el monto de pago que se debe realizar para cumplir con la promoci&#243;n.</comment>
+            </column>
+        </property>
+        <property name="boletosRecompensa" type="int">
+            <column name="boletos_recompensa" not-null="true">
+                <comment>Indica la cantidad de boletos electr&#243;nicos que se le asignar&#225;n al colaborador en caso de cumplir con el pago y el n&#250;mero de boletos
+                vendidos.</comment>
+            </column>
+        </property>
+        <property name="aplicaDeudores" type="java.lang.Integer">
+            <column name="aplica_deudores">
+                <comment>1.-Indica si la promocion en cuestion aplicara a las personas que tengan algun tipo de adeudo de sorteos pasados 0.- No aplicara la promocion a los
+                deudores</comment>
+            </column>
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="19" not-null="true">
+                <comment>Indica la fecha y hora en la que fue creada la promoci&#243;n.</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica al usuario que di&#243; de alta la promoci&#243;n.</comment>
+            </column>
+        </property>
+        <property name="estatus" type="java.lang.Integer">
+            <column name="estatus">
+                <comment>Indica si la promoci&#243;n esta: 1.-activa, 0.-inactiva</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

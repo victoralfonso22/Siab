@@ -1,0 +1,270 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package BeanVista;
+
+import Dao.DaoBoletos;
+import Dao.DaoCarterasBoletos;
+import HibernateUtil.HibernateUtil;
+import Pojos.Boletos;
+import Pojos.CarteraBoleto;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
+import javax.faces.bean.ManagedBean;
+import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.primefaces.context.RequestContext;
+
+/**
+ *
+ * @author Víctor
+ */
+@ManagedBean(name = "mBBoletos")
+@ViewScoped
+public class MBBoletos implements Serializable {
+    
+    private Session session;
+    private Transaction transaction;
+    private Boletos boletos;
+    private String boletoSinCartera;
+    private String carteraSinBoleto;
+    private List<CarteraBoleto> tablaBoletos;
+    private String folioCartera;
+    private int numeroBoletos;
+    private boolean validaLongitud;
+    private UIInput folioBoleto = null;
+    private String mostrarBoton;
+    
+    /**
+     * Creates a new instance of MBBoletos
+     */
+    public MBBoletos() {
+        this.boletos = new Boletos();
+        this.mostrarBoton = "display:none";
+    }
+    
+    public void verificaFolioBoleto()
+    { 
+    	this.session = null;
+        this.transaction = null;
+        if(this.boletos.getFolio().length() == 13){
+        try {
+        	
+        	HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            this.setFolioCartera((String) httpSession.getAttribute("folioCartera"));
+            this.setNumeroBoletos((int) httpSession.getAttribute("numBoletos"));     
+        	
+        	
+        	this.boletoSinCartera = this.boletos.getFolio().substring(0,7);
+        	this.carteraSinBoleto = this.boletos.getFolio().substring(7,13);
+        	         
+        	
+            Pattern pattern = Pattern.compile("([Bb])([0-9]{6})([Tt])([0-9]{5})");
+            Matcher matcher = pattern.matcher((CharSequence) this.boletos.getFolio());
+            
+
+            if (!matcher.matches()) {
+            	this.boletos.setFolio(null);                
+                RequestContext.getCurrentInstance().update("carteras:inputs");                
+                RequestContext.getCurrentInstance().reset("carteras:inputs");                
+                RequestContext.getCurrentInstance().execute("$('Bol0').focus();");
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "El folio del boleto es incorrecto."));
+                return;
+            }
+
+            DaoBoletos daoBoletos = new DaoBoletos();
+            DaoCarterasBoletos daoCarterasBoletos = new DaoCarterasBoletos();
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+            
+            if(daoCarterasBoletos.existe(this.session, this.folioCartera, this.boletoSinCartera)){
+            	this.boletos.setFolio(null);                
+                RequestContext.getCurrentInstance().update("carteras:inputs");                
+                RequestContext.getCurrentInstance().reset("carteras:inputs");                
+                RequestContext.getCurrentInstance().execute("$('Bol0').focus();");
+            	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: ", "El boleto ya fue dado de alta Temporal"));
+                return;
+            }else{
+            
+            
+            if(daoBoletos.comprobarExisteBoleto(this.session, this.boletoSinCartera))
+            {	this.boletos.setFolio(null);                
+            	RequestContext.getCurrentInstance().update("carteras:inputs");                
+            	RequestContext.getCurrentInstance().reset("carteras:inputs");                
+            	RequestContext.getCurrentInstance().execute("$('Bol0').focus();");
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: ", "El boleto ya fue dado de alta"));
+                return;
+            }
+            
+            if(!this.folioCartera.equals(this.carteraSinBoleto)){
+            	this.boletos.setFolio(null);                
+                RequestContext.getCurrentInstance().update("carteras:inputs");                
+                RequestContext.getCurrentInstance().reset("carteras:inputs");                
+                RequestContext.getCurrentInstance().execute("$('Bol0').focus();");
+            	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: ", "El boleto no pertenece a esta cartera"));
+            	return;
+            }
+            
+                  
+            
+            daoCarterasBoletos.agregar(this.session, this.carteraSinBoleto, this.boletoSinCartera);    
+           
+            this.tablaBoletos = daoCarterasBoletos.listarBoletos(this.session, this.carteraSinBoleto);
+            
+            
+            
+            RequestContext.getCurrentInstance().update("carteras:capturaBoletos");            
+                                
+            this.boletos.setFolio(null);
+            
+            RequestContext.getCurrentInstance().update("carteras:inputs");
+            
+            RequestContext.getCurrentInstance().reset("carteras:inputs");
+            
+            RequestContext.getCurrentInstance().execute("$('Bol0').focus();");
+            
+            
+            
+            if(daoCarterasBoletos.contarBoletos(this.session, this.folioCartera) == (int)httpSession.getAttribute("numBoletos")){
+            	System.out.println("pobre");
+            	this.mostrarBoton = "display:''";
+            	RequestContext.getCurrentInstance().update("boton:botonGuarda");
+        	}
+            
+            this.transaction.commit();  
+            
+            }            
+
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            System.out.println(e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+        } finally {
+            if (this.session != null) {
+
+                session.close();
+            }
+        }
+    }
+    }
+    
+    public void guardaBoleto(){
+    	
+    }
+    
+    
+    
+    public boolean verificaLogintudBoleto(){    	    	
+    	if(this.boletos.getFolio().length() == 12){
+    	return true;
+    	}else{
+    	return false;
+    	}
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+
+    public Boletos getBoletos() {
+        return boletos;
+    }
+
+    public void setBoletos(Boletos boletos) {
+        this.boletos = boletos;
+    }
+
+	public String getBoletoSinCartera() {
+		return boletoSinCartera;
+	}
+
+	public void setBoletoSinCartera(String boletoSinCartera) {
+		this.boletoSinCartera = boletoSinCartera;
+	}
+
+	public List<CarteraBoleto> getTablaBoletos() {
+		return tablaBoletos;
+	}
+
+	public void setTablaBoletos(List<CarteraBoleto> tablaBoletos) {
+		this.tablaBoletos = tablaBoletos;
+	}
+
+	public String getCarteraSinBoleto() {
+		return carteraSinBoleto;
+	}
+
+	public void setCarteraSinBoleto(String carteraSinBoleto) {
+		this.carteraSinBoleto = carteraSinBoleto;
+	}
+
+	public String getFolioCartera() {
+		return folioCartera;
+	}
+
+	public void setFolioCartera(String folioCartera) {
+		this.folioCartera = folioCartera;
+	}
+
+	public int getNumeroBoletos() {
+		return numeroBoletos;
+	}
+
+	public void setNumeroBoletos(int numeroBoletos) {
+		this.numeroBoletos = numeroBoletos;
+	}
+
+	public boolean isValidaLongitud() {
+		return validaLongitud;
+	}
+
+	public void setValidaLongitud(boolean validaLongitud) {
+		this.validaLongitud = validaLongitud;
+	}
+
+	public UIInput getFolioBoleto() {
+		return folioBoleto;
+	}
+
+	public void setFolioBoleto(UIInput folioBoleto) {
+		this.folioBoleto = folioBoleto;
+	}
+
+	public String getMostrarBoton() {
+		return mostrarBoton;
+	}
+
+	public void setMostrarBoton(String mostrarBoton) {
+		this.mostrarBoton = mostrarBoton;
+	}
+    
+    
+    
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.BoletosElectronicos" table="boletos_electronicos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idColaborador" type="int">
+            <column name="id_colaborador" not-null="true">
+                <comment>Indica al colaborador que se le asign&#243; un boleto electr&#243;nico.</comment>
+            </column>
+        </property>
+        <property name="idPromocion" type="int">
+            <column name="id_promocion" not-null="true">
+                <comment>Indica el motivo por el que el colaborador recibi&#243; boletos electr&#243;nicos.</comment>
+            </column>
+        </property>
+        <property name="numeroBoleto" type="string">
+            <column name="numero_boleto" length="10" not-null="true" unique="true">
+                <comment>Indica el n&#250;mero de boleto(s) que le fue asignado al colaborador.</comment>
+            </column>
+        </property>
+        <property name="tipo" type="java.lang.Integer">
+            <column name="tipo">
+                <comment>1 Banco - 2 DPN - 3 Ambos (Banco y DPN) - 4 Tarjeta de Cr&#233;dito - 7 Manual - 8 Recomendado</comment>
+            </column>
+        </property>
+        <property name="estatus" type="java.lang.Integer">
+            <column name="estatus">
+                <comment>1 Asignado - 2 Cancelado</comment>
+            </column>
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" not-null="true">
+                <comment>Indica la fecha y hora en la que fue asignado el boleto asignado.</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica el usuario que le asign&#243; el boleto al colaborador.</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

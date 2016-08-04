@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.NominaBoletos" table="nomina_boletos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idComprador" type="int">
+            <column name="id_comprador" not-null="true">
+                <comment>Indica qui&#233;n compr&#243; el boleto v&#237;a n&#243;mina</comment>
+            </column>
+        </property>
+        <property name="tipoComprador" type="int">
+            <column name="tipo_comprador" not-null="true">
+                <comment>Indica si el que compr&#243; el boleto fue un Colaborador (1) o un Comprador por N&#243;mina (2).</comment>
+            </column>
+        </property>
+        <property name="idBoleto" type="int">
+            <column name="id_boleto" not-null="true">
+                <comment>Indica el boleto comprado.</comment>
+            </column>
+        </property>
+        <property name="idNomina" type="int">
+            <column name="id_nomina" not-null="true">
+                <comment>Indica de qu&#233; n&#243;mina sal&#237;o el boleto.</comment>
+            </column>
+        </property>
+        <property name="tabla" type="int">
+            <column name="tabla" not-null="true">
+                <comment>Indica la tabla de donde jala informaci&#243;n, 1 nominas - 2 nominas_fuv</comment>
+            </column>
+        </property>
+        <property name="estatus" type="int">
+            <column name="estatus" not-null="true">
+                <comment>1- activa, 2- cancelada</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

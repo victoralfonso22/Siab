@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+    <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+   xmlns:pe="http://primefaces.org/ui/extensions">
+     
+     
+     
+    
+    <body>
+      <ui:composition template="./../template/templateSiab.xhtml">
+                    
+               <ui:define name="content">
+                  
+                       <h1 id="h1Submenus">Municipios</h1>
+                       <hr/>
+                
+                 <br/>
+                   
+                     <h:form id="forma">
+                         <p:growl  autoUpdate="true" sticky="false" showDetail="true" life="2000" />
+                 
+                 
+           
+                     
+                    <p:dataTable id="tabla" rows="20"   widgetVar="carsTable" value="#{mBMunicipio.listaTabla}" var="municipio" style=" width: 1024px; margin: 0 auto; font-family: Century Gothic, sans-serif;"
+                			 emptyMessage="No se encontraron datos "   editable="true"    >   >
+                     
+                    <f:facet name="header">
+            		<p:outputPanel>
+                	<h:outputText value="Busca Municipio:" />
+                	<p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="busqueda"/>
+            
+             <p:commandButton id="grow2" value="Agrega Municipio" icon="ui-icon-disk"  onclick="PF('dg').show();" styleClass="ui-priority-primary" />   
+
+                            <p:tooltip id="toolTipGrow" for="grow2" value="Agrega Municipio en caso de No aparacer en la lista"
+                                            showEffect="clip" hideEffect="explode" />
+            </p:outputPanel>
+                     
+                 </f:facet>  
+                 
+                 
+                 
+                 
+                   
+                    <p:column headerText="Municipio"  filterBy="#{municipio.municipio}" filterMatchMode="contains">  
+                                 <h:outputText value="#{municipio.municipio}" />
+                   	</p:column>
+                     
+                  
+             <p:column  headerText="Estado" filterBy="#{municipio.estado}"  filterMatchMode="exact">
+            <f:facet name="filter">
+                <p:selectOneMenu onchange="PF('carsTable').filter()" >
+                    <f:selectItem itemLabel="Seleccione Estado" itemValue=""  />
+                    <f:selectItems value="#{mBMunicipio.listaEstados}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.nombre}"/>
+                </p:selectOneMenu>
+            </f:facet>
+            <h:outputText value="#{municipio.estado}" />
+        </p:column>
+        
+        
+        <p:column headerText="Región">
+                  <h:outputText value="#{municipio.region}" />    
+        </p:column>
+        
+        
+         <p:column style="width:25px">
+                            <p:commandButton id="edit"  icon="ui-icon-pencil"   update=":forma"  oncomplete="PF('edita').show();" title="Editar registro">  
+                                <f:setPropertyActionListener value="#{municipio}" target="#{mBMunicipio.municipio}"/>
+                            </p:commandButton>
+                            </p:column>
+                           
+                           <p:column style="width:25px">
+                               <p:commandButton    icon="ui-icon-trash"   oncomplete="rc()" update=":forma"  actionListener="#{mBMunicipio.borrar(municipio.id)}"   title="Borrar registro"/> 
+                           </p:column>
+        
+        
+    
+ </p:dataTable>
+ 
+ 
+    <p:remoteCommand name="act" update="tabla" actionListener="#{mBMunicipio.generaLista()}"/> 
+                     
+                      
+                      
+                      
+                         <p:dialog  widgetVar="edita" header="Editar Municipio"  modal="true" hideEffect="explode" showEffect="explode">
+                             <h:panelGrid columns="2" cellpadding="2"  rendered="#{not empty mBMunicipio.municipio}">
+                                 <p:outputLabel value="Municipio: " />
+                                 <p:inputText id="dato1" value="#{mBMunicipio.municipio.municipio}" />
+                                 
+                                 <p:outputLabel  for="estadoedit"    value="Estado: "/>
+                                 <p:selectOneMenu id="estadoedit"   value="#{mBMunicipio.estadoEdit}" label="Estado">
+                           <f:selectItem itemLabel="Seleciona Un Estado" itemValue="" />
+                           <f:selectItem itemLabel="AGUAS CALIENTES" itemValue="1" />
+                           <f:selectItem itemLabel="BAJA CALIFORNIA" itemValue="2" />
+                           <f:selectItem itemLabel="BAJA CALIFORNIA SUR " itemValue="3" />
+                           <f:selectItem itemLabel="CAMPECHE" itemValue="4" />
+                           <f:selectItem itemLabel="COAHUILA DE ZARAGOZA" itemValue="5" />
+                           <f:selectItem itemLabel="COLIMA" itemValue="6" />
+                           <f:selectItem itemLabel="CHIAPAS" itemValue="7" />
+                           <f:selectItem itemLabel="CHIHUAHUA" itemValue="8" />
+                           <f:selectItem itemLabel="DISTRITO FEDERAL" itemValue="9" />
+                           <f:selectItem itemLabel="DURANGO" itemValue="10" />
+                           <f:selectItem itemLabel="GUANAJUATO" itemValue="11" />
+                           <f:selectItem itemLabel="GUERRERO" itemValue="12" />
+                           <f:selectItem itemLabel="HIDALGO" itemValue="13" />
+                           <f:selectItem itemLabel="JALISCO" itemValue="14" />
+                           <f:selectItem itemLabel="MEXICO" itemValue="15" />
+                           <f:selectItem itemLabel="MICHOACAN" itemValue="16" />
+                           <f:selectItem itemLabel="MORELOS" itemValue="17" />
+                           <f:selectItem itemLabel="NAYARIT" itemValue="18" />
+                           <f:selectItem itemLabel="NUEVO LEON" itemValue="19" />
+                           <f:selectItem itemLabel="OAXACA" itemValue="20" />
+                           <f:selectItem itemLabel="PUEBLA" itemValue="21" />
+                           <f:selectItem itemLabel="QUERETARO" itemValue="22" />
+                           <f:selectItem itemLabel="QUINTANA ROO" itemValue="23" />
+                           <f:selectItem itemLabel="SAN LUIS POTOSI" itemValue="24" />
+                           <f:selectItem itemLabel="SINALOA" itemValue="25" />
+                           <f:selectItem itemLabel="SONORA" itemValue="26" />
+                           <f:selectItem itemLabel="TABASCO" itemValue="27" />
+                           <f:selectItem itemLabel="TAMAULIPAS" itemValue="28" />
+                           <f:selectItem itemLabel="TLAXCALA" itemValue="29" />
+                           <f:selectItem itemLabel="VERACRUZ" itemValue="30" />
+                           <f:selectItem itemLabel="YUCATAN" itemValue="31" />
+                           <f:selectItem itemLabel="ZACATECAS" itemValue="32" />
+                    </p:selectOneMenu>
+
+                              
+                           <p:outputLabel value="Región: "/>
+                                 
+                           <p:selectOneMenu  id="regionedit" value="#{mBMunicipio.idRegion}"  label="Region">
+                            <f:selectItem itemLabel="Seleciona una Región " itemValue="" />
+                            <f:selectItem itemLabel="XALAPA" itemValue="1" />
+                            <f:selectItem itemLabel="COATZACOALCOS-MINA" itemValue="2" />
+                            <f:selectItem itemLabel="POZA RICA-TUXPAN" itemValue="3" />
+                            <f:selectItem itemLabel="VERACRUZ-BOCA DEL RIO" itemValue="4" />
+                            <f:selectItem itemLabel="CORDOBA-ORIZABA" itemValue="5" />
+                    </p:selectOneMenu>
+                                 
+                                  <br/>
+                                 
+                                  <p:commandButton value="Editar Municipio" update=":forma"  oncomplete="PF('edita').hide();act()"    actionListener="#{mBMunicipio.editarMunicipio()}"  styleClass="ui-priority-primary" />
+                     
+                              
+                             </h:panelGrid>
+                         </p:dialog>
+         
+           </h:form>      
+                 
+                 
+                 
+                   <h:form>
+                         
+                    <p:dialog id="panel" header="Agrega Municipio" widgetVar="dg" resizable="false" modal="true" closable="true" hideEffect="explode" showEffect="explode" >
+                    <h:panelGrid columns="2" cellpadding="5">
+                   
+                    <h:outputLabel for="nombre" value="Nombre Municipio :" />
+                    <p:inputText id="nombre" value="#{mBMunicipio.nombre}" required="true" label="Nombre" style="text-transform: uppercase" />
+               
+                    <h:outputLabel for="estado" value="Estado :" />
+                    <p:selectOneMenu id="estado"   required="true"  value="#{mBMunicipio.idEstado}" label="Estado">
+                           <f:selectItem itemLabel="Seleciona Un Estado" itemValue="" />
+                           <f:selectItem itemLabel="AGUAS CALIENTES" itemValue="1" />
+                           <f:selectItem itemLabel="BAJA CALIFORNIA" itemValue="2" />
+                           <f:selectItem itemLabel="BAJA CALIFORNIA SUR " itemValue="3" />
+                           <f:selectItem itemLabel="CAMPECHE" itemValue="4" />
+                           <f:selectItem itemLabel="COAHUILA DE ZARAGOZA" itemValue="5" />
+                           <f:selectItem itemLabel="COLIMA" itemValue="6" />
+                           <f:selectItem itemLabel="CHIAPAS" itemValue="7" />
+                           <f:selectItem itemLabel="CHIHUAHUA" itemValue="8" />
+                           <f:selectItem itemLabel="DISTRITO FEDERAL" itemValue="9" />
+                           <f:selectItem itemLabel="DURANGO" itemValue="10" />
+                           <f:selectItem itemLabel="GUANAJUATO" itemValue="11" />
+                           <f:selectItem itemLabel="GUERRERO" itemValue="12" />
+                           <f:selectItem itemLabel="HIDALGO" itemValue="13" />
+                           <f:selectItem itemLabel="JALISCO" itemValue="14" />
+                           <f:selectItem itemLabel="MEXICO" itemValue="15" />
+                           <f:selectItem itemLabel="MICHOACAN" itemValue="16" />
+                           <f:selectItem itemLabel="MORELOS" itemValue="17" />
+                           <f:selectItem itemLabel="NAYARIT" itemValue="18" />
+                           <f:selectItem itemLabel="NUEVO LEON" itemValue="19" />
+                           <f:selectItem itemLabel="OAXACA" itemValue="20" />
+                           <f:selectItem itemLabel="PUEBLA" itemValue="21" />
+                           <f:selectItem itemLabel="QUERETARO" itemValue="22" />
+                           <f:selectItem itemLabel="QUINTANA ROO" itemValue="23" />
+                           <f:selectItem itemLabel="SAN LUIS POTOSI" itemValue="24" />
+                           <f:selectItem itemLabel="SINALOA" itemValue="25" />
+                           <f:selectItem itemLabel="SONORA" itemValue="26" />
+                           <f:selectItem itemLabel="TABASCO" itemValue="27" />
+                           <f:selectItem itemLabel="TAMAULIPAS" itemValue="28" />
+                           <f:selectItem itemLabel="TLAXCALA" itemValue="29" />
+                           <f:selectItem itemLabel="VERACRUZ" itemValue="30" />
+                           <f:selectItem itemLabel="YUCATAN" itemValue="31" />
+                           <f:selectItem itemLabel="ZACATECAS" itemValue="32" />
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="region" value="Región :" />
+                    <p:selectOneMenu  id="region" value="#{mBMunicipio.idRegion}"  label="Region">
+                            <f:selectItem itemLabel="Seleciona una Región " itemValue="" />
+                            <f:selectItem itemLabel="XALAPA" itemValue="1" />
+                            <f:selectItem itemLabel="COATZACOALCOS-MINA" itemValue="2" />
+                            <f:selectItem itemLabel="POZA RICA-TUXPAN" itemValue="3" />
+                            <f:selectItem itemLabel="VERACRUZ-BOCA DEL RIO" itemValue="4" />
+                            <f:selectItem itemLabel="CORDOBA-ORIZABA" itemValue="5" />
+                    </p:selectOneMenu>
+                    
+                    <p:commandButton value="Cancelar " immediate="true" update="panel" onclick="PF('dg').hide();"   action="#{mBSesion.refresh()}"  styleClass="ui-priority-primary" />
+           
+                    <p:commandButton value="Agrega Municipio" update="@(form)"  actionListener="#{mBMunicipio.agregaMunicipio()}"
+                                 oncomplete="PF('dg').hide();rc()"    styleClass="ui-priority-primary"  />
+               
+                    </h:panelGrid> 
+                   
+           </p:dialog>
+         </h:form>
+         
+         
+              
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+               
+                 
+     </ui:define>
+                    
+     </ui:composition>
+    
+
+    
+    
+    
+    
+    
+        
+    </body>
+</html>

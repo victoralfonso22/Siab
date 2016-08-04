@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Tip" table="tip" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="numeroTransaccion" type="java.lang.Integer">
+            <column name="numero_transaccion">
+                <comment>Este campo se crea concatenando el n&#249;mero de sucursal bancaria y el ultimo conjunto de numeros de cada linea del archivo TIP</comment>
+            </column>
+        </property>
+        <property name="importe" type="java.lang.Integer">
+            <column name="importe">
+                <comment>cantidad en pesos pagada por el promotor</comment>
+            </column>
+        </property>
+        <property name="sucursal" type="java.lang.Integer">
+            <column name="sucursal">
+                <comment>sucursal bancaria</comment>
+            </column>
+        </property>
+        <property name="referencia" type="string">
+            <column name="referencia" length="11">
+                <comment>referencia bancaria usada por el promotor</comment>
+            </column>
+        </property>
+        <property name="procesado" type="java.lang.Boolean">
+            <column name="procesado">
+                <comment>0-no procesado, 1-procesado</comment>
+            </column>
+        </property>
+        <property name="fechaProcesado" type="date">
+            <column name="fecha_procesado" length="10">
+                <comment>fecha en que se proceso el importe</comment>
+            </column>
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" length="254">
+                <comment>comentarios si fue o no procesado</comment>
+            </column>
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10">
+                <comment>fecha en que se inserta el registro en bd.</comment>
+            </column>
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="2" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Trfc2fc1b" table="trfc2fc1b" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.Trfc2fc1bId">
+            <key-property name="idFc2" type="int">
+                <column name="id_fc2" />
+            </key-property>
+            <key-property name="idFc1b" type="int">
+                <column name="id_fc1b" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

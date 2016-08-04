@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Empleados" table="empleados" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombres" type="string">
+            <column name="nombres" length="50" not-null="true">
+                <comment>Indica el nombre del empleado.</comment>
+            </column>
+        </property>
+        <property name="idPuesto" type="int">
+            <column name="id_puesto" not-null="true">
+                <comment>Indica en que puesto y a qu&#233; &#225;rea pertenece el empleado.</comment>
+            </column>
+        </property>
+        <property name="usuarioAsignado" type="int">
+            <column name="usuario_asignado" not-null="true">
+                <comment>0-no asignado, 1-asignado</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

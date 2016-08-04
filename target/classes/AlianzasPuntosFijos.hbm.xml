@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.AlianzasPuntosFijos" table="alianzasPuntosFijos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="tipo" type="int">
+            <column name="tipo" not-null="true">
+                <comment>tipo de registro (1 - Alianza, 2- Punto Fijo)</comment>
+            </column>
+        </property>
+        <property name="sucursal" type="int">
+            <column name="sucursal" not-null="true">
+                <comment>id del sector al que pertence la alianza o punto fijo</comment>
+            </column>
+        </property>
+        <property name="idReferencia" type="int">
+            <column name="id_referencia" not-null="true">
+                <comment>identificador de la referencia bancaria que le fue asignada</comment>
+            </column>
+        </property>
+        <property name="idColaboradorResponsable" type="int">
+            <column name="id_colaborador_responsable" not-null="true">
+                <comment>identificador del colaborador responsable de la sucursal</comment>
+            </column>
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true">
+                <comment>Fecha en que se dio de alta el registro</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3/03/2015 11:16:25 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.PermisosCatalogoMenu" table="viewPermisosCatalogoMenu" catalog="sorteoWeb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="modulo" type="string">
+            <column name="modulo" length="350" />
+        </property>
+        <property name="etiqueta" type="string">
+            <column name="etiqueta" length="350">
+                <comment>Indica el nombre con el que se le identificara mediante programacion, no debe tener acentos, espacios puntos o comas</comment>
+            </column>
+        </property>
+        <property name="idCatalogoSecciones" type="java.lang.Integer">
+            <column name="id_catalogo_secciones">
+                <comment>Llave foranea que relaciona a cada m&#243;dulo con una secci&#243;n en el menu principal</comment>
+            </column>
+        </property>
+        <property name="url" type="string">
+            <column name="url" length="350" />
+        </property>
+        <property name="prioridad" type="java.lang.Integer">
+            <column name="prioridad">
+                <comment>Indica en que orden aparecera en el mnenu, si sera el primero de arriba hacia abajo o el ultimo, comenzando desde el numero 1</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="java.lang.Integer">
+            <column name="id_usuario">             
+            </column>
+        </property>
+        <property name="idCatalogoMenu" type="java.lang.Integer">
+            <column name="id_catalogo_menu">
+                <comment>Indica el id del menu</comment>
+            </column>
+        </property>
+        <property name="permiso" type="java.lang.Integer">
+            <column name="permiso">
+                <comment>1.- Indica que si tiene permiso 0.- Indica que no tiene permiso para acceder al modulo en cuestion</comment>
+            </column>
+        </property>
+        <property name="idPermiso" type="java.lang.Integer">
+            <column name="id_permiso">
+                <comment>1.- Indica que si tiene permiso 0.- Indica que no tiene permiso para acceder al modulo en cuestion</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.ViewEstudiantes" table="view_estudiantes" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.ViewEstudiantesId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="matricula" type="string">
+                <column name="matricula" length="20" />
+            </key-property>
+            <key-property name="nombres" type="string">
+                <column name="nombres" length="100" />
+            </key-property>
+            <key-property name="apellidoPaterno" type="string">
+                <column name="apellido_paterno" length="100" />
+            </key-property>
+            <key-property name="apellidoMaterno" type="string">
+                <column name="apellido_materno" length="100" />
+            </key-property>
+            <key-property name="fechaNacimiento" type="date">
+                <column name="fecha_nacimiento" length="10" />
+            </key-property>
+            <key-property name="correo" type="string">
+                <column name="correo" length="50" />
+            </key-property>
+            <key-property name="telefonoCasa" type="string">
+                <column name="telefono_casa" length="20" />
+            </key-property>
+            <key-property name="celular" type="string">
+                <column name="celular" length="20" />
+            </key-property>
+            <key-property name="domicilio" type="string">
+                <column name="domicilio" length="500" />
+            </key-property>
+            <key-property name="localidad" type="string">
+                <column name="localidad" length="100" />
+            </key-property>
+            <key-property name="municipio" type="string">
+                <column name="municipio" length="50" />
+            </key-property>
+            <key-property name="estado" type="string">
+                <column name="estado" length="100" />
+            </key-property>
+            <key-property name="modalidad" type="string">
+                <column name="modalidad" length="50" />
+            </key-property>
+            <key-property name="carrera" type="string">
+                <column name="carrera" length="80" />
+            </key-property>
+            <key-property name="region" type="string">
+                <column name="region" length="50" />
+            </key-property>
+            <key-property name="existe" type="java.lang.Integer">
+                <column name="existe" />
+            </key-property>
+            <key-property name="nombre" type="string">
+                <column name="nombre" length="302" />
+            </key-property>
+            <key-property name="referencia" type="string">
+                <column name="referencia" length="11" />
+            </key-property>
+            <key-property name="idReferencia" type="java.lang.Integer">
+                <column name="id_referencia" />
+            </key-property>
+            <key-property name="idPromotor" type="int">
+                <column name="id_promotor" />
+            </key-property>
+            <key-property name="enlace" type="string">
+                <column name="enlace" length="72" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

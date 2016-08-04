@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Dpn" table="dpn" catalog="SorteoUVWeb">
+        <id name="iddpn" type="java.lang.Integer">
+            <column name="iddpn" />
+            <generator class="identity" />
+        </id>
+        <property name="cantidad" type="java.lang.Float">
+            <column name="cantidad" precision="12" scale="0">
+                <comment>Monto del pago</comment>
+            </column>
+        </property>
+        <property name="numreferencia" type="string">
+            <column name="numreferencia" length="20">
+                <comment>Referencia del banco</comment>
+            </column>
+        </property>
+        <property name="fechaaplicacion" type="date">
+            <column name="fechaaplicacion" length="10">
+                <comment>Fecha que se aplica el descuento</comment>
+            </column>
+        </property>
+        <property name="estatus" type="java.lang.Integer">
+            <column name="estatus">
+                <comment>Estatus del descuento 1=Aplicado, 0=Pendiente</comment>
+            </column>
+        </property>
+        <property name="observaciones" type="string">
+            <column name="observaciones" length="500">
+                <comment>Observaciones del descuento</comment>
+            </column>
+        </property>
+        <property name="idquincena" type="java.lang.Integer">
+            <column name="idquincena">
+                <comment>Identificador de la quincena aplicada</comment>
+            </column>
+        </property>
+        <property name="idusuario" type="java.lang.Integer">
+            <column name="idusuario">
+                <comment>Identificador del usuario</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

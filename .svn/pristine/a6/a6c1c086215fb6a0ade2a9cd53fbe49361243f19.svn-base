@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.BoletosEstudiantes" table="boletos_estudiantes" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idBoleto" type="int">
+            <column name="id_boleto" not-null="true">
+                <comment>identificador de la tabla boletos</comment>
+            </column>
+        </property>
+        <property name="folio" type="string">
+            <column name="folio" length="10" not-null="true" unique="true">
+                <comment>folio del boleto estudiantil</comment>
+            </column>
+        </property>
+        <property name="matricula" type="string">
+            <column name="matricula" length="15">
+                <comment>matricula del estudiante</comment>
+            </column>
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="150">
+                <comment>nombre del estudiante</comment>
+            </column>
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="20" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="100" />
+        </property>
+        <property name="estatus" type="int">
+            <column name="estatus" not-null="true">
+                <comment>0 no participa, 1 participa</comment>
+            </column>
+        </property>
+        <property name="folioSecuencia" type="string">
+            <column name="folio_secuencia" length="20" />
+        </property>
+        <property name="estatusPago" type="java.lang.Integer">
+            <column name="estatus_pago" />
+        </property>
+    </class>
+</hibernate-mapping>

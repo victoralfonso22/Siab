@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Usuarios" table="usuarios" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true">
+                <comment>Indica el nombre completo del usuario.</comment>
+            </column>
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" length="20" not-null="true">
+                <comment>Indica el nombre de usuario que se usar&#195;&#161; para accesar al sistema.</comment>
+            </column>
+        </property>
+        <property name="pass" type="string">
+            <column name="pass" length="40" not-null="true">
+                <comment>Indica la contrase&#195;&#177;a que usa el usuario para accesar al sistema.</comment>
+            </column>
+        </property>
+        <property name="idRol" type="int">
+            <column name="id_rol" not-null="true">
+                <comment>identificador del rol de usuario</comment>
+            </column>
+        </property>
+        <property name="idEmpleado" type="int">
+            <column name="id_empleado" not-null="true">
+                <comment>identificador del empleado que le corresponde el usuario</comment>
+            </column>
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" not-null="true">
+                <comment>Indica la hora y fecha en la que el usuario fue dado de alta.</comment>
+            </column>
+        </property>
+        <property name="estatus" type="int">
+            <column name="estatus" not-null="true">
+                <comment>Registra si esta desabilitado el usuario o no (0-deshabilitado, 1-habilitado)</comment>
+            </column>
+        </property>
+        <property name="idSector" type="java.lang.Integer">
+            <column name="id_sector" />
+        </property>
+    </class>
+</hibernate-mapping>

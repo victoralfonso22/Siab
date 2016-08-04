@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">   
+ 
+    <body>
+        <ui:composition template="./../template/templateSiab.xhtml">
+            <ui:define name="content" class="centrado">
+                    <h1 id="h1Submenus">Alta y Cancelación de Folios FC2 y FU</h1>
+                    <hr/>
+                    <h:form class="centrado" id="centra">                                                                        
+
+                        <p:panel header="" style="margin-bottom:10px;" id="principal">
+                            <h:panelGrid columns="3" cellpadding="5" class="centrado" id="combos">
+                                <p:outputLabel for="accion" value="Operación a realizar: " />
+                                <p:selectOneMenu id="accion" value="#{mBFormatos.accion}" style="width:150px" required="true"  requiredMessage="Selecciona una accion a ejecutar" valueChangeListener="#{mBFormatos.onAccionChange}">                                    
+                                    <f:selectItem itemLabel="Selecciona" itemValue="default" />
+                                    <f:selectItems value="#{mBFormatos.acciones}" />
+                                    <p:ajax event="change" listener="#{mBFormatos.onAccionChange}" update="formato,registro"  partialSubmit="true"  />
+                                </p:selectOneMenu>
+                                <p:message for="accion"/>
+
+                                <p:outputLabel for="formato" value="Tipo de formato: " />
+                                <p:selectOneMenu id="formato" value="#{mBFormatos.formato}" style="width:150px" required="true" requiredMessage="Selecciona un tipo de formato">                                    
+                                    <f:selectItem itemLabel="Selecciona" itemValue="default" />
+                                    <f:selectItems value="#{mBFormatos.formatos}" />
+                                    <p:ajax event="change" listener="#{mBFormatos.onFormatoChange}" update="registro" partialSubmit="true"  />
+                                </p:selectOneMenu>
+                                <p:message for="formato"/>
+
+                                <p:outputLabel for="registro" value="Tipo de registro: " />
+                                <p:selectOneMenu id="registro" value="#{mBFormatos.registro}" style="width:150px" required="true" requiredMessage="Selecciona un tipo de registro">
+                                    <f:selectItem itemLabel="Selecciona" itemValue="" noSelectionOption="true" />
+                                    <f:selectItems value="#{mBFormatos.registros}" />
+                                       <!-- <p:ajax  update="registro"  />
+                                       <p:ajax event="change" listener="#{mBFormatos.recogeDatos()}" oncomplete="PF('dlg').show();"  update=":centra:principal"  />-->
+                                       
+                                       
+                                </p:selectOneMenu>
+                                <p:message for="registro"/>                                
+                            </h:panelGrid>
+
+                            <p:separator />
+
+                     <p:commandButton value="Aceptar" icon="ui-icon-check" actionListener="#{mBFormatos.recogeDatos()}" oncomplete="PF('dlg').show();"  update=":centra:principal"  styleClass="ui-priority-primary"  />
+
+                            
+                            <p:growl id="validacion" autoUpdate="true" showDetail="true" sticky="false"/>
+                            
+                            <p:dialog id="dialo"    header="#{mBFormatos.accion} #{mBFormatos.formato} #{mBFormatos.registro}" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">                                                                
+                               
+                               
+                                
+                                <h:panelGrid columns="2"     id="display" columnClasses="label,value" style=" margin: 0 auto;"  >                                    
+                                    <c:if test="#{mBFormatos.registro eq 'Rango'}">
+                                        <p:outputLabel value="Folio Inicial:"/>
+                                        <p:inputText id="folioInicio" value="#{mBFormatos.folioI}"  style=" width: 80px"  required="true" requiredMessage="Se requiere un Folio Inicial"/>
+                                        <p:outputLabel value="Folio Final:"/>                                        
+                                        <p:inputText value="#{mBFormatos.folioF}" id="folioFinal"  style=" width: 80px" required="true" requiredMessage="Se requiere un Folio Final"/>
+                                        
+                                        <br/>
+                                         <br/>
+                                        
+                                        <p:commandButton value="Guardar" actionListener="#{mBFormatos.guardaFolios()}"   style="margin-right:55px;" update="@(form)"  oncomplete="PF('dlg').hide();"   styleClass="ui-priority-primary"  />                                        
+                                    </c:if>
+                                    
+                                    
+                                    <c:if test="#{mBFormatos.registro eq 'Individual'}">
+                                        
+                                        <p:outputLabel value="Folio:"/>                                        
+                                        <p:inputText id="folioUnico" value="#{mBFormatos.folioUnico}" style=" width: 80px" required="true"   requiredMessage="El campo Folio necesita un valor." />                                       
+                                        
+                                        <br/>
+                                            <br/>
+                                                <br/>
+                                        <p:commandButton value="Guardar" update="@(form)"  actionListener="#{mBFormatos.guardafolioUnico()}"  oncomplete="PF('dlg').hide();"  style="margin-right:55px; " styleClass="ui-priority-primary" />                                     
+                                    </c:if>
+                                </h:panelGrid>                                 
+                            </p:dialog> 
+                                                                          
+                        </p:panel>
+                        
+                        
+                    </h:form>  
+                    
+                    
+                    
+            </ui:define>
+        </ui:composition>                       
+    </body>
+
+</html>

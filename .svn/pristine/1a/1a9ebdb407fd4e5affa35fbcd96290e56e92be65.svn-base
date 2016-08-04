@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.PromoMarketingBitacora" table="promoMarketingBitacora" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idPromocional" type="int">
+            <column name="id_promocional" not-null="true">
+                <comment>Id de la tabla promoMarketing</comment>
+            </column>
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" not-null="true">
+                <comment>nombre de quien recibi&#243; los promocionales</comment>
+            </column>
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true">
+                <comment>cantidad de promocionales asignados</comment>
+            </column>
+        </property>
+        <property name="fecha" type="string">
+            <column name="fecha" length="50">
+                <comment>fecha en que se recibio el promocional</comment>
+            </column>
+        </property>
+        <property name="fechaActualiza" type="timestamp">
+            <column name="fecha_actualiza" length="19" not-null="true">
+                <comment>fecha de actualizacion del registro</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

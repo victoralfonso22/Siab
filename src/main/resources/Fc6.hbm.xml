@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Fc6" table="fc6" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idColaborador" type="int">
+            <column name="id_colaborador" not-null="true">
+                <comment>Colaborador que le ocurri&#243; la incidencia</comment>
+            </column>
+        </property>
+        <property name="idTipoIncidencia" type="int">
+            <column name="id_tipo_incidencia" not-null="true">
+                <comment>Tipo de incidencia sucitada</comment>
+            </column>
+        </property>
+        <property name="idCartera" type="int">
+            <column name="id_cartera" not-null="true">
+                <comment>Talonario que sufri&#243; la incidencia</comment>
+            </column>
+        </property>
+        <property name="actaMinisterio" type="string">
+            <column name="acta_ministerio" length="50" not-null="true">
+                <comment>N&#250;mero de acat o de folio que se levant&#243; en el MP por la incidencia del talonario</comment>
+            </column>
+        </property>
+        <property name="comentario" type="string">
+            <column name="comentario" length="250">
+                <comment>Si la incidencia fue OTRO este campo se llena para dar una breve explicaci&#243;n de los sucedido.</comment>
+            </column>
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="19" not-null="true">
+                <comment>Fecha en que la que se registr&#243; la incidencia en el sistema</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Boletos" table="boletos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="folio" type="string">
+            <column name="folio" length="7" not-null="true" unique="true">
+                <comment>Indica el n&#250;mero que le es asignado al boleto, (iniciando con la letra b).</comment>
+            </column>
+        </property>
+        <property name="idCartera" type="int">
+            <column name="id_cartera" not-null="true">
+                <comment>Indica a qu&#233; cartera pertenece el boleto.</comment>
+            </column>
+        </property>
+        <property name="estado" type="boolean">
+            <column name="estado" not-null="true">
+                <comment>Indica si el boleto ya fue vendido (1) , no vendido (0), o esta en incidencia(2).</comment>
+            </column>
+        </property>
+        <property name="idTipoIncidencia" type="java.lang.Integer">
+            <column name="id_tipo_incidencia" />
+        </property>
+        <property name="asignado" type="int">
+            <column name="asignado" not-null="true">
+                <comment>0-boveda, 1-fc1, 2-fc1b, 3-fc2</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

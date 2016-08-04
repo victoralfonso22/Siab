@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.PagosAcumulados" table="pagos_acumulados" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idPago" type="int">
+            <column name="id_pago" not-null="true">
+                <comment>indica el id de la tabla pago al que se hace referencia</comment>
+            </column>
+        </property>
+        <property name="idTraspaso" type="java.lang.Integer">
+            <column name="id_traspaso">
+                <comment>Este campo indica el ID del pago procesado al que se le descontara la cantidad indicada</comment>
+            </column>
+        </property>
+        <property name="montoAcumulado" type="int">
+            <column name="monto_acumulado" not-null="true">
+                <comment>Este campo almacena el total de saldo efectivo para crear folios electronicos</comment>
+            </column>
+        </property>
+        <property name="idResponsable" type="int">
+            <column name="id_responsable" not-null="true">
+                <comment>Guarda el id de la persona responsable del pago</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

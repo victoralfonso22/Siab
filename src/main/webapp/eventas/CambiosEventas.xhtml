@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+     <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    
+    
+    
+    
+    
+    
+    <body>
+        
+        <ui:composition template="./../template/templateSiab.xhtml">
+            <ui:define name="content">
+                
+                   <h1 id="h1Submenus">Registro de Ejecutivos de Venta</h1>
+            <hr/>
+            
+            <h:form  id="forma">
+              <!-- <p:tabMenu  activeIndex="{param.i}">
+            <p:menuitem value="Registro Alta" outcome="/eventas/Admin" >
+                    <f:param name="i" value="0" />
+                    
+                   </p:menuitem>
+                     <p:menuitem value="Cambios" outcome="/eventas/CambiosEventas" >
+                         <f:param name="i" value="1" />
+                     </p:menuitem>
+                   
+           </p:tabMenu>-->
+                
+                
+                <p:menubar>
+                    <p:menuitem value="Volver a Registro de Ejecutivos ..."  outcome="/eventas/Admin" styleClass=""/>
+            
+                    
+                </p:menubar>
+         
+           <p:growl id="growl" sticky="false" showDetail="true" autoUpdate="true"  life="4000"/>   
+    
+                
+                <!--   <p:messages   showDetail="true"/>-->
+                
+                
+                
+                <!--filteredValue="{mBAdminstracionE.tablapromotores}" -->
+                <br/>
+                
+                
+                <p:dataTable id="tabla" var="promotor" value="#{mBAdminstracionE.tablapromotores}" widgetVar="cars"
+                 emptyMessage="No hay registros"   style=" width: 1024px; margin: 0 auto; font-family: Century Gothic, sans-serif;">
+                    
+ 
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Buscar Ejecutivo :" />
+                <p:inputText id="globalFilter" onkeyup="PF('cars').filter()" style="width:150px" placeholder="buscar ejecutivo"/>
+            </p:outputPanel>
+        </f:facet>
+        
+                   <p:column headerText="RFC" width="80" >
+                   <h:outputText value="#{promotor.rfc}" />
+                   </p:column>
+        
+ 
+                    <p:column filterBy="#{promotor.nombres}" headerText="Nombres" footerText=""  width="110" >
+                        <h:outputText value="#{promotor.nombres}" />
+        			</p:column>
+                    
+                    
+                    <p:column headerText="Apellido Paterno"  width="130"  >
+                        
+                        <h:outputText value="#{promotor.apellidoPaterno}" />
+                    </p:column> 
+                           
+                        <p:column headerText="Apellido Materno"   width="130" >
+                        
+                            <h:outputText value="#{promotor.apellidoMaterno}"/>
+                    </p:column> 
+                    
+                  <p:column style="width:25px"  width="50">
+                            <p:commandButton id="edit"  icon="ui-icon-pencil"   update=":forma"  oncomplete="PF('ed').show();" title="Editar registro">  
+                                <f:setPropertyActionListener value="#{promotor}" target="#{mBAdminstracionE.promotor}"/>
+                            </p:commandButton>
+                    </p:column>
+            
+                    
+                </p:dataTable>
+                
+                
+               <p:dialog  widgetVar="ed" header="Editar Promotor">
+                    <h:panelGrid columns="2" cellpadding="2"  rendered="#{not empty mBAdminstracionE.promotor}">
+                                 <p:outputLabel value="RFC: " />
+                                 <p:inputText id="dato1" required="true"  value="#{mBAdminstracionE.promotor.rfc}" style="text-transform: uppercase">
+                                    <f:validateLength     minimum="10" maximum="13"  />
+                    				<pe:keyFilter  regEx="/[a-z\ñ0-9]/i" testFunction="" />
+                                 </p:inputText>
+                                 
+                                   <p:outputLabel value="Nombres: " />
+                                  <p:inputText id="dato2" value="#{mBAdminstracionE.promotor.nombres}"  style="text-transform: uppercase"   required="true">
+                                   <pe:keyFilter  regEx="/[a-z\ñ\s]/i"/>
+                                  </p:inputText>
+                                  
+                                  <p:outputLabel value="Apellido Paterno: " />
+                                  <p:inputText id="dato3" value="#{mBAdminstracionE.promotor.apellidoPaterno}"   style="text-transform: uppercase" required="true">
+                                   <pe:keyFilter  regEx="/[a-z\ñ\s]/i"/>
+                                 </p:inputText>
+                                 
+                                 
+                                 
+                                  <p:outputLabel value="Apellido Materno: "  />
+                                  <p:inputText id="dato4" value="#{mBAdminstracionE.promotor.apellidoMaterno}" Style="text-transform: uppercase" required="true">
+                                      <pe:keyFilter  regEx="/[a-z\ñ\s]/i"/>
+                                  </p:inputText>
+                                  
+                                   <p:outputLabel value="Fecha Nacimiento"/>
+                                   <p:calendar id="fechan"   required="true"   value="#{mBAdminstracionE.promotor.fechaNacimiento}" navigator="true" mask="true" pattern="dd-MM-yyyy"/>
+                                  
+                                  
+                                  
+                                  <p:outputLabel value="Calle " />
+                                  <p:inputText id="dato6" value="#{mBAdminstracionE.promotor.calle}"   style="text-transform: uppercase" required="true">
+                                  <pe:keyFilter  regEx="/[a-z\ñ\s]/i"/>
+                                  </p:inputText>
+                                  
+                                  <p:outputLabel value="nuemero Ext:"/>
+                                  <p:inputText id="dato7" value="#{mBAdminstracionE.promotor.numeroExterior}">
+                                   <pe:keyFilter regEx="/[\d\-\.]/"/>
+                                  </p:inputText>
+                                  
+                                  <p:outputLabel value="nuemero Int:"/>
+                                  <p:inputText id="dato8" value="#{mBAdminstracionE.promotor.numeroInterior}">
+                                   <pe:keyFilter regEx="/[\d\-\.]/"/>
+                                  </p:inputText>
+                                  
+                                  
+                                    <p:outputLabel value="Estado:"/>
+                                    <p:selectOneMenu  value="#{mBAdminstracionE.eidestado}">
+                                      <f:selectItem itemLabel="-Seleciona un Estado-" itemValue="" />
+                                       <f:selectItems value="#{mBAdminstracionE.listaestados}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.id}"/>
+                                        <p:ajax event="change"   listener="#{mBAdminstracionE.generaMunicipiosE()}" update="municipio"  partialSubmit="true" />
+                                        
+                                    </p:selectOneMenu >
+                                    
+                                    
+                                       
+                                 <p:outputLabel  value="Municipio :" />
+                                 <p:selectOneMenu id="municipio" value="#{mBAdminstracionE.idmunE}">
+                                          <f:selectItem itemLabel="-Seleciona un Municipio-" itemValue="" />
+                                 <f:selectItems value="#{mBAdminstracionE.listamunicipiosE}" var="m" itemLabel="#{m.nombre}"  itemValue="#{m.id}" />
+                                
+                                 <p:ajax event="change"   listener="#{mBAdminstracionE.generaColoniasE()}" update="col"  partialSubmit="true" />
+                                        
+                                    </p:selectOneMenu>
+                                 
+                                 
+                            <p:outputLabel  value="Colonia :" />
+                            
+                            <p:selectOneMenu id="col"  value="#{mBAdminstracionE.localidadE}">
+                           <f:selectItem itemLabel="-Seleciona una Colonia-" itemValue="" />
+                           <f:selectItems value="#{mBAdminstracionE.listaColoniasE}" var="c" itemLabel="#{c.nombre}"  itemValue="#{c.id}" />
+                           <p:ajax event="change"   listener="#{mBAdminstracionE.generaCpE()}" update="cp"  partialSubmit="true" />
+                                          
+                             </p:selectOneMenu>
+                            
+                            
+                                                  
+                            <p:outputLabel  value="Cp:" />
+                            
+                            <p:selectOneMenu id="cp"    value="#{mBAdminstracionE.cpE}">
+                             <f:selectItem itemLabel="-Seleciona C.P.-" itemValue="" />
+                            <f:selectItems value="#{mBAdminstracionE.listacodigosE}" var="cp" itemLabel="#{cp.cp}"  itemValue="#{cp.id}" />
+                           </p:selectOneMenu>
+                            
+                            
+                              <p:outputLabel  value="Telefono Casa:" />
+                              <p:inputText id="dato9" value="#{mBAdminstracionE.promotor.telefonoCasa}">
+                               <pe:keyFilter regEx="/[\d\-\.]/"/>
+                              </p:inputText>
+                            
+                            
+                            <p:outputLabel  value="Telefono Oficina:" />
+                            <p:inputText id="dato10" value="#{mBAdminstracionE.promotor.telefonoOficina}">
+                             <pe:keyFilter regEx="/[\d\-\.]/"/>
+                            </p:inputText>
+                           
+                            <p:outputLabel  value="Ext:" />
+                            <p:inputText id="dato11" value="#{mBAdminstracionE.promotor.ext}">
+                             <pe:keyFilter regEx="/[\d\-\.]/"/>
+                            </p:inputText>
+                            
+                            <p:outputLabel  value="Celular :" />
+                            <p:inputText id="dato12" value="#{mBAdminstracionE.promotor.celular}">
+                             <pe:keyFilter regEx="/[\d\-\.]/"/>
+                            </p:inputText>
+                            
+                            <!--  
+                                     <p:outputLabel for="region" value="Región:" />
+                  <p:selectOneMenu    id="region"  value="#{mBAdminstracionE.idregion}"  label="Region" >
+                      <f:selectItem itemLabel="-Seleciona una Región-" itemValue="" />
+                      <f:selectItems value="#{mBAdminstracionE.regiones}" var="r" itemLabel="#{r.region}"  itemValue="#{r.id}" />
+                  </p:selectOneMenu>
+              
+                           
+                           
+                    <p:outputLabel for="tipo" value="Tipo Promotor:" />
+                  
+                 <p:selectOneMenu   id="tipo" value="#{mBAdminstracionE.tipo}"  label="Tipo Promotor" >
+                       <f:selectItem itemLabel="-Seleciona un Tipo-" itemValue="" />
+                       <f:selectItem itemLabel="EJECUTIVO DE VENTA" itemValue="1" />
+                       <f:selectItem itemLabel="ENLACE" itemValue="2" />
+                  </p:selectOneMenu>
+                        
+                  
+                  
+                  <p:outputLabel for="meta" value="Meta:" />
+                  <p:inputText id="meta"  value="#{mBAdminstracionE.promotor.meta}"  label="Meta" />
+               
+                  
+                  
+                    <p:outputLabel for="comi" value="Comisión:" />
+                    <p:inputText id="comi" required="true"  value="#{mBAdminstracionE.promotor.comision}"   label="Comisión" />
+                    <p:message for="comi"   />
+                            
+                              -->   
+                    <p:commandButton value="Guardar"    update=":forma" actionListener="#{mBAdminstracionE.cambiosPromotor()}"  styleClass="ui-priority-primary"/>
+                             
+                                  
+                                 
+                                
+                                  
+                    </h:panelGrid>
+                   
+               </p:dialog>
+                
+               
+                
+                
+                
+                
+                <!--
+                <p:confirmDialog  global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"  oncomplete="PF('edita').hide();" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>-->
+                
+                
+                
+                
+  
+            </h:form>
+            
+            
+                
+                
+                
+                
+                
+                
+                
+            
+            
+            
+                
+                
+                
+                
+                
+            </ui:define>
+        </ui:composition>
+     </body>
+</html>

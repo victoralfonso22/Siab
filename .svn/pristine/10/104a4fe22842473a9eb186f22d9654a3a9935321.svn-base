@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.SorteoColaboradoresVer" table="sorteo_colaboradoresVer" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idBoleto" type="int">
+            <column name="id_boleto" not-null="true">
+                <comment>Indica el folio electr&#243;nico que sal&#237;o premiado.</comment>
+            </column>
+        </property>
+        <property name="estatus" type="int">
+            <column name="estatus" not-null="true">
+                <comment>Indica si el folio es ganador o no.</comment>
+            </column>
+        </property>
+        <property name="idPremio" type="int">
+            <column name="id_premio" not-null="true">
+                <comment>Indica el n&#250;mero de premio que gan&#243; el folio.</comment>
+            </column>
+        </property>
+        <property name="boleto" type="string">
+            <column name="boleto" length="7" />
+        </property>
+        <property name="colaborador" type="string">
+            <column name="colaborador" length="200" />
+        </property>
+        <property name="premio" type="java.lang.Integer">
+            <column name="premio" />
+        </property>
+        <property name="tipoSector" type="string">
+            <column name="tipo_sector" length="7" />
+        </property>
+        <property name="sector" type="string">
+            <column name="sector" length="250" />
+        </property>
+        <property name="idRegion" type="java.lang.Integer">
+            <column name="id_region" />
+        </property>
+        <property name="idSorteo" type="java.lang.Integer">
+            <column name="id_sorteo" />
+        </property>
+        <property name="contacto" type="java.lang.Integer">
+            <column name="contacto">
+                <comment>1 - telemarketing, 2 - preregistro, 3 - voluntarios</comment>
+            </column>
+        </property>
+        <property name="aclaracion" type="string">
+            <column name="aclaracion" length="500" />
+        </property>
+        <property name="donde" type="string">
+            <column name="donde" length="250" />
+        </property>
+        <property name="debe" type="string">
+            <column name="debe" length="250" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="15" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" />
+        </property>
+        <property name="nota" type="string">
+            <column name="nota" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

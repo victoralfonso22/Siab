@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Enlaces2014" table="enlaces2014" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.Enlaces2014Id">
+            <key-property name="nombres" type="string">
+                <column name="nombres" length="54" />
+            </key-property>
+            <key-property name="apellidoPaterno" type="string">
+                <column name="apellido_paterno" length="50" />
+            </key-property>
+            <key-property name="apellidoMaterno" type="string">
+                <column name="apellido_materno" length="50" />
+            </key-property>
+            <key-property name="sector" type="string">
+                <column name="sector" length="69" />
+            </key-property>
+            <key-property name="region" type="string">
+                <column name="region" length="53" />
+            </key-property>
+            <key-property name="id" type="java.lang.Integer">
+                <column name="id" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,104 @@
+package Clases;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
+
+import Dao.DaoSectores;
+import HibernateUtil.HibernateUtil;
+import Pojos.Sectores;
+ 
+@ManagedBean(name = "sectorServicio")
+@ApplicationScoped
+
+public class SectoresServicio {
+	private Transaction transaction;
+    private Session session;
+	
+	public Transaction getTransaction() {
+		return transaction;
+	}
+
+	public void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
+	public TreeNode creaSectores() {
+        TreeNode root = new DefaultTreeNode(new Sectores(), null);
+         
+        this.session = null;
+        this.transaction = null;
+
+        try {
+        	
+        	this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+            HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            
+            DaoSectores daoSectores = new DaoSectores();
+            
+            List<Sectores> listaSectoresPadre = daoSectores.sectoresPadreMayor(this.session);
+            
+            ArrayList<TreeNode> principales = new ArrayList<TreeNode>();
+            
+            for(Sectores s : listaSectoresPadre){
+            	principales.add(new DefaultTreeNode(s.getSector(), root));
+            }
+            
+            
+            /*
+            for(Sectores s : listaSectoresPadre){
+            	System.out.println(s.getSector());
+            TreeNode principales = new DefaultTreeNode("Prueba",s,this.root);
+            this.crearSubNodo(session, principales, s.getId());
+            }*/
+            
+            
+            return root;
+            
+        	
+        }catch(Exception e){
+        	if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+            return null;
+        } finally {
+            if (this.session != null) {
+                session.close();
+            }
+        
+        }         
+     
+    }
+	
+	  public void crearSubNodo(Session session,TreeNode nodo, int id) throws Exception{
+	    	DaoSectores daoSector = new DaoSectores();
+	    	List<Sectores> subSectores = daoSector.sectoresHijos(session, id);
+	        for (Sectores subSec : subSectores) {
+	        	System.out.println(subSec.getSector());
+	            TreeNode subNode = new DefaultTreeNode("Hola",subSec, nodo);
+	            crearSubNodo(session, subNode,subSec.getId());
+	        }
+	    }  
+
+}

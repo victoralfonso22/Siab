@@ -1,0 +1,515 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package BeanVista;
+
+import Dao.DaoMnunicipios;
+import HibernateUtil.HibernateUtil;
+import Pojos.Municipios;
+import Pojos.Estados;
+import Dao.DaoVistaMun;
+import Pojos.ViewLocalizacion;
+
+
+
+
+
+import java.io.Serializable;
+import java.util.List;
+
+
+
+
+
+import javax.faces.application.Application;
+import javax.faces.application.FacesMessage;
+import javax.faces.application.ViewHandler;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.primefaces.context.RequestContext;
+
+/**  
+ *
+ * @author Jose Carlos
+ */
+@ManagedBean
+
+@ViewScoped
+//@Named(value = "mBMunicipio")
+
+public class MBMunicipio implements Serializable {
+   
+    private Session session;
+    private Transaction transaction;
+    
+    private List<Estados>ListaEstados;
+    private List<ViewLocalizacion> Vista;
+    
+    private List<ViewLocalizacion> listaTabla;
+    
+    
+    private String nombre;
+    private int idRegion;
+    private int idEstado;
+    
+    private int estadoEdit;
+    
+    private  ViewLocalizacion municipio;
+    
+    
+
+    public List<ViewLocalizacion> getListaTabla() {
+		return listaTabla;
+	}
+
+	public void setListaTabla(List<ViewLocalizacion> listaTabla) {
+		this.listaTabla = listaTabla;
+	}
+
+	public int getEstadoEdit() {
+        return estadoEdit;
+    }
+
+    public void setEstadoEdit(int estadoEdit) {
+        this.estadoEdit = estadoEdit;
+    }
+ 
+    public ViewLocalizacion getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(ViewLocalizacion municipio) {
+        this.municipio = municipio;
+    }
+    
+    
+    
+
+    public List<Estados> getListaEstados() {
+        return ListaEstados;
+    }
+
+    public void setListaEstados(List<Estados> ListaEstados) {
+        this.ListaEstados = ListaEstados;
+    }
+
+    public List<ViewLocalizacion> getVista() {
+        return Vista;
+    }
+
+    public void setVista(List<ViewLocalizacion> Vista) {
+        this.Vista = Vista;
+    }
+    
+    
+    
+    public int getIdRegion() {
+        return idRegion;
+    }
+
+    public void setIdRegion(int idRegion) {
+        this.idRegion = idRegion;
+    }
+
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+   
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+
+   
+    
+    
+    
+ 
+//constructor 
+    public MBMunicipio() {
+        
+   ListaEstados=getEstados();
+   Vista=getVista(idEstado);
+   listaTabla=getTabla();
+       
+    }
+    
+    public void generaLista(){
+
+    System.out.println(this.idEstado);
+      Vista=getVista(idEstado);
+      RequestContext.getCurrentInstance().update("tabla");
+   
+}
+     public List<ViewLocalizacion> getVista(Integer idEstadoV){
+    //public List<ViewLocalizacion> getVista(){
+          this.session = null;
+          this.transaction = null;
+
+        try {
+           // DaoMnunicipios daoMunicipios = new DaoMnunicipios();
+            DaoVistaMun daoVistaMun=new DaoVistaMun();
+            
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+            
+
+            Vista = daoVistaMun.getVista(this.session,idEstadoV);
+            //vistacompleta= daoVistaMun.vistaCompleta(sesion);
+            
+            System.out.print(idEstadoV);
+           
+
+            this.transaction.commit();
+
+            return this.Vista;
+
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+            return null;
+        } finally {
+            if (this.session != null) {
+                session.close();
+            }
+        }
+         
+     }
+     
+     
+     
+     public List<ViewLocalizacion> getTabla(){
+    	    //public List<ViewLocalizacion> getVista(){
+    	          this.session = null;
+    	          this.transaction = null;
+
+    	        try {
+    	           // DaoMnunicipios daoMunicipios = new DaoMnunicipios();
+    	            DaoVistaMun daoVistaMun=new DaoVistaMun();
+    	            
+
+    	            this.session = HibernateUtil.getSessionFactory().openSession();
+    	            this.transaction = this.session.beginTransaction();
+    	            
+
+    	            listaTabla=daoVistaMun.vistaCompleta(this.session);
+    	            System.out.print(listaTabla);
+    	            
+    	            //vistacompleta= daoVistaMun.vistaCompleta(sesion);
+    	            
+    	           
+    	           
+
+    	            this.transaction.commit();
+
+    	            return this.listaTabla;
+
+    	        } catch (Exception e) {
+    	            if (this.transaction != null) {
+    	                this.transaction.rollback();
+    	            }
+    	            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+    	            return null;
+    	        } finally {
+    	            if (this.session != null) {
+    	                session.close();
+    	            }
+    	        }
+    	         
+    	     }
+    	    
+     
+     
+     
+     
+    
+    
+    
+    
+       
+    public List<Estados> getEstados() {
+        this.session = null;
+        this.transaction = null;
+
+        try {
+            DaoMnunicipios daoMunicipios = new DaoMnunicipios();
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+
+            ListaEstados= daoMunicipios.getEstados(this.session);
+            
+           
+
+            this.transaction.commit();
+
+            return this.ListaEstados;
+
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+            return null;
+        } finally {
+            if (this.session != null) {
+                session.close();
+            }
+        }
+    }
+    
+    
+  
+     
+   /*  public List<ViewLocalizacion> getVista(){
+          this.session = null;
+        this.transaction = null;
+
+        try {
+           // DaoMnunicipios daoMunicipios = new DaoMnunicipios();
+            DaoVistaMun daoVistaMun=new DaoVistaMun();
+            
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+
+            lista = daoVistaMun.getVista(this.session);
+            
+           
+
+            this.transaction.commit();
+
+            return this.lista;
+
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+            return null;
+        } finally {
+            if (this.session != null) {
+                session.close();
+            }
+        }
+         
+     }
+     */
+     
+ 
+    public void agregaMunicipio(){
+      this.session = null;
+      this.transaction = null;
+      
+  
+      try {
+            DaoMnunicipios daoMunicipios = new DaoMnunicipios();
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+
+        // if (password != null && password.equals(actual) && nueva.equals(rnueva)) {
+            
+            Municipios municipio=daoMunicipios.getValida(session, nombre);
+          
+            System.out.print(municipio);
+            if(municipio!=null){
+            
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: ", "El municipio se encuentra registrado"));    
+               this.nombre=null; 
+               this.idEstado=0;
+               this.idRegion=0;
+               
+            
+           // RequestContext.getCurrentInstance().reset("form:panel");
+            
+            return;
+            
+            }
+            
+            daoMunicipios.registraMunicipio(this.session, nombre, idEstado, idRegion);
+            this.transaction.commit();   
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información: ", "Se agregó su Municipio Correctamente."));
+               this.nombre=null; 
+               this.idEstado=0;
+               this.idRegion=0;
+            
+            
+           
+           // RequestContext.getCurrentInstance().reset("form:panel");
+            
+        
+        
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+            return ;
+        } finally {
+            if (this.session != null) {
+                session.close();
+            }
+        }
+        
+        
+      
+        
+        
+    }
+    
+    
+    
+    public void borrar(int id) {
+       
+       
+      
+       System.out.print("llego el dato "+id);
+       
+      this.session = null;
+      this.transaction = null;
+     
+       
+ try {
+            DaoMnunicipios daoMunicipios = new DaoMnunicipios();
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+            
+            
+            
+            System.out.print("sigue el dato aki .... "+id);
+            //this.municipio.setId(id);
+            daoMunicipios.borrarMunicipio(this.session,id);
+           this.transaction.commit();
+           
+          
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información: ", "Se borro correctamente el registro."));
+          
+           
+     
+            
+      } catch (Exception e) {
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas +6" + e.getMessage()));
+            return ;
+        } finally {
+            if (this.session != null) {
+                session.close();
+            }
+        }
+    
+       
+   }
+    
+    
+    public  void editarMunicipio(){
+        this.session = null;
+        this.transaction = null;
+        
+        int id=this.municipio.getIdMunicipio();
+        String nom = this.municipio.getMunicipio();
+   
+        
+    
+        System.out.print(nom);
+        System.out.print(id);
+     
+   try {
+       
+          DaoMnunicipios daoMunicipios = new DaoMnunicipios();
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+          if (nom.equals("")) {
+                  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: ", "El campo Municipio no puede quedar vacio."));
+         return;
+    
+        }
+          if (estadoEdit==0){
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: ", "El campo Estado no puede quedar vacio."));
+              return;
+          
+          }
+        
+         
+            daoMunicipios.actualiza(this.session,id,nom,idRegion,estadoEdit);
+           
+            this.transaction.commit();
+           
+          this.idRegion=0;
+          this.estadoEdit=0;
+          
+       
+          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información: ", "Se actualizó Correctamente su municipio."));
+            
+      } catch (Exception e) {
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas +" + e.getMessage()));
+            return ;
+        } finally {
+            if (this.session != null) {
+                session.close();
+            }
+        }
+       
+     
+    }
+    
+    
+    
+   public void modificaMunicipio(){
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información: ", "Se modifico el Municipio correctamente.."));
+   
+   
+   }
+    
+    
+    
+     
+     
+    
+    
+}

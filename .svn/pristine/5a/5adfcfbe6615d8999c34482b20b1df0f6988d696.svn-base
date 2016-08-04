@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Puestos" table="puestos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="puesto" type="string">
+            <column name="puesto" length="100" not-null="true">
+                <comment>Indica el nombre del puesto que se desempe&#241;a en un &#225;rea.</comment>
+            </column>
+        </property>
+        <property name="idArea" type="int">
+            <column name="id_area" not-null="true">
+                <comment>Indica a qu&#233; &#225;rea pertenece el puesto.</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,68 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+  	
+  	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/faces/login.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="inicio">
+		<pattern value="/menu/inicio" />
+		<view-id value="/faces/menuPrincipal/menuPrincipal.xhtml" />
+	</url-mapping>
+	
+	
+	<!-- Catalogos -->
+	<url-mapping id="CrangoCarteras">
+		<pattern value="/catalogos/rangoCarteras" />
+		<view-id value="/faces/catalogos/rangoCarteras.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="Cmunicipios">
+		<pattern value="/catalogos/municipios" />
+		<view-id value="/faces/catalogos/municipios.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="Clocalidades">
+		<pattern value="/catalogos/localidades" />
+		<view-id value="/faces/catalogos/localidades.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="Cformatos">
+		<pattern value="/catalogos/formatos" />
+		<view-id value="/faces/catalogos/formatos.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="Cincidencias">
+		<pattern value="/catalogos/incidencias" />
+		<view-id value="/faces/catalogos/incidencias.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="Cpagos">
+		<pattern value="/catalogos/pagos" />
+		<view-id value="/faces/catalogos/tpagos.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="Cdocumentacion">
+		<pattern value="/catalogos/documentacion" />
+		<view-id value="/faces/catalogos/documentacion.xhtml" />
+	</url-mapping>
+	
+	<!-- Ejecutivos Venta -->
+	
+	<url-mapping id="ejecutivosAdministracion">
+		<pattern value="/ejecutivos/administracion" />
+		<view-id value="/faces/eventas/Admin.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="ejecutivosCambios">
+		<pattern value="/ejecutivos/cambios" />
+		<view-id value="/faces/eventas/CambiosEventas.xhtml" />
+	</url-mapping>
+	
+	
+
+</pretty-config>
+

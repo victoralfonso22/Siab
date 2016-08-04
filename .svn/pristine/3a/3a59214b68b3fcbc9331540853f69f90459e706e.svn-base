@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.PromotoresFormatos" table="promotores_formatos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idPromotor" type="int">
+            <column name="id_promotor" not-null="true" />
+        </property>
+        <property name="idFormato" type="int">
+            <column name="id_formato" not-null="true" />
+        </property>
+        <property name="estatus" type="char">
+            <column name="estatus" length="1" not-null="true">
+                <comment>1 a&#250;n lo tiene - 2 ya lo registr&#243; - 3 reasign&#243; - 4 devolvi&#243; - 5 cancel&#243;</comment>
+            </column>
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

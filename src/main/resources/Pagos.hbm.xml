@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Pagos" table="pagos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idTipoPago" type="java.lang.Integer">
+            <column name="id_tipo_pago">
+                <comment>Indica el tipo de pago que fue realizado.</comment>
+            </column>
+        </property>
+        <property name="idResponsable" type="java.lang.Integer">
+            <column name="id_responsable">
+                <comment>Indica qui&#233;n hizo el pago.</comment>
+            </column>
+        </property>
+        <property name="monto" type="java.lang.Float">
+            <column name="monto" precision="12" scale="0">
+                <comment>Indica la cantidad monetaria que fue pagada.</comment>
+            </column>
+        </property>
+        <property name="fechaPago" type="date">
+            <column name="fecha_pago" length="10">
+                <comment>Indica el a&#241;o, mes y d&#237;a en la que fue realizado el pago.</comment>
+            </column>
+        </property>
+        <property name="tipoResponsable" type="java.lang.Character">
+            <column name="tipo_responsable" length="1">
+                <comment>Indica el tipo de persona que realiz&#243; el pago (e ejecutivo - c colaborador - a alianza - punto fijo).</comment>
+            </column>
+        </property>
+        <property name="observaciones" type="string">
+            <column name="observaciones" length="200" />
+        </property>
+        <property name="idTabla" type="java.lang.Integer">
+            <column name="id_tabla">
+                <comment>Indica el identificador de la tabla a la cual pertenece, distinguiendose por el tipo_pago</comment>
+            </column>
+        </property>
+        <property name="idSector" type="int">
+            <column name="id_sector" not-null="true">
+                <comment>Sector al que pertenece el Colaborador</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

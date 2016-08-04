@@ -1,0 +1,72 @@
+
+<!--  <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../template/templateSiab.xhtml">
+
+            <ui:define name="content">
+                <p:growl id="msgs" showDetail="true" />
+                <h:form id="pedirUsuario" onkeypress="return event.keyCode !== 13;">
+                    <h1 id="h1Submenus">Permisos de usuario</h1>
+                    <hr/>
+                    <br/>
+                    <br/>
+
+
+                    <h:panelGrid columns="2" style=" margin: 0 auto;">
+                        <p:outputLabel style="font-weight: bold" value="Usuario: " for="usuario" />
+                        <p:autoComplete size="45" id="usuario" value="#{mBUsuarios.usuario}" completeMethod="#{mBUsuarios.completeUsuarios}"
+                                        var="user" itemLabel="#{user.nombre}" itemValue="#{user}" converter="usuariosConverter" forceSelection="true" minQueryLength="3" effect="explode"  >
+                            <p:ajax event="itemSelect" listener="#{mBUsuarios.handleSelect}" update=":tablasSec:tablas" global="false" />
+                            <p:ajax event="itemUnselect" listener="#{mBUsuarios.handleUnSelect}" update=":tablasSec:tablas" global="false"/>
+
+                        </p:autoComplete>
+                        <p:focus for="usuario"></p:focus>
+
+                    </h:panelGrid>
+                    <p:messages id="msg"/>
+
+                    <br/>
+                    <br/>
+                </h:form>
+                <h:form id ="tablasSec">
+                    <p:panel id="tablas" visible="#{mBUsuarios.usuario.id > 0?'true':'false'}">
+                        <c:if test="#{mBUsuarios.usuario.id > 0}">
+                            <c:forEach  var="seccion" items="#{mBCatalogoSecciones.catalogoSecciones}"> 
+
+                                <p:dataTable id="tablaPermisos#{seccion.id}" var="secciones" value="seccion" style=" width: 500px; margin: 0 auto;">
+
+                                    <p:column headerText="#{seccion.nombre}" >
+
+                                        <p:subTable var="sub1" value="#{mBCatalogoMenu.getCatalogoMenuIdCatalogoSecciones(seccion.id)}">
+                                            <p:column headerText="#{seccion.nombre}" >
+
+                                                <p:outputLabel  value="#{sub1.modulo}" style="cursor: pointer;" />                                    
+                                                <p:commandButton icon="#{mBPermisosCatalogoMenu.getCatalogoMenuIdCatalogoSeccionesPermisos(sub1.id,mBUsuarios.usuario.id )?'ui-icon-check':'ui-icon-close'}" actionListener="#{mBPermisos.concederQuitarPermisos(mBUsuarios.usuario.id, sub1.id)}" update=":tablasSec:tablas"/>
+                                            </p:column>
+                                        </p:subTable>
+
+                                    </p:column>
+
+                                </p:dataTable>     
+                            </c:forEach>
+                        </c:if>
+                    </p:panel>
+                </h:form>            
+                
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

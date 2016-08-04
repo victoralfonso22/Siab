@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Estudiantes" table="estudiantes" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="matricula" type="string">
+            <column name="matricula" length="20" not-null="true" />
+        </property>
+        <property name="nombres" type="string">
+            <column name="nombres" length="100" not-null="true" />
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="apellido_paterno" length="100" not-null="true" />
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="apellido_materno" length="100" />
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="fecha_nacimiento" length="10" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" />
+        </property>
+        <property name="lada" type="string">
+            <column name="lada" length="5" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="15" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="20" />
+        </property>
+        <property name="domicilio" type="string">
+            <column name="domicilio" length="500" />
+        </property>
+        <property name="localidad" type="string">
+            <column name="localidad" length="100" />
+        </property>
+        <property name="municipio" type="string">
+            <column name="municipio" length="50" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="100" />
+        </property>
+        <property name="claveNivel" type="string">
+            <column name="clave_nivel" length="20" not-null="true" />
+        </property>
+        <property name="modalidad" type="string">
+            <column name="modalidad" length="50" not-null="true" />
+        </property>
+        <property name="carrera" type="string">
+            <column name="carrera" length="80" not-null="true" />
+        </property>
+        <property name="region" type="string">
+            <column name="region" length="50" not-null="true" />
+        </property>
+        <property name="lugarCarrera" type="java.lang.Integer">
+            <column name="lugar_carrera" />
+        </property>
+        <property name="existe" type="java.lang.Integer">
+            <column name="existe" />
+        </property>
+        <property name="idSector" type="java.lang.Integer">
+            <column name="id_sector" />
+        </property>
+        <property name="idReferencia" type="java.lang.Integer">
+            <column name="id_referencia" />
+        </property>
+        <property name="participa" type="java.lang.Integer">
+            <column name="participa" />
+        </property>
+    </class>
+</hibernate-mapping>

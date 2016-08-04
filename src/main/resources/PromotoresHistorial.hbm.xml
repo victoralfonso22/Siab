@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.PromotoresHistorial" table="promotores_historial" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="clave" type="string">
+            <column name="clave" length="15" not-null="true">
+                <comment>Indica la clave &#250;nica que hace referencia o se le conoce al promotor.</comment>
+            </column>
+        </property>
+        <property name="nombres" type="string">
+            <column name="nombres" length="30" not-null="true">
+                <comment>Indica el(los) nombre(s) del promotor.</comment>
+            </column>
+        </property>
+        <property name="apellidoPaterno" type="string">
+            <column name="apellido_paterno" length="20" not-null="true">
+                <comment>Indica el apellido paterno del promotor.</comment>
+            </column>
+        </property>
+        <property name="apellidoMaterno" type="string">
+            <column name="apellido_materno" length="20">
+                <comment>Indica el apellido materno del promotor.</comment>
+            </column>
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="fecha_nacimiento" length="10" not-null="true">
+                <comment>Indica la fecha en la que naci&#243; el promotor.</comment>
+            </column>
+        </property>
+        <property name="calle" type="string">
+            <column name="calle" length="100" not-null="true">
+                <comment>Indica la calle donde habita el promotor.</comment>
+            </column>
+        </property>
+        <property name="numeroInterior" type="string">
+            <column name="numero_interior" length="11">
+                <comment>Indica el n&#250;mero interior del domicilio de donde habita el promotor.</comment>
+            </column>
+        </property>
+        <property name="numeroExterior" type="string">
+            <column name="numero_exterior" length="11" not-null="true">
+                <comment>Indica el n&#250;mero exterior de la casa de donde habita el promotor.</comment>
+            </column>
+        </property>
+        <property name="idCodigoPostal" type="int">
+            <column name="id_codigo_postal" not-null="true">
+                <comment>Indica el id c&#243;digo postal donde habita el promotor.</comment>
+            </column>
+        </property>
+        <property name="idRegion" type="int">
+            <column name="id_region" not-null="true">
+                <comment>Indica la regi&#243;n que le corresponde atender al promotor.</comment>
+            </column>
+        </property>
+        <property name="idEstado" type="int">
+            <column name="id_estado" not-null="true">
+                <comment>identificador de la tabla estados</comment>
+            </column>
+        </property>
+        <property name="idMunicipio" type="int">
+            <column name="id_municipio" not-null="true">
+                <comment>identificador de la tabla municipios</comment>
+            </column>
+        </property>
+        <property name="idLocalidad" type="java.lang.Integer">
+            <column name="id_localidad">
+                <comment>Indica el nombre de la localidad de donde habita el promotor.</comment>
+            </column>
+        </property>
+        <property name="idSector" type="java.lang.Integer">
+            <column name="id_sector">
+                <comment>describe el id del sector al cual pertenece</comment>
+            </column>
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="13" not-null="true">
+                <comment>Indica el tipo que tipo de promotor es (1 Ejecutivo de Venta - 2 enlace).</comment>
+            </column>
+        </property>
+        <property name="telefonoCasa" type="string">
+            <column name="telefono_casa" length="13">
+                <comment>Indica el n&#250;mero telef&#243;nico del lugar d&#243;nde habita el promotor.</comment>
+            </column>
+        </property>
+        <property name="telefonoOficina" type="string">
+            <column name="telefono_oficina" length="13">
+                <comment>Indica el n&#250;mero telef&#243;nico de donde trabaja el promotor.</comment>
+            </column>
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="13">
+                <comment>Indica el n&#250;mero de celular que tiene el promotor.</comment>
+            </column>
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="100">
+                <comment>Indica el correo electr&#243;nico que tiene el promotor.</comment>
+            </column>
+        </property>
+        <property name="rfc" type="string">
+            <column name="rfc" length="13" not-null="true" unique="true">
+                <comment>Indica el Registro Federal de Contribuyente del promotor.</comment>
+            </column>
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" not-null="true">
+                <comment>Indica la fecha y hora en la que el promotor fue dado de alta al sistema.</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica que usuario di&#243; de alta al promotor en el sistema.</comment>
+            </column>
+        </property>
+        <property name="estatus" type="int">
+            <column name="estatus" not-null="true">
+                <comment>describe el estado del promotor (1-habilitado,2-inhabilitado)</comment>
+            </column>
+        </property>
+        <property name="observaciones" type="string">
+            <column name="observaciones" length="100">
+                <comment>Comentarios hechos cuando se inactiva un promotor</comment>
+            </column>
+        </property>
+        <property name="meta" type="java.lang.Integer">
+            <column name="meta">
+                <comment>Indica el n&#250;mero de boletos que se deber&#237;an de vender por promotos</comment>
+            </column>
+        </property>
+        <property name="comision" type="java.lang.Integer">
+            <column name="comision" precision="6" scale="0">
+                <comment>Indica la cantidad (en porcentaje) de ganacia que se pueda ganar por vender boletos.</comment>
+            </column>
+        </property>
+        <property name="tipoEnlace" type="java.lang.Integer">
+            <column name="tipoEnlace">
+                <comment>tipo de enlace (1-Funcionario,2-Docente,3-Administrativo,4-Operativo.5-Alumno)</comment>
+            </column>
+        </property>
+        <property name="ofiInsDepFac" type="java.lang.Integer">
+            <column name="ofi_ins_dep_fac">
+                <comment>indica el id_sector al que pertenece el enlace</comment>
+            </column>
+        </property>
+        <property name="carrera" type="string">
+            <column name="carrera" length="50">
+                <comment>La carrera a la cual pertenece el tipo enlace 'Docente'</comment>
+            </column>
+        </property>
+        <property name="matricula" type="string">
+            <column name="matricula" length="15">
+                <comment>Matricula perteneciente al tipo enlacen 'Alumno'</comment>
+            </column>
+        </property>
+        <property name="numeroPersonal" type="java.lang.Integer">
+            <column name="numeroPersonal">
+                <comment>Numero personal de tipo enlace '1,2,3,4'</comment>
+            </column>
+        </property>
+        <property name="idPromotorpadre" type="java.lang.Integer">
+            <column name="id_promotorpadre">
+                <comment>Identificador de ejecutivo de venta al cual corresponde el enlace</comment>
+            </column>
+        </property>
+        <property name="existe" type="java.lang.Integer">
+            <column name="existe">
+                <comment>permite identificar si el registro ya fue usado en la tabla de promotores</comment>
+            </column>
+        </property>
+        <property name="replica" type="java.lang.Integer">
+            <column name="replica" />
+        </property>
+    </class>
+</hibernate-mapping>

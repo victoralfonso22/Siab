@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Regiones" table="regiones" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="region" type="string">
+            <column name="region" length="100" not-null="true">
+                <comment>region de la uv</comment>
+            </column>
+        </property>
+        <property name="nombreCorto" type="string">
+            <column name="nombre_corto" length="10" not-null="true">
+                <comment>Hace referencia a la regi&#243;n pero con usando un nombre corto para identificar a la regi&#243;n.</comment>
+            </column>
+        </property>
+        <property name="idEstado" type="int">
+            <column name="id_estado" not-null="true">
+                <comment>edo. perteneciente a cada region</comment>
+            </column>
+        </property>
+        <property name="estatus" type="char">
+            <column name="estatus" length="1" not-null="true">
+                <comment>Indica si la regi&#243;n est&#225; activa (1) o no (0).</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

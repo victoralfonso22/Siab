@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.SorteoColaboradoresHistorial" table="sorteo_colaboradores_historial" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.SorteoColaboradoresHistorialId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="idBoleto" type="int">
+                <column name="id_boleto" />
+            </key-property>
+            <key-property name="estatus" type="int">
+                <column name="estatus" />
+            </key-property>
+            <key-property name="idPremio" type="int">
+                <column name="id_premio" />
+            </key-property>
+            <key-property name="boleto" type="string">
+                <column name="boleto" length="7" />
+            </key-property>
+            <key-property name="colaborador" type="string">
+                <column name="colaborador" length="200" />
+            </key-property>
+            <key-property name="premio" type="java.lang.Integer">
+                <column name="premio" />
+            </key-property>
+            <key-property name="tipoSector" type="string">
+                <column name="tipo_sector" length="7" />
+            </key-property>
+            <key-property name="sector" type="string">
+                <column name="sector" length="250" />
+            </key-property>
+            <key-property name="idRegion" type="java.lang.Integer">
+                <column name="id_region" />
+            </key-property>
+            <key-property name="idSorteo" type="java.lang.Integer">
+                <column name="id_sorteo" />
+            </key-property>
+            <key-property name="contacto" type="int">
+                <column name="contacto" />
+            </key-property>
+            <key-property name="anio" type="int">
+                <column name="anio" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

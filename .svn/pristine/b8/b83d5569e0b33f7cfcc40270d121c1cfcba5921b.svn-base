@@ -1,0 +1,93 @@
+package BeanVista;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import Dao.DaoSectores;
+
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
+
+import HibernateUtil.HibernateUtil;
+import Pojos.Sectores;
+import Clases.SectoresServicio;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpSession;
+
+
+/**
+*
+* @author Víctor
+*/
+@ManagedBean(name = "mBSectores")
+@ViewScoped
+public class MBSectores implements Serializable {
+	
+	private Transaction transaction;
+    private Session session;
+    
+    private Sectores sectores;
+    
+    private TreeNode root;    
+    
+    @ManagedProperty("#{sectorServicio}")
+    private SectoresServicio servicio;   
+
+    @PostConstruct
+    public void init() {    	
+        root = servicio.creaSectores();
+    }
+    
+
+    
+   public Transaction getTransaction() {
+		return transaction;
+	}
+
+	public void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
+	public Sectores getSectores() {
+		return sectores;
+	}
+
+	public void setSectores(Sectores sectores) {
+		this.sectores = sectores;
+	}
+
+	public TreeNode getRoot() {
+		return root;
+	}
+
+	public void setRoot(TreeNode root) {
+		this.root = root;
+	}
+
+	public SectoresServicio getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(SectoresServicio servicio) {
+		this.servicio = servicio;
+	}
+
+}

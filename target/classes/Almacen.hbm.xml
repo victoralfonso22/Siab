@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Almacen" table="almacen" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true">
+                <comment>es igual al nombre del promotor, colaborador o almacen.</comment>
+            </column>
+        </property>
+        <property name="tipo" type="int">
+            <column name="tipo" not-null="true">
+                <comment>1 b&#243;veda, 2 promotor, 3 colaborador, 4 Alianza o Punto Fijo</comment>
+            </column>
+        </property>
+        <property name="idPromotor" type="int">
+            <column name="id_promotor" not-null="true">
+                <comment>si es promotor se llena</comment>
+            </column>
+        </property>
+        <property name="idColaborador" type="int">
+            <column name="id_colaborador" not-null="true">
+                <comment>si es colaborador se llena</comment>
+            </column>
+        </property>
+        <property name="idAlianzaPuntoFijo" type="int">
+            <column name="id_alianzaPuntoFijo" not-null="true">
+                <comment>identificador de la tabla de alianza o punto fijo</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

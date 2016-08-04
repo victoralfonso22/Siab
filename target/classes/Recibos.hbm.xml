@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Recibos" table="recibos" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idPremio" type="int">
+            <column name="id_premio" not-null="true" />
+        </property>
+        <property name="lugar" type="string">
+            <column name="lugar" length="100" not-null="true">
+                <comment>Undica la ciudad y estado del lugar del oficio</comment>
+            </column>
+        </property>
+        <property name="fecha" type="string">
+            <column name="fecha" length="50" not-null="true">
+                <comment>Indica la fecha del documento</comment>
+            </column>
+        </property>
+        <property name="serie" type="string">
+            <column name="serie" length="100">
+                <comment>Indica la serie del producto</comment>
+            </column>
+        </property>
+        <property name="motor" type="string">
+            <column name="motor" length="100">
+                <comment>Indica la clave del motor del coche</comment>
+            </column>
+        </property>
+        <property name="circulacion" type="string">
+            <column name="circulacion" length="100" />
+        </property>
+        <property name="factura" type="string">
+            <column name="factura" length="100" />
+        </property>
+        <property name="idTipoIdentificacion" type="int">
+            <column name="id_tipo_identificacion" not-null="true" />
+        </property>
+        <property name="folio" type="string">
+            <column name="folio" length="100" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

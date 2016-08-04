@@ -1,0 +1,95 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Clases;
+
+import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * 
+ * @author Víctor
+ */
+@WebFilter("*.xhtml")
+public class FiltroSesion implements Filter {
+
+	FilterConfig filterConfig;
+
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		this.filterConfig = filterConfig;
+	}
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse res = (HttpServletResponse) response;
+		HttpSession session = req.getSession(true);
+		String requestUrl = req.getRequestURL().toString();
+		
+		
+
+		
+		/* LOGIN */
+		if (session.getAttribute("username") == null
+				&& !requestUrl.contains("login.xhtml")) {
+			res.sendRedirect(req.getContextPath() + "/login");
+		
+			
+		} else if (requestUrl.contains("menuPrincipal.xhtml")) {			
+			System.out.println("2");
+			res.sendRedirect(req.getContextPath() + "/menu/inicio");			
+			
+		/* CATALOGOS */	
+		} else if (requestUrl.contains("rangoCarteras.xhtml") && session.getAttribute("username") != null) {			
+			res.sendRedirect(req.getContextPath() + "/catalogos/rangoCarteras");
+			
+		} else if (session.getAttribute("username") != null && requestUrl.contains("municipios.xhtml")) {
+			res.sendRedirect(req.getContextPath() + "/catalogos/municipios");
+			
+		} else if (session.getAttribute("username") != null && requestUrl.contains("localidades.xhtml")) {
+			res.sendRedirect(req.getContextPath() + "/catalogos/localidades");
+			
+		}else if (session.getAttribute("username") != null && requestUrl.contains("formatos.xhtml")) {
+			res.sendRedirect(req.getContextPath() + "/catalogos/formatos");
+			
+		}else if (session.getAttribute("username") != null && requestUrl.contains("incidencias.xhtml")) {
+			res.sendRedirect(req.getContextPath() + "/catalogos/incidencias");
+			
+		}else if (session.getAttribute("username") != null && requestUrl.contains("pagos.xhtml")) {
+			res.sendRedirect(req.getContextPath() + "/catalogos/pagos");
+			
+		}else if (session.getAttribute("username") != null && requestUrl.contains("documentacion.xhtml")) {
+			res.sendRedirect(req.getContextPath() + "/catalogos/documentacion");
+		
+			/*EJECUTIVOS VENTA*/
+			
+		} else if (requestUrl.contains("Admin.xhtml")) {
+			res.sendRedirect(req.getContextPath()
+					+ "/ejecutivos/administracion");
+		} else if (requestUrl.contains("CambiosEventas.xhtml")) {
+			res.sendRedirect(req.getContextPath()
+					+ "/ejecutivos/cambios");
+		}else {
+			chain.doFilter(request, response);
+		}
+	}
+
+	@Override
+	public void destroy() {
+		this.filterConfig = null;
+	}
+
+}

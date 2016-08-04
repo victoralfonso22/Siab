@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Auditoria" table="auditoria" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="tabla" type="string">
+            <column name="tabla" length="30" not-null="true">
+                <comment>Indica el nombre de la tabla a la cual se realiz&#243; un movimiento.</comment>
+            </column>
+        </property>
+        <property name="idTabla" type="int">
+            <column name="id_tabla" not-null="true">
+                <comment>Indica a qu&#233; campo le fue realizado dicho movimiento.</comment>
+            </column>
+        </property>
+        <property name="movimiento" type="char">
+            <column name="movimiento" length="1" not-null="true">
+                <comment>Indca el tipo de movimiento que fue realizado (b baja - c cambio).</comment>
+            </column>
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" not-null="true">
+                <comment>Indica la fecha y hora en la que fue realizado el movimiento.</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica el usuario que realiz&#243; el movimiento.</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

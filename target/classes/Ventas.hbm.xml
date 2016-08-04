@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Ventas" table="ventas" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idColaborador" type="int">
+            <column name="id_colaborador" not-null="true">
+                <comment>Indica el colaborador que vendi&#243; el boleto.</comment>
+            </column>
+        </property>
+        <property name="idBoleto" type="int">
+            <column name="id_boleto" not-null="true" unique="true">
+                <comment>Indica el boleto que fue vendido por el colaborador.</comment>
+            </column>
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" not-null="true">
+                <comment>Indica la fecha en la que se registra al sistema la venta del boleto.</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica el usuario que realiz&#243; el registro de la venta.</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

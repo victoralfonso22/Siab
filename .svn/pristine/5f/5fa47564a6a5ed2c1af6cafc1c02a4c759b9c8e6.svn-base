@@ -1,0 +1,119 @@
+package BeanVista;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import Dao.DaoUsuarios;
+import HibernateUtil.HibernateUtil;
+import Pojos.ColaboradoresHistorial;
+import Pojos.Usuarios;
+
+
+@ManagedBean
+@Named(value = "mBAdministracionColab")
+@ViewScoped
+
+public class MBAdministracionColab implements Serializable{
+
+	  private Session session;
+	  private Transaction transaction;
+	  
+	  private ColaboradoresHistorial colaborador;
+	  
+	  private List<ColaboradoresHistorial>listaColab;
+	  
+	  private String rfc;
+	  private String nombre;
+	  private String paterno;
+	  private String materno;
+	  
+	  
+
+	public ColaboradoresHistorial getColaborador() {
+		return colaborador;
+	}
+	public void setColaborador(ColaboradoresHistorial colaborador) {
+		this.colaborador = colaborador;
+	}
+	public String getRfc() {
+		return rfc;
+	}
+	public void setRfc(String rfc) {
+		this.rfc = rfc;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getPaterno() {
+		return paterno;
+	}
+	public void setPaterno(String paterno) {
+		this.paterno = paterno;
+	}
+	public String getMaterno() {
+		return materno;
+	}
+	public void setMaterno(String materno) {
+		this.materno = materno;
+	}
+	
+	
+	/*
+	public List<ColaboradoresHistorial>getColaboradores(){
+		 this.session = null;
+	     this.transaction = null;
+	     
+	     
+	     try {
+		
+	}*/
+	
+	  
+	/*
+    public List<Usuarios> getUsuarios() {
+        this.session = null;
+        this.transaction = null;
+
+        try {
+            DaoUsuarios daoUsuarios = new DaoUsuarios();
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+
+            listaUsuarios = daoUsuarios.ver(this.session);
+
+            this.transaction.commit();
+
+            return listaUsuarios;
+
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+            return null;
+        } finally {
+            if (this.session != null) {
+                session.close();
+            }
+        }
+
+    }*/
+	  
+	  
+	  
+	  
+	
+}

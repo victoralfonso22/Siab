@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.MaestroColaboradorLocal" table="maestroColaboradorLocal" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.MaestroColaboradorLocalId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="referencia" type="string">
+                <column name="referencia" length="20" />
+            </key-property>
+            <key-property name="nombres" type="string">
+                <column name="nombres" length="100" />
+            </key-property>
+            <key-property name="apellidoPaterno" type="string">
+                <column name="apellido_paterno" length="100" />
+            </key-property>
+            <key-property name="apellidoMaterno" type="string">
+                <column name="apellido_materno" length="100" />
+            </key-property>
+            <key-property name="comision" type="java.lang.Integer">
+                <column name="comision" />
+            </key-property>
+            <key-property name="promotor" type="string">
+                <column name="promotor" length="100" />
+            </key-property>
+            <key-property name="telefonoCasa" type="string">
+                <column name="telefono_casa" length="20" />
+            </key-property>
+            <key-property name="celular" type="string">
+                <column name="celular" length="20" />
+            </key-property>
+            <key-property name="correo" type="string">
+                <column name="correo" length="200" />
+            </key-property>
+            <key-property name="calle" type="string">
+                <column name="calle" length="200" />
+            </key-property>
+            <key-property name="numeroExterior" type="string">
+                <column name="numero_exterior" length="20" />
+            </key-property>
+            <key-property name="numeroInterior" type="string">
+                <column name="numero_interior" length="20" />
+            </key-property>
+            <key-property name="colonia" type="string">
+                <column name="colonia" length="200" />
+            </key-property>
+            <key-property name="ciudad" type="string">
+                <column name="ciudad" length="200" />
+            </key-property>
+            <key-property name="estado" type="string">
+                <column name="estado" length="50" />
+            </key-property>
+            <key-property name="replica" type="java.lang.Integer">
+                <column name="replica" />
+            </key-property>
+            <key-property name="cp" type="java.lang.Integer">
+                <column name="cp" />
+            </key-property>
+            <key-property name="sector" type="string">
+                <column name="sector" length="100" />
+            </key-property>
+            <key-property name="talonarios" type="java.lang.Integer">
+                <column name="talonarios" />
+            </key-property>
+            <key-property name="boletos" type="java.lang.Integer">
+                <column name="boletos" />
+            </key-property>
+            <key-property name="fc3" type="java.lang.Integer">
+                <column name="fc3" />
+            </key-property>
+            <key-property name="fc4" type="java.lang.Integer">
+                <column name="fc4" />
+            </key-property>
+            <key-property name="fc4b" type="java.lang.Integer">
+                <column name="fc4b" />
+            </key-property>
+            <key-property name="fc4bVendido" type="java.lang.Integer">
+                <column name="fc4b_vendido" />
+            </key-property>
+            <key-property name="boletosVendidos" type="java.lang.Integer">
+                <column name="boletos_vendidos" />
+            </key-property>
+            <key-property name="monto" type="java.lang.Integer">
+                <column name="monto" />
+            </key-property>
+            <key-property name="abonoDevolucion" type="java.lang.Integer">
+                <column name="abono_devolucion" />
+            </key-property>
+            <key-property name="nominas" type="java.lang.Integer">
+                <column name="nominas" />
+            </key-property>
+            <key-property name="nominasFuv" type="java.lang.Integer">
+                <column name="nominas_fuv" />
+            </key-property>
+            <key-property name="dpnNetos" type="java.lang.Integer">
+                <column name="dpn_netos" />
+            </key-property>
+            <key-property name="pagosNeto" type="java.lang.Integer">
+                <column name="pagos_neto" />
+            </key-property>
+            <key-property name="saldos" type="java.lang.Double">
+                <column name="saldos" precision="10" />
+            </key-property>
+            <key-property name="estatusPago" type="string">
+                <column name="estatus_pago" length="20" />
+            </key-property>
+            <key-property name="estatusCarteras" type="string">
+                <column name="estatus_carteras" length="20" />
+            </key-property>
+            <key-property name="tipoColaborador" type="string">
+                <column name="tipo_colaborador" length="20" />
+            </key-property>
+            <key-property name="boletosElectronicos" type="java.lang.Integer">
+                <column name="boletos_electronicos" />
+            </key-property>
+            <key-property name="region" type="string">
+                <column name="region" length="50" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Fc2" table="fc2" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idFormato" type="int">
+            <column name="id_formato" not-null="true" unique="true">
+                <comment>Indica el n&#250;mero del oficio correspondiente.</comment>
+            </column>
+        </property>
+        <property name="idColaborador" type="int">
+            <column name="id_colaborador" not-null="true">
+                <comment>Indica el colaborador al que se le entregan carteras.</comment>
+            </column>
+        </property>
+        <property name="monto" type="int">
+            <column name="monto" not-null="true">
+                <comment>Indica lo que debe de pagar el colaborador.</comment>
+            </column>
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" not-null="true">
+                <comment>Indica la fecha en el que el colaborador fue registrado en el oficio.</comment>
+            </column>
+        </property>
+        <property name="tipoSector" type="int">
+            <column name="tipo_sector" not-null="true">
+                <comment>1 UV - 2 EXTERNO</comment>
+            </column>
+        </property>
+        <property name="idTipoColaborador" type="int">
+            <column name="id_tipo_colaborador" not-null="true">
+                <comment>Indica el tipo de colaborador</comment>
+            </column>
+        </property>
+        <property name="sectorExterno" type="int">
+            <column name="sector_externo" not-null="true">
+                <comment>Indica el sector padre de todos aquellos que sean de tipo_sector externo (2)</comment>
+            </column>
+        </property>
+        <property name="idSector" type="int">
+            <column name="id_sector" not-null="true">
+                <comment>Indica el sector d&#243;nde se encuentra el colaborador.</comment>
+            </column>
+        </property>
+        <property name="idRegion" type="int">
+            <column name="id_region" not-null="true" />
+        </property>
+        <property name="carrera" type="string">
+            <column name="carrera" length="200" />
+        </property>
+        <property name="area" type="string">
+            <column name="area" length="200">
+                <comment>Se indica en caso que el tipo de sector sea externo (2)</comment>
+            </column>
+        </property>
+        <property name="localidad" type="string">
+            <column name="localidad" length="200">
+                <comment>Indica el nombre de la localidad de donde se haya registrado el FC2</comment>
+            </column>
+        </property>
+        <property name="nomina" type="int">
+            <column name="nomina" not-null="true">
+                <comment>Indica si el colaborador pagar&#225; el FC2 por v&#237;a n&#243;mina (1) o no (0)</comment>
+            </column>
+        </property>
+        <property name="trinet" type="int">
+            <column name="trinet" not-null="true" />
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="fecha_alta" length="19" not-null="true">
+                <comment>Indica la fecha en la que fue registrado al sistema el oficio.</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Indica el usuario que registr&#243; el oficio al sistema.</comment>
+            </column>
+        </property>
+        <property name="comision" type="int">
+            <column name="comision" not-null="true" />
+        </property>
+        <property name="tipo" type="int">
+            <column name="tipo" not-null="true">
+                <comment>Indica si la FC2 fue para un (1) Alianza - (2) Punto Fijo - (3) Colaborador. , (4) Estudiante</comment>
+            </column>
+        </property>
+        <property name="codigo" type="string">
+            <column name="codigo" length="13" />
+        </property>
+        <property name="folioCita" type="string">
+            <column name="folioCita" length="11">
+                <comment>folio de la entrega de mensajeros</comment>
+            </column>
+        </property>
+        <property name="tipoContacto" type="java.lang.Integer">
+            <column name="tipo_contacto">
+                <comment>1 Telemarketing - 2 Voluntario - 3 Cambaceo - 4 Pre-registro</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

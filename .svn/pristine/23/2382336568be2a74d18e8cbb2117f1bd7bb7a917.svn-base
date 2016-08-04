@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.RegistroEstudiantes" table="registroEstudiantes" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" />
+        </property>
+        <property name="lineacaptura" type="string">
+            <column name="lineacaptura" length="100" unique="true" />
+        </property>
+        <property name="pwd" type="string">
+            <column name="pwd" length="100" />
+        </property>
+        <property name="masDatos" type="string">
+            <column name="mas_datos" length="65535">
+                <comment>json con todos los datos del formulario</comment>
+            </column>
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="19" />
+        </property>
+        <property name="precio" type="string">
+            <column name="precio" length="10" />
+        </property>
+        <property name="estatus" type="java.lang.Integer">
+            <column name="estatus">
+                <comment>0- boleto no entregado, 1- boleto entregado</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

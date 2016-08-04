@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+ 
+  <h:form >
+	<p:growl id="msgSesion" showDetail="true" sticky="true" />
+
+	<!-- If idle 10 seconds, run 'idleDialog' -->
+	<p:idleMonitor timeout="120000" >
+	<p:ajax event="idle" listener="#{idleMonitorView.onIdle()}"/>
+	</p:idleMonitor>
+	
+	<p:dialog modal="true" id="SessionT" header="Información:" widgetVar="sesionT" closable="false" >
+	 <h:outputText style="color:#0067B2; font-size:15px; font-weight: bold; text-align:center;" value="Sesión terminada por inactividad." /><br /><br />
+	 <p:commandButton style="text-align:center; font-weight: bold;" value="Salir" action="#{mBSesion.cerrarSesion()}" oncomplete="sesionT.hide();"  styleClass="ui-priority-primary"/>
+	</p:dialog>
+	
+  </h:form>
+
+</h:body>
+</html>

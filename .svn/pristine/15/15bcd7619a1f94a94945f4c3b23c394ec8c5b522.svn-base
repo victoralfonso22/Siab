@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.BoletosSaldoColEstudiantil" table="boletosSaldoColEstudiantil" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idColaborador" type="java.lang.Integer">
+            <column name="id_colaborador" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" />
+        </property>
+        <property name="sector" type="string">
+            <column name="sector" length="150" />
+        </property>
+        <property name="region" type="string">
+            <column name="region" length="100" />
+        </property>
+        <property name="fc1b" type="string">
+            <column name="fc1b" length="15" />
+        </property>
+        <property name="fc1bAun" type="string">
+            <column name="fc1b_aun" length="15" />
+        </property>
+        <property name="fc7b" type="string">
+            <column name="fc7b" length="15" />
+        </property>
+        <property name="fc2" type="string">
+            <column name="fc2" length="15" />
+        </property>
+        <property name="fc2Aun" type="string">
+            <column name="fc2_aun" length="15" />
+        </property>
+        <property name="fc3" type="string">
+            <column name="fc3" length="15" />
+        </property>
+        <property name="fc4" type="string">
+            <column name="fc4" length="15" />
+        </property>
+        <property name="fc4b" type="string">
+            <column name="fc4b" length="15" />
+        </property>
+        <property name="fc4bVendidos" type="string">
+            <column name="fc4b_vendidos" length="15" />
+        </property>
+        <property name="sumaPagos" type="java.lang.Double">
+            <column name="suma_pagos" precision="10" />
+        </property>
+    </class>
+</hibernate-mapping>

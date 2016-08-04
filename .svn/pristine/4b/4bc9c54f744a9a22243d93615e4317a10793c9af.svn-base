@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+
+	<table-filter match-name="alianzasPuntosFijos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="almacen" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="anio_colaboradorHistorial"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="areas" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="auditoria" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="base_folios"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="boletinado_colaborador"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="boletos" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="boletosEjecutivo"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="boletosSaldoColEstudiantil"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="boletos_electronicos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="boletos_estudiantes"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="boletos_recomendado"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="carteraBoleto"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="carteras" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="catalogo_menu"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="catalogo_secciones"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="codigo_postal"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="colaborador_promocional"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="colaborador_referencia"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="colaboradores"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="colaboradores_historial"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="compradores_boletos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="compradores_nomina"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="datosColaboradorMaestro"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="datosFc2Colaborador"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="deudores" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="dpn" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="efectividad_acd"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="empleados" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="enlaces2014"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="enlaces_estudiantes"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="estados" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="estudiantes"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="estudiantes2014"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc1" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="fc1_boletos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc1_carteras"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc1b" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="fc1b_boletos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc1b_carteras"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc2" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="fc2_boletos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc2_carteras"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc3" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="fc4" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="fc4b" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="fc4b_vendidos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc6" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="fc6_boletos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc7" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="fc7_boletos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc7_carteras"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc7b" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="fc7b_boletos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="fc7b_carteras"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="formas_pago"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="formatos" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="kardex_cartera"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="localidades"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="maestroColaboradorLocal"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="municipios" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="nomina_boletos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="nominas" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="nominas_fuv"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="pagos" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="pagos_acumulados"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="permisos" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="premios" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="premios_historial"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="programas" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="promoMarketing"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="promoMarketingBitacora"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="promociones"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="promotores" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="promotores_formatos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="promotores_historial"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="puestos" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="quincenas" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="rangosCarterasBoletos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="recibos" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="recibos_historial"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="referencias"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="regiones" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="registroEstudiantes"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="retornos" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="roles" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="saldoColaboradorLocal"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="sectores" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="sociedadSinRetornar"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="sorteo_colaboradores"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="sorteo_colaboradoresVer"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="sorteo_colaboradores_historial"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="sorteo_estudiantes"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="sorteo_magno"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="sorteo_magno_historial"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="sorteos" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="tip" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="tipo_movimiento_kardex"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="tipos_colaboradores"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="tipos_compradores"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="tipos_contratacion"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="tipos_identificacion"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="tipos_incidencias"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="tipos_pagos"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="tipos_personal"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="traspasos" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="trfc2fc1b" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="usuarios" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="ventas" match-catalog="SorteoUVWeb"></table-filter>
+	<table-filter match-name="viewPermisosCatalogoMenu"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="view_boletos_compradores"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="view_colaboradores"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="view_colaboradores_historial"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="view_colaboradores_todo"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="view_compradores_nomina"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="view_estudiantes"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="view_localidad_cp"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="view_localizacion"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="view_promotores"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+	<table-filter match-name="view_promotores_historial"
+		match-catalog="SorteoUVWeb">
+	</table-filter>
+</hibernate-reverse-engineering>

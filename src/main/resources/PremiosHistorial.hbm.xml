@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.PremiosHistorial" table="premios_historial" catalog="SorteoUVWeb">
+        <composite-id name="id" class="Pojos.PremiosHistorialId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="idSorteo" type="int">
+                <column name="id_sorteo" />
+            </key-property>
+            <key-property name="numeroPremio" type="int">
+                <column name="numero_premio" />
+            </key-property>
+            <key-property name="nombre" type="string">
+                <column name="nombre" length="250" />
+            </key-property>
+            <key-property name="descripcionLarga" type="string">
+                <column name="descripcion_larga" length="3000" />
+            </key-property>
+            <key-property name="descripcionCorta" type="string">
+                <column name="descripcion_corta" length="600" />
+            </key-property>
+            <key-property name="valorUnitario" type="java.lang.Double">
+                <column name="valor_unitario" precision="12" />
+            </key-property>
+            <key-property name="idPremioAsignado" type="java.lang.Integer">
+                <column name="id_premio_asignado" />
+            </key-property>
+            <key-property name="idGanador" type="java.lang.Integer">
+                <column name="id_ganador" />
+            </key-property>
+            <key-property name="idBoleto" type="java.lang.Integer">
+                <column name="id_boleto" />
+            </key-property>
+            <key-property name="lugar" type="string">
+                <column name="lugar" length="100" />
+            </key-property>
+            <key-property name="fecha" type="string">
+                <column name="fecha" length="50" />
+            </key-property>
+            <key-property name="idTipoIdentificacion" type="java.lang.Integer">
+                <column name="id_tipo_identificacion" />
+            </key-property>
+            <key-property name="folio" type="string">
+                <column name="folio" length="50" />
+            </key-property>
+            <key-property name="auto" type="java.lang.Integer">
+                <column name="auto" />
+            </key-property>
+            <key-property name="serie" type="string">
+                <column name="serie" length="100" />
+            </key-property>
+            <key-property name="factura" type="string">
+                <column name="factura" length="100" />
+            </key-property>
+            <key-property name="motor" type="string">
+                <column name="motor" length="100" />
+            </key-property>
+            <key-property name="anio" type="int">
+                <column name="anio" />
+            </key-property>
+            <key-property name="descMaterialesImpresos" type="string">
+                <column name="desc_materiales_impresos" length="1000" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

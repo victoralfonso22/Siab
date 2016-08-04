@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:l="http://www.lapis.com/jsf/exporter">
+
+
+<body>
+
+	<ui:composition template="./../template/templateSiab.xhtml">
+
+		<ui:define name="content">
+			<h1 id="h1Submenus">Sectores</h1>
+			<hr />
+
+			
+
+			<h:form id="formSectores">
+
+
+				<p:treeTable value="#{mBSectores.listaNodos}" var="node" id="arbolSectores" style=" width: 1000px; margin: 0 auto; font-family: Century Gothic, sans-serif; font-weight:bold;" >
+									
+						
+					<p:column headerText="Sector" style="#{node.nivel==1? 'background-color:#50C845;' :node.nivel==2? 'background-color:#F2B258;' :node.nivel==3? 'background-color:#E6F258;' :node.nivel==4? 'background-color:#58D6F2;' : 'background-color:#81BEF7;'}   ">
+					
+						<h:outputText value="#{node.sectorRegion}" style="text-align: left;"/>
+					
+					</p:column>
+									
+					
+					<p:column headerText="Meta inicial" style="#{node.nivel==1? 'background-color:#50C845;' :node.nivel==2? 'background-color:#F2B258;' :node.nivel==3? 'background-color:#E6F258;' :node.nivel==4? 'background-color:#58D6F2;' : 'background-color:#81BEF7;'} text-align: center;  ">
+						
+						<h:outputText value="#{node.meta}"  />
+						
+					</p:column>
+					           
+					<p:column headerText="Comisión" style="#{node.nivel==1? 'background-color:#50C845;' :node.nivel==2? 'background-color:#F2B258;' :node.nivel==3? 'background-color:#E6F258;' :node.nivel==4? 'background-color:#58D6F2;' : 'background-color:#81BEF7;'} text-align: center; ">
+					
+						<h:outputText value="#{node.comision}" />
+						
+					</p:column>
+					
+					<p:column style="width:24px" headerText="(p4)" priority="4">
+            <p:commandLink immediate="true" process="@this" update=":formSectoresSub:vistaSectorPanel" oncomplete="PF('vistaSectorDialog').show()" title="Detalle del sector" styleClass="ui-icon ui-icon-search">
+                <f:setPropertyActionListener value="#{node}" target="#{mBSectores.seleccionadoVistaSector}"  />
+            </p:commandLink>
+        </p:column>
+
+				</p:treeTable>
+				<p:spacer height="30" />
+				<p:panel style="text-align: center; margin: 0 auto;">
+					
+					<p:commandLink id="pdf" ajax="false">
+					<p:graphicImage value="../resources/images/pdf.png" id="imagenPDF" />
+						<p:tooltip value="Descargar archivo pdf" for="imagenPDF"
+							showEffect="explode" hideEffect="explode" trackMouse="true" />
+    					<l:dataExporter source="arbolSectores" fileType="pdf" fileName="arbolSectores" />
+					</p:commandLink>
+					<p:spacer height="20" />					
+					<p:commandLink id="xls" ajax="false">
+					<p:graphicImage value="../resources/images/excel.png" id="imagenExcel" />
+						<p:tooltip value="Descargar archivo excel" for="imagenExcel"
+							showEffect="explode" hideEffect="explode" trackMouse="true" />
+    					<l:dataExporter source="arbolSectores" fileType="excel" fileName="arbolSectores"/>
+					</p:commandLink>
+				</p:panel>
+				</h:form>
+		
+		<h:form id="formSectoresSub">
+				<p:dialog id="dialog"  showEffect="explode" widgetVar="vistaSectorDialog" modal="true" resizable="false">
+					<p:outputPanel id="vistaSectorPanel">
+					
+					<p:dataTable value="#{mBSectores.servicio.creaSubSectores(mBSectores.seleccionadoVistaSector.id)}" var="subNodo" id="subArbolSectores" style=" width: 1000px; margin: 0 auto; font-family: Century Gothic, sans-serif; font-weight:bold;"  scrollable="true" scrollHeight="450" editable="true" editMode="cell">
+					<!-- <p:ajax event="rowEdit" listener="#{mBSectores.onRowEdit(subNodo)}" immediate="true"  />  -->					
+					<p:ajax event="cellEdit" update="subArbolSectores" immediate="true" listener="#{mBSectores.onCellEdit}" />
+					<f:facet name="header"><h:outputText value="#{mBSectores.servicio.nombreSector(mBSectores.seleccionadoVistaSector.id)}" /></f:facet>																						
+					<p:column headerText="Sector" style="#{subNodo.nivel==1? 'background-color:#50C845;' :subNodo.nivel==2? 'background-color:#F2B258;' :subNodo.nivel==3? 'background-color:#E6F258;' :subNodo.nivel==4? 'background-color:#58D6F2;' : 'background-color:#81BEF7;'}   ">
+					
+						<h:outputText value="#{subNodo.sectorRegion}" style="text-align: left;"/>
+					
+					</p:column>
+									
+					
+					<p:column headerText="Meta" style="#{subNodo.nivel==1? 'background-color:#50C845;' :subNodo.nivel==2? 'background-color:#F2B258;' :subNodo.nivel==3? 'background-color:#E6F258;' :subNodo.nivel==4? 'background-color:#58D6F2;' : 'background-color:#81BEF7;'} text-align: center;  ">
+						<p:cellEditor rendered="#{subNodo.ultimo == 1}" >						
+						<f:facet name="output"><h:outputText value="#{subNodo.meta}"  /></f:facet>
+						<f:facet name="input"><p:inputText value="#{subNodo.meta}"  style="width:100%" label="Meta"/></f:facet>
+						</p:cellEditor>
+						<h:outputText value="#{subNodo.meta}"  rendered="#{subNodo.ultimo == 0}"/>						
+					</p:column>
+					           
+					<p:column headerText="Comisión" style="#{subNodo.nivel==1? 'background-color:#50C845;' :subNodo.nivel==2? 'background-color:#F2B258;' :subNodo.nivel==3? 'background-color:#E6F258;' :subNodo.nivel==4? 'background-color:#58D6F2;' : 'background-color:#81BEF7;'} text-align: center; ">
+						<p:cellEditor rendered="#{subNodo.ultimo == 1}" >						
+						<f:facet name="output"><h:outputText value="#{subNodo.comision}"  /></f:facet>
+						<f:facet name="input"><p:inputText value="#{subNodo.comision}"  style="width:100%" label="Comisión"/></f:facet>
+						</p:cellEditor>
+						<h:outputText value="#{subNodo.comision}" rendered="#{subNodo.ultimo == 0}"  />						
+					</p:column>
+					<!-- <p:column style="width:35px">
+					<p:rowEditor/>
+					</p:column>  -->
+
+				</p:dataTable>
+				<p:spacer height="30" />
+				<p:commandLink id="pdfx" ajax="false">
+						<p:graphicImage value="../resources/images/pdf.png" id="imagenPDFP" />
+						<p:tooltip value="Descargar archivo pdf" for="imagenPDFP"
+							showEffect="explode" hideEffect="explode" trackMouse="true" />
+						<f:setPropertyActionListener value="false"
+							target="#{exporterController.customExporter}" />
+						<pe:exporter type="pdf" target="subArbolSectores"
+							fileName="subArbolSectores" facetBackground="#AAFFBB"
+							encoding="ISO-8859-1" datasetPadding="4" />
+
+					</p:commandLink>
+
+					<p:spacer height="20" />
+
+					<p:commandLink id="xlsx" ajax="false">
+						<p:graphicImage value="../resources/images/excel.png"
+							id="imagenExcelE" />
+						<p:tooltip value="Descargar archivo excel" for="imagenExcelE"
+							showEffect="explode" hideEffect="explode" trackMouse="true" />
+						<f:setPropertyActionListener value="false"
+							target="#{exporterController.customExporter}" />
+						<pe:exporter type="xlsx" target="subArbolSectores"
+							encoding="ISO-8859-1" fileName="subArbolSectores"
+							facetBackground="#AAFFBB" datasetPadding="4" />
+
+					</p:commandLink>
+				</p:outputPanel>
+				</p:dialog>
+ 			
+				<!-- 
+
+				<p:dataTable id="arbolSectores" var="arbol"
+					value="#{mBSectores.listaSector}" emptyMessage="Sin registros."
+					widgetVar="tablaSectores"
+					style=" width: 1000px; text-align: center; margin: 0 auto; font-family: Century Gothic, sans-serif;"
+					filteredValue="#{mBSectores.listaSectorFiltrados}">
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Filtro:" />
+							<p:inputText id="globalFilter"
+								onkeyup="PF('tablaSectores').filter()"
+								style="width:150px; font-weight:bold;" placeholder="Criterio" />
+						</p:outputPanel>
+					</f:facet>
+
+					<p:column headerText="Nombre" filterBy="#{arbol.sectorRegion}{subArbol.sectorRegion}"
+						filterMatchMode="contains">
+						<h:outputText value="#{arbol.sectorRegion}"/>
+					</p:column>
+					<p:column headerText="Meta" filterBy="#{arbol.meta}"
+						filterMatchMode="contains">
+						<h:outputText value="#{arbol.meta}" />
+					</p:column>
+					<p:column headerText="Comisión" filterBy="#{arbol.comision}"
+						filterMatchMode="contains">
+						<h:outputText value="#{arbol.comision}" />
+					</p:column>
+
+					<p:subTable var="subArbol1"
+						value="#{mBSectores.creaSectoresHijo(arbol.id)}">
+						<p:column >
+							<h:outputText value="#{subArbol1.sectorRegion}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{subArbol1.meta}" />
+						</p:column>
+						<p:column >
+							<h:outputText value="#{subArbol1.comision}" />
+						</p:column>
+
+					</p:subTable>
+				</p:dataTable>
+				
+				 -->
+
+				
+				<!-- exporter extensions 
+					<p:commandLink id="pdf" ajax="false">
+						<p:graphicImage value="../resources/images/pdf.png" id="imagenPDF" />
+						<p:tooltip value="Descargar archivo pdf" for="imagenPDF"
+							showEffect="explode" hideEffect="explode" trackMouse="true" />
+						<f:setPropertyActionListener value="false"
+							target="#{exporterController.customExporter}" />
+						<pe:exporter type="pdf" target="arbolSectores"
+							fileName="arbolSectores" facetBackground="#AAFFBB"
+							encoding="ISO-8859-1" datasetPadding="4" />
+
+					</p:commandLink>
+
+					<p:spacer height="20" />
+
+					<p:commandLink id="xls" ajax="false">
+						<p:graphicImage value="../resources/images/excel.png"
+							id="imagenExcel" />
+						<p:tooltip value="Descargar archivo excel" for="imagenExcel"
+							showEffect="explode" hideEffect="explode" trackMouse="true" />
+						<f:setPropertyActionListener value="false"
+							target="#{exporterController.customExporter}" />
+						<pe:exporter type="xlsx" target="arbolSectores"
+							encoding="ISO-8859-1" fileName="arbolSectores"
+							facetBackground="#AAFFBB" datasetPadding="4" />
+
+					</p:commandLink>
+					
+					 -->
+				
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.NominasFuv" table="nominas_fuv" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idFc2" type="int">
+            <column name="id_fc2" not-null="true">
+                <comment>Indica al colaborador que el(los) boleto(s) le fueron cobrados v&#237;a n&#243;mina.</comment>
+            </column>
+        </property>
+        <property name="idColaborador" type="java.lang.Integer">
+            <column name="id_colaborador">
+                <comment>Indica al colaborador que se le asigna un descuento en n&#243;mina</comment>
+            </column>
+        </property>
+        <property name="inicioPago" type="date">
+            <column name="inicio_pago" length="10" not-null="true">
+                <comment>Indica la fecha en la que el colaborador le empezar&#225; a cobrar dicha n&#243;mina.</comment>
+            </column>
+        </property>
+        <property name="numeroQuincenas" type="int">
+            <column name="numero_quincenas" not-null="true">
+                <comment>Indica el n&#250;mero de quincenas en las cuales le ser&#225; descontado(s) el(los) boleto(s) vendidos.</comment>
+            </column>
+        </property>
+        <property name="numeroBoletos" type="int">
+            <column name="numero_boletos" not-null="true">
+                <comment>Indica el n&#250;mero de boletos que le fueron asignados por descuento por n&#243;mina</comment>
+            </column>
+        </property>
+        <property name="monto" type="int">
+            <column name="monto" not-null="true">
+                <comment>Indica el monto total a pagar por los boletos.</comment>
+            </column>
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="19" not-null="true">
+                <comment>Fecha de registro</comment>
+            </column>
+        </property>
+        <property name="idUsuario" type="int">
+            <column name="id_usuario" not-null="true">
+                <comment>Usuario que registr&#243; el DPN</comment>
+            </column>
+        </property>
+        <property name="numeroDpn" type="string">
+            <column name="numeroDpn" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

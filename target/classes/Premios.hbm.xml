@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2016 4:42:58 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Premios" table="premios" catalog="SorteoUVWeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="idSorteo" type="int">
+            <column name="id_sorteo" not-null="true">
+                <comment>Identifica al sorteo al que pertenece el premio</comment>
+            </column>
+        </property>
+        <property name="numeroPremio" type="int">
+            <column name="numero_premio" not-null="true">
+                <comment>indica que numero de premio es, por ejemplo 1er lugar, 2do lugar, etc</comment>
+            </column>
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="250" not-null="true">
+                <comment>nombre del premio, por ejemplo: Television de 40 Pulgadas</comment>
+            </column>
+        </property>
+        <property name="descripcionLarga" type="string">
+            <column name="descripcion_larga" length="3000" />
+        </property>
+        <property name="descripcionCorta" type="string">
+            <column name="descripcion_corta" length="600" />
+        </property>
+        <property name="valorUnitario" type="java.lang.Double">
+            <column name="valor_unitario" precision="20">
+                <comment>Indica el valor del premio</comment>
+            </column>
+        </property>
+        <property name="idPremioAsignado" type="java.lang.Integer">
+            <column name="id_premio_asignado">
+                <comment>Contendra un ID en caso de estar ligado a otro premio</comment>
+            </column>
+        </property>
+        <property name="idGanador" type="java.lang.Integer">
+            <column name="id_ganador">
+                <comment>Indica quien es el ganador de este premio</comment>
+            </column>
+        </property>
+        <property name="idBoleto" type="java.lang.Integer">
+            <column name="id_boleto">
+                <comment>indica cual fue el boleto acreedor de ese premio</comment>
+            </column>
+        </property>
+        <property name="lugar" type="string">
+            <column name="lugar" length="100">
+                <comment>Indica la ciudad y estado de donde donde fue entragado el premio.</comment>
+            </column>
+        </property>
+        <property name="fecha" type="string">
+            <column name="fecha" length="50">
+                <comment>Indica la fecha en la que fue entregado el premio.</comment>
+            </column>
+        </property>
+        <property name="idTipoIdentificacion" type="java.lang.Integer">
+            <column name="id_tipo_identificacion">
+                <comment>Indica el tipo de identificaci&#243;n que entreg&#243; el ganador al recibir el premio.</comment>
+            </column>
+        </property>
+        <property name="folio" type="string">
+            <column name="folio" length="50">
+                <comment>Indica el n&#250;mero de folio de la identificaci&#243;n que present&#243; el ganador.</comment>
+            </column>
+        </property>
+        <property name="auto" type="java.lang.Integer">
+            <column name="auto" />
+        </property>
+        <property name="serie" type="string">
+            <column name="serie" length="100" />
+        </property>
+        <property name="factura" type="string">
+            <column name="factura" length="100" />
+        </property>
+        <property name="motor" type="string">
+            <column name="motor" length="100" />
+        </property>
+        <property name="descMaterialesImpresos" type="string">
+            <column name="desc_materiales_impresos" length="1000" />
+        </property>
+        <property name="numeroCheque" type="string">
+            <column name="numeroCheque" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
