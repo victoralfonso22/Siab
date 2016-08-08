@@ -13,20 +13,7 @@ import javax.inject.Named;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ahora voy yo
 import Dao.DaoAdministracionColab;
 import Dao.DaoAdministracionE;
 import HibernateUtil.HibernateUtil;
