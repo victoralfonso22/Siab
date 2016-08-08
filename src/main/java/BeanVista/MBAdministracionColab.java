@@ -98,8 +98,8 @@ public class MBAdministracionColab implements Serializable{
 	  
 	  private List<CodigoPostal>listacodigos;
 	  
-/////QUITANDO ESPACIOS GET Y SET 
-
+/////QUITANDO ESPACIOS GET Y SET      
+ 
 	public Localidades getColonias() {
 		return colonias;
 	}
