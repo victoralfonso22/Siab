@@ -7,7 +7,7 @@ import org.hibernate.Session;
 
 import Pojos.CodigoPostal;
 import Pojos.ColaboradoresHistorial;
-import Pojos.Formatos;
+import Pojos.Localidades;
 
 public class DaoAdministracionColab {
 	
@@ -39,6 +39,29 @@ public class DaoAdministracionColab {
 		      return (List<CodigoPostal>) query.list();
 		        
 		    }
+	  
+	  public List<Localidades>getcolonias(Session session)throws Exception{
+		  String hql = " select c from Localidades  c ";
+	      Query query = session.createQuery(hql); 
+		  return(List<Localidades>)query.list();
+		  
+		  
+	  }
+	  
+	  
+	  public List<Localidades>getcolonias(Session session, int municipio)throws Exception{
+		  String hql = "from  Localidades where id_municipio=:municipio";
+		  Query query = session.createQuery(hql);
+		  query.setParameter("municipio", municipio);
+		  return(List<Localidades>)query.list();
+		  
+		  
+		  
+	  }
+	  
+	  
+	  
+	  
 	  
 	
 	

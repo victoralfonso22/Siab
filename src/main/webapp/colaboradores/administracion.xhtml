@@ -148,18 +148,20 @@
 		</p:autoComplete>
 		<h:message  display="tooltip"/>
 
-
-
-
+       
+       
+       
+       <p:outputLabel value="Colonias :"/>
+       <p:autoComplete value="#{}" >
+       </p:autoComplete>
+     <h:message  display="tooltip"/>
         
-        <p:outputLabel  value="Colonia :" />
-		<p:autoComplete  value="#{mBAdministracionColab.colonia}"  completeMethod="#{mBAdministracionColab.completeColonia}"  
-		var="colonia" itemLabel="#{colonia.nombre}" itemValue="#{colonia}" converter="coloniasConverter" forceSelection="true" minQueryLength="3" effect="explode">
-        <p:ajax event="itemSelect" update="panel"/>
-        </p:autoComplete>
-       
-       
-        <h:message  display="tooltip"/>
+        
+ 
+        
+        
+        
+        
         
         
         <p:outputLabel  value="Cp :" /> 

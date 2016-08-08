@@ -70,6 +70,8 @@ public class MBAdministracionColab implements Serializable{
 	  private int municipio;
 	  private Municipios muni;
 	  private Localidades colonia;
+	  private Localidades colonias;
+	  
 	
 	  private int cp;
 	  
@@ -105,6 +107,12 @@ public class MBAdministracionColab implements Serializable{
 	  
 	  
 
+	public Localidades getColonias() {
+		return colonias;
+	}
+	public void setColonias(Localidades colonias) {
+		this.colonias = colonias;
+	}
 	public Localidades getColonia() {
 		return colonia;
 	}
@@ -451,9 +459,26 @@ System.out.print("aki esta el id de municipio jajaja"+ " "+muni.getNombre()+muni
 //listaColonias=getLocalidades(muni.getId());
 
 }
-
+/*
 public List<Localidades> completeColonia(String query) {
     List<Localidades> allColonias = getLocalidades(this.muni.getId());
+    List<Localidades> filteredColonias = new ArrayList<Localidades>();
+    for (int i = 0; i < allColonias.size(); i++) {
+        Localidades us = allColonias.get(i);
+        if (us.getNombre().toLowerCase().startsWith(query)) {
+            filteredColonias.add(us);
+        }
+    }
+    return filteredColonias;
+}*/
+
+
+
+
+
+
+public List<Localidades> completaColonias(String query) {
+    List<Localidades> allColonias = getColonias(this.muni.getId());
     List<Localidades> filteredColonias = new ArrayList<Localidades>();
     for (int i = 0; i < allColonias.size(); i++) {
         Localidades us = allColonias.get(i);
@@ -465,7 +490,41 @@ public List<Localidades> completeColonia(String query) {
 }
 
 
+public List<Localidades>getColonias(int idmun){
+	   this.session = null;
+	   this.transaction = null;
+	   
+	   
+	   
+	   try {
+	        DaoAdministracionColab daoAdministracion = new DaoAdministracionColab();
 
+	        this.session = HibernateUtil.getSessionFactory().openSession();
+	        this.transaction = this.session.beginTransaction();
+
+	       listaColonias= daoAdministracion.getcolonias(session, idmun);
+	        
+	       this.transaction.commit();
+
+	        return listaColonias;
+
+	    } catch (Exception e) {
+	        if (this.transaction != null) {
+	            this.transaction.rollback();
+	        }
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+	        return null;
+	    } finally {
+	        if (this.session != null) {
+	            session.close();
+	        }
+	    }
+
+
+	
+	
+	
+}
 
 
 
@@ -530,14 +589,14 @@ listacodigos=getCodigos(coloni.getIdMunicipio());
 */
 public void EscribeColonia(){
 	
-	System.out.print("la colonia tomala "+this.colonia.getNombre());
+	System.out.print("la colonia tomala "+this.colonias.getNombre());
 		
 }
 
 
 
 public List<CodigoPostal> completeCodigo(String query) {
-    List<CodigoPostal> allCodigos = getCodigos();
+    List<CodigoPostal> allCodigos = getCodigos(86906);
     List<CodigoPostal> filteredCodigos = new ArrayList<CodigoPostal>();
              
     for (int i = 0; i < allCodigos.size(); i++) {
@@ -585,6 +644,41 @@ public  List<CodigoPostal>getCodigos(){
 
 }
 
+public  List<CodigoPostal>getCodigos(int id){
+    
+	  this.session = null;
+	  this.transaction = null;
+	  
+	  try {
+	      DaoAdministracionColab daoAdministracionColab = new DaoAdministracionColab();
+
+	      this.session = HibernateUtil.getSessionFactory().openSession();
+	      this.transaction = this.session.beginTransaction();
+	      
+	      
+	   
+	      listacodigos=daoAdministracionColab.getCodigos(this.session, id);
+	    
+	      
+	     this.transaction.commit();
+
+	      return listacodigos;
+
+	  } catch (Exception e) {
+	      if (this.transaction != null) {
+	          this.transaction.rollback();
+	      }
+	      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+	      return null;
+	  } finally {
+	      if (this.session != null) {
+	          session.close();
+	      }
+	  }
+
+
+
+	}
 
 
 
