@@ -29,7 +29,7 @@ public class DaoAdministracionColab {
 		  
 		  
 	  }
-	  
+	    
 	  
 	  public List<CodigoPostal> getCodigos(Session session, int colonia) throws Exception{
 		     String hql = "from  CodigoPostal where id_localidad=:colonia order by cp";
