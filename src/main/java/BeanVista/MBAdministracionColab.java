@@ -13,6 +13,7 @@ import javax.inject.Named;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 // ahora voy yo
 import Dao.DaoAdministracionColab;
 import Dao.DaoAdministracionE;
@@ -23,6 +24,7 @@ import Pojos.Estados;
 import Pojos.Localidades;
 import Pojos.Municipios;
 import Pojos.Referencias;
+import Pojos.Promotores;
 
 
 
@@ -84,12 +86,47 @@ public class MBAdministracionColab implements Serializable{
 	  private List<Localidades>listaColonias;
 	  
 	  private List<CodigoPostal>listacodigos;
+	  private List<Promotores>listapromotores;
+	  private List<Referencias>listareferencias;
+	  
+	  private Promotores ejecutivo;
+	  private Referencias referencia;
+	  
+	  
 	  
 /////QUITANDO ESPACIOS GET Y SET    
 	 ///////nueva linea
  
+	  
+	  
+  
+	  
 	public Localidades getColonias() {
 		return colonias;
+	}
+	public List<Referencias> getListareferencias() {
+		return listareferencias;
+	}
+	public void setListareferencias(List<Referencias> listareferencias) {
+		this.listareferencias = listareferencias;
+	}
+	public List<Promotores> getListapromotores() {
+		return listapromotores;
+	}
+	public void setListapromotores(List<Promotores> listapromotores) {
+		this.listapromotores = listapromotores;
+	}
+	public Promotores getEjecutivo() {
+		return ejecutivo;
+	}
+	public void setEjecutivo(Promotores ejecutivo) {
+		this.ejecutivo = ejecutivo;
+	}
+	public Referencias getReferencia() {
+		return referencia;
+	}
+	public void setReferencia(Referencias referencia) {
+		this.referencia = referencia;
 	}
 	public void setColonias(Localidades colonias) {
 		this.colonias = colonias;
@@ -541,7 +578,11 @@ public  List<Localidades>getLocalidades(int idMunR ){
 
 
 }
-
+public void EscribeColonia(){
+	
+	System.out.print("la colonia tomala "+this.colonias.getNombre());
+		
+}
 
 
 
@@ -568,16 +609,12 @@ System.out.print("aki esta la colonia jajaja"+coloni.getNombre());
 listacodigos=getCodigos(coloni.getIdMunicipio());
 }
 */
-public void EscribeColonia(){
-	
-	System.out.print("la colonia tomala "+this.colonias.getNombre());
-		
-}
+
 
 
 
 public List<CodigoPostal> completeCodigo(String query) {
-    List<CodigoPostal> allCodigos = getCodigos(86906);
+    List<CodigoPostal> allCodigos = getCodigos(this.colonias.getId());
     List<CodigoPostal> filteredCodigos = new ArrayList<CodigoPostal>();
              
     for (int i = 0; i < allCodigos.size(); i++) {
@@ -660,6 +697,106 @@ public  List<CodigoPostal>getCodigos(int id){
 
 
 	}
+
+
+
+public List<Promotores> completePromotor(String query) {
+    List<Promotores> allPromotores = getPromotores();
+    List<Promotores> filteredPromotores = new ArrayList<Promotores>();
+             
+    for (int i = 0; i < allPromotores.size(); i++) {
+        Promotores us = allPromotores.get(i);
+        if (us.getNombres().toLowerCase().startsWith(query)) {
+            filteredPromotores.add(us);
+        }
+    }
+    return filteredPromotores;
+}
+
+public List<Promotores> getPromotores() {
+    this.session = null;
+    this.transaction = null;
+
+    try {
+    	DaoAdministracionColab daocolab=new DaoAdministracionColab();
+        
+    	
+
+        this.session = HibernateUtil.getSessionFactory().openSession();
+        this.transaction = this.session.beginTransaction();
+
+        listapromotores = daocolab.getPromotores(session);
+
+        this.transaction.commit();
+
+        return listapromotores;
+
+    } catch (Exception e) {
+        if (this.transaction != null) {
+            this.transaction.rollback();
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+        return null;
+    } finally {
+        if (this.session != null) {
+            session.close();
+        }
+    }
+
+}
+
+public List<Referencias> completeReferencia(String query) {
+    List<Referencias> allReferencias = getReferencias();
+    List<Referencias> filteredReferencias = new ArrayList<Referencias>();
+             
+    for (int i = 0; i < allReferencias.size(); i++) {
+        Referencias us = allReferencias.get(i);
+        if (us.getReferencia().toLowerCase().startsWith(query)) {
+            filteredReferencias.add(us);
+        }
+    }
+    return filteredReferencias;
+}
+
+
+
+public List<Referencias> getReferencias() {
+    this.session = null;
+    this.transaction = null;
+
+    try {
+    	DaoAdministracionColab daocolab=new DaoAdministracionColab();
+        
+    	
+
+        this.session = HibernateUtil.getSessionFactory().openSession();
+        this.transaction = this.session.beginTransaction();
+
+        listareferencias = daocolab.getReferencias(session);
+
+        this.transaction.commit();
+
+        return listareferencias;
+
+    } catch (Exception e) {
+        if (this.transaction != null) {
+            this.transaction.rollback();
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+        return null;
+    } finally {
+        if (this.session != null) {
+            session.close();
+        }
+    }
+
+}
+
+
+
+
+
+
 
 
 

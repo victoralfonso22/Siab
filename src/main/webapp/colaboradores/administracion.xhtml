@@ -152,84 +152,46 @@
             
        
        <p:outputLabel value="Colonias :"/>
-       <p:autoComplete value="#{}" >
+       <p:autoComplete value="#{mBAdministracionColab.colonias}" completeMethod="#{mBAdministracionColab.completaColonias}" 
+       var="colonias" itemLabel="#{colonias.nombre}" itemValue="#{colonias}" converter="coloniasConverter" forceSelection="true" minQueryLength="3" effect="drop">
+       	<p:ajax event="itemSelect" listener="#{mBAdministracionColab.EscribeColonia}" update="panel"/>
        </p:autoComplete>
      <h:message  display="tooltip"/>
         
-        
-       
-        
-        
-        
-        
-        
-        
-        <p:outputLabel  value="Cp :" /> 
-		<p:autoComplete   id="codigo"  value="#{mBAdministracionColab.codigo}"  completeMethod="#{mBAdministracionColab.completeCodigo}"
-		var="codigo" itemLabel="#{codigo.cp}" itemValue="#{codigo}" converter="CodigosConverter"  forceSelection="true" minQueryLength="3" effect="explode" maxResults="10">
+     <p:outputLabel  value="Cp :" /> 
+		<p:autoComplete   id="codigo"  size="5" value="#{mBAdministracionColab.codigo}"  completeMethod="#{mBAdministracionColab.completeCodigo}"
+		var="codigo" itemLabel="#{codigo.cp}" itemValue="#{codigo}" converter="CodigosConverter"  forceSelection="true" minQueryLength="2" effect="explode" maxResults="10">
         <p:ajax event="itemSelect" listener="#{mBAdministracionColab.escribeCodigo}" update="panel"/>
         </p:autoComplete>
         <h:message  display="tooltip"/>
         
         <p:outputLabel  value="Tipo de Colaborador  :" />
-		<p:selectOneMenu></p:selectOneMenu>
+		<p:selectOneMenu >
+		 <f:selectItem itemLabel="Selecciona Opción" itemValue="" />
+            <f:selectItem itemLabel="COLABORADOR" itemValue="1" />
+            <f:selectItem itemLabel="PROMOVENDEDOR" itemValue="2" />
+            <f:selectItem itemLabel="cOLABORADOR DE ESTUDIANTES" itemValue="3" />
+		</p:selectOneMenu>
         <h:message  display="tooltip"/>
         
         
-        <p:outputLabel  value="Ejecutivo de  Venta o Enlace :" />
-		<p:autoComplete />
+        <p:outputLabel  value="Ejecutivo ó Enlace :" />
+		<p:autoComplete  size="40"   value="#{mBAdministracionColab.ejecutivo}" completeMethod="#{mBAdministracionColab.completePromotor}"
+		var="ejecutivo" itemLabel="#{ejecutivo.clave.concat(' ').concat(ejecutivo.nombres).concat(' ').concat(ejecutivo.apellidoPaterno).concat(' ').concat(ejecutivo.apellidoMaterno)}" itemValue="#{ejecutivo}" converter="PromotorConverter"   forceSelection="true" minQueryLength="3" effect="explode" maxResults="10">
+		
+		</p:autoComplete>
         <h:message  display="tooltip"/>
         
         
          <p:outputLabel  value="Referencia Bancaria :" />
-		<p:autoComplete />
+		<p:autoComplete  value="#{mBAdministracionColab.referencia}"  completeMethod="#{mBAdministracionColab.completeReferencia}" 
+		var="referencia" itemLabel="#{referencia.referencia}" itemValue="#{referencia}" forceSelection="true" minQueryLength="3" effect="explode" maxResults="10">
+		
+		</p:autoComplete>
         <h:message  display="tooltip"/>
         
         
-        
-       
-       
-       
-       
-       
- 	
- 
-  			
-  			
-  			   <!-- <p:selectOneMenu value="#{mBAdministracionColab.estado}">
-  			  <f:selectItem itemLabel="20" itemValue="20" selected="true"/>
-  			
-  			<f:selectItems value="#{mBAdminstracionE.listaestados}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.id}"   />
-  			</p:selectOneMenu>
-  		<p:message/>  -->
-   
-   
-                         
-                           <!--  <p:selectOneMenu value="#{mBAdministracionColab.colaborador.idEstado}"   id="estado"  required="true" label="estado"   >
-                             <f:selectItem itemLabel="-Seleciona un Estado-" itemValue="" />
-                            
-                             <f:selectItems value="#{mBAdminstracionE.listaestados}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.id}"/>
-                         <p:ajax event="change"   listener="#{mBAdminstracionE.generaMunicipios()}" update="municipio,col"   partialSubmit="true" />
-                        	</p:selectOneMenu>
-                          <p:message for="estado" display="icon"/>-->
-                        
-	                       
-
-  		
-  		
-  		
-  		
-   
-
-    
-                     
-                        
-                 
-       
-   
-            
-            
-            </h:panelGrid>
+      </h:panelGrid>
            
   
             

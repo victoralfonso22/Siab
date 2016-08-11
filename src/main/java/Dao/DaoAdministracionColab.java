@@ -8,6 +8,8 @@ import org.hibernate.Session;
 import Pojos.CodigoPostal;
 import Pojos.ColaboradoresHistorial;
 import Pojos.Localidades;
+import Pojos.Promotores;
+import Pojos.Referencias;
 
 public class DaoAdministracionColab {
 	
@@ -55,10 +57,23 @@ public class DaoAdministracionColab {
 		  query.setParameter("municipio", municipio);
 		  return(List<Localidades>)query.list();
 		  
-		  
+	  }
+	  
+	  
+	  public List<Promotores>getPromotores(Session session)throws Exception{
+		String hql = " select c from Promotores  c ";
+	    Query query = session.createQuery(hql); 
+		return(List<Promotores>)query.list();
 		  
 	  }
 	  
+	  
+	  public List<Referencias>getReferencias(Session session)throws Exception{
+		String hql = " select c from Referencias  c ";
+		Query query = session.createQuery(hql); 
+		return(List<Referencias>)query.list();
+		    
+	  }
 	  
 	  
 	  

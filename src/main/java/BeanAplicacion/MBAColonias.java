@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import Dao.DaoAdministracionColab;
 import Dao.DaoAdministracionE;
 import HibernateUtil.HibernateUtil;
 import Pojos.Estados;
@@ -56,12 +57,12 @@ public class MBAColonias {
 	        this.transaction = null;
 	        
 	        try {
-	            DaoAdministracionE daoAdministracion = new DaoAdministracionE();
+	            DaoAdministracionColab daoAdministracion = new DaoAdministracionColab();
 
 	            this.session = HibernateUtil.getSessionFactory().openSession();
 	            this.transaction = this.session.beginTransaction();
 
-	           listaColonias= daoAdministracion.getColonias(session);
+	           listaColonias= daoAdministracion.getcolonias(session);
 	            
 	           this.transaction.commit();
 

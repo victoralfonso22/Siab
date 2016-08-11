@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import Pojos.CodigoPostal;
 import Pojos.ColaboradoresHistorial;
 import Pojos.Localidades;
+import Pojos.Promotores;
+import Pojos.Referencias;
 
 
 public interface InterfaceAdmonColab {
@@ -21,6 +23,9 @@ public interface InterfaceAdmonColab {
 	  public List<Localidades>getcolonias(Session session)throws Exception;
 	  public List<Localidades>getcolonias(Session session, int municipio)throws Exception;
 	  
+	  public List<Promotores>getPromotores(Session session)throws Exception;
+	  //public List<Promotores>getPromotores(Session session, int municipio)throws Exception;
+	  public List<Referencias>getReferencias(Session session)throws Exception;
 	  
 	  
 	  
