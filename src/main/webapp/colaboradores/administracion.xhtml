@@ -185,7 +185,7 @@
         
          <p:outputLabel  value="Referencia Bancaria :" />
 		<p:autoComplete  value="#{mBAdministracionColab.referencia}"  completeMethod="#{mBAdministracionColab.completeReferencia}" 
-		var="referencia" itemLabel="#{referencia.referencia}" itemValue="#{referencia}" forceSelection="true" minQueryLength="3" effect="explode" maxResults="10">
+		var="referencia" itemLabel="#{referencia.referencia}" itemValue="#{referencia}" converter="ReferenciasConverter" forceSelection="true" minQueryLength="2" effect="explode" maxResults="10">
 		
 		</p:autoComplete>
         <h:message  display="tooltip"/>

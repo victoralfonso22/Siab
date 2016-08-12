@@ -69,8 +69,9 @@ public class DaoAdministracionColab {
 	  
 	  
 	  public List<Referencias>getReferencias(Session session)throws Exception{
-		String hql = " select c from Referencias  c ";
+		String hql = "from Referencias where estatus=0";
 		Query query = session.createQuery(hql); 
+		 query.setMaxResults(1000);
 		return(List<Referencias>)query.list();
 		    
 	  }
