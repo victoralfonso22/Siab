@@ -6,13 +6,18 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+
 
 // ahora voy yo
 import Dao.DaoAdministracionColab;
@@ -25,6 +30,9 @@ import Pojos.Localidades;
 import Pojos.Municipios;
 import Pojos.Referencias;
 import Pojos.Promotores;
+import Pojos.Colaboradores;
+import Pojos.Regiones;
+import Pojos.Sectores;
 
 
 
@@ -51,6 +59,8 @@ public class MBAdministracionColab implements Serializable{
 	  private String calle;
 	  private String nexterior;
 	  private  String ninterior;
+	  
+	  private int tipoColab;
 	   
 	  
 	  private int estado;
@@ -103,6 +113,12 @@ public class MBAdministracionColab implements Serializable{
 	  
 	public Localidades getColonias() {
 		return colonias;
+	}
+	public int getTipoColab() {
+		return tipoColab;
+	}
+	public void setTipoColab(int tipoColab) {
+		this.tipoColab = tipoColab;
 	}
 	public List<Referencias> getListareferencias() {
 		return listareferencias;
@@ -793,27 +809,6 @@ public List<Referencias> getReferencias() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 public  void escribeCodigo(){   
 System.out.print("aki esta el codigo postal"+codigo.getCp());
 }
@@ -826,13 +821,143 @@ System.out.print("aki esta el codigo postal"+codigo.getCp());
     
     public void AltaColaborador(){
     	
- 	
+    	   this.session = null;
+    	   this.transaction = null;
+  
+    	   
+    	      try {
+    	          
+    	          
+    	          
+    	            DaoAdministracionColab daoAdministracion = new DaoAdministracionColab();
+    	             
+    	            this.session = HibernateUtil.getSessionFactory().openSession();
+    	            this.transaction = this.session.beginTransaction();
+    	            
+    	            // boolean valor =daoAdministracion.validaPromotor(session, rfc);
+    	         
+    	            	Colaboradores c =new Colaboradores();
+    	            	
+    	            	HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+    	                Integer idusuario= Integer.parseInt(sesion.getAttribute("idUsuario").toString());
+    	                Date fechaAlta=new Date();
+    	            
+    	            	c.setRfc(colaborador.getRfc());
+    	            	c.setNombres(colaborador.getNombres());
+    	            	c.setApellidoPaterno(colaborador.getApellidoPaterno());
+    	            	c.setApellidoMaterno(colaborador.getApellidoMaterno());
+    	            	c.setFechaNacimiento(colaborador.getFechaNacimiento());
+    	            	c.setCalle(colaborador.getCalle());
+    	            	c.setNumeroInterior(colaborador.getNumeroInterior());
+    	            	c.setNumeroExterior(colaborador.getNumeroExterior());
+    	            	c.setIdEstado(lugar.getId());
+    	            	c.setIdMunicipio(muni.getId());
+    	            	c.setIdLocalidad(colonias.getId());
+    	            	
+    	            	//String codigo2  = Integer.parseInt(codigo.getId());
+    	            	
+    	            	String cadenaCodigo= Integer.toString(codigo.getId());
+    	            	
+    	            	c.setIdCodigoPostal(cadenaCodigo);
+    	            	c.setIdPromotor(ejecutivo.getId());
+    	            	//fataltaria tipo
+    	            	
+    	            	c.setTipo(tipoColab);
+    	            	c.setIdTipoColaborador(null);
+    	            	c.setTelefonoCasa(colaborador.getTelefonoCasa());
+    	            	c.setTelefonoOficina(colaborador.getTelefonoOficina());
+    	            	c.setExtensionOficina(colaborador.getExtensionOficina());
+    	            	c.setCelular(colaborador.getCelular());
+    	            	c.setCorreo(colaborador.getCorreo());
+    	            	c.setIdReferencia(referencia.getId());
+    	            	c.setRfc(colaborador.getRfc());
+    	            	c.setFechaAlta(fechaAlta);
+    	            	c.setIdUsuario(idusuario);
+    	            	
+    	            	/**/
+    	            
+    	            	daoAdministracion.AltaColaborador(session, c);
+    	            	
+    	            	this.transaction.commit();
+    	            	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Se  ha registrado  Colaborador correctamente "));
+    	         	
+    	            	//System.out.print(c.getRfc()+fechaAlta+"usa"+idusuario);
+    	            	colaborador=null;
+    	            	lugar=null;
+    	            	muni=null;
+    	            	colonias=null;
+    	            	ejecutivo=null;
+    	            	referencia=null; 
+    	            	tipoColab=0;
+    	            	
+    	             
+    	           /*  
+    	           
+    	          
+    	            if (valor==true) {
+    	            
+    	             FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: ", "El RFC de Promotor ya Existe ."));
+    	              return;
+    	            
+    	            
+    	            }*/
+    	       
+    	                            
+    	      
+    	   
+
+    	        } catch (Exception e) {
+    	            if (this.transaction != null) {
+    	                this.transaction.rollback();
+    	            }
+    	            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal: ", "contacte a sistemas" + e.getMessage()));
+    	            return;
+    	        } finally {
+    	            if (this.session != null) {
+    	                session.close();
+    	            }
+    	        }
+    	   
+    	    }
     	
-    }
+    	
+    	
+ 
+    	
+    
+    
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 	  
 	  
-	  
-	  
+	  //llave  final
 	
 }

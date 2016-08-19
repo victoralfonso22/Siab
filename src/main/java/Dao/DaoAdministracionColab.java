@@ -8,8 +8,9 @@ import org.hibernate.Session;
 import Pojos.CodigoPostal;
 import Pojos.ColaboradoresHistorial;
 import Pojos.Localidades;
-import Pojos.Promotores;
+import Pojos.Colaboradores;
 import Pojos.Referencias;
+import Pojos.Promotores;
 
 public class DaoAdministracionColab {
 	
@@ -77,6 +78,11 @@ public class DaoAdministracionColab {
 	  }
 	  
 	  
+	   public void AltaColaborador(Session session, Colaboradores colaborador )throws Exception{
+           
+           session.save(colaborador);
+       }
+       
 	  
 	  
 	

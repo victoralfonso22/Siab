@@ -22,7 +22,7 @@ public class ConvertidorColaborador implements Converter {
 	        if(value != null && value.trim().length() > 0) {
 		          try {
 		                MBAColaborador mbAColaborador = (MBAColaborador) fc.getExternalContext().getApplicationMap().get("mBAColaborador");
-		                System.out.println(value);
+		                //System.out.println(value);
 		                for(ColaboradoresHistorial u : mbAColaborador.getColabiniciales()){
 		                    if(u.getId().equals(Integer.parseInt(value))){
 		                        return u;

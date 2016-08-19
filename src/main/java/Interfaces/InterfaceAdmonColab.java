@@ -9,6 +9,7 @@ import Pojos.ColaboradoresHistorial;
 import Pojos.Localidades;
 import Pojos.Promotores;
 import Pojos.Referencias;
+import Pojos.Colaboradores;
 
 
 public interface InterfaceAdmonColab {
@@ -27,6 +28,7 @@ public interface InterfaceAdmonColab {
 	  //public List<Promotores>getPromotores(Session session, int municipio)throws Exception;
 	  public List<Referencias>getReferencias(Session session)throws Exception;
 	  
+	  public void AltaColaborador(Session session, Colaboradores colaborador )throws Exception;
 	  
 	  
 

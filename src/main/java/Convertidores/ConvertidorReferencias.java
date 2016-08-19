@@ -24,7 +24,7 @@ public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
     if(value != null && value.trim().length() > 0) {
 	          try {
 	                MBAReferencias mbAReferencias = (MBAReferencias) fc.getExternalContext().getApplicationMap().get("mBAReferencias");
-	                System.out.println(value+"referencia jajajjaa");
+	               // System.out.println(value+"referencia jajajjaa");
 	                for(Referencias u : mbAReferencias.getReferenciasIniciales()){
 	                    if(u.getId().equals(Integer.parseInt(value))){
 	                        return u;

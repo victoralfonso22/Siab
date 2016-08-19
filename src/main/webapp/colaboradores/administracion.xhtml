@@ -19,7 +19,7 @@
             
             
      <!-- update="output" oncomplete="PF('').show()" -->
-            <h:form>
+            <h:form id="forma">
             
                 <p:growl id="msg" showDetail="true"/>
 
@@ -133,11 +133,11 @@
      
   
         <p:outputLabel  value="Estado :" />
-		<p:autoComplete  value="#{mBAdministracionColab.lugar}" completeMethod="#{mBAdministracionColab.completeLugar}"
+		<p:autoComplete     required="true" value="#{mBAdministracionColab.lugar}" completeMethod="#{mBAdministracionColab.completeLugar}"
 		var="lugar" itemLabel="#{lugar.nombre}" itemValue="#{lugar}" converter="estadosConverter"  forceSelection="true" minQueryLength="3" effect="explode"> 
-		<p:ajax event="itemSelect" listener="#{mBAdministracionColab.generaMunicipios}" update="panel"/>
+		<p:ajax event="itemSelect" listener="#{mBAdministracionColab.generaMunicipios}"  update="panel" />
 		</p:autoComplete>
-		<h:message  display="tooltip"/>
+		<h:message   display="tooltip"/>
 
 
 
@@ -166,11 +166,11 @@
         <h:message  display="tooltip"/>
         
         <p:outputLabel  value="Tipo de Colaborador  :" />
-		<p:selectOneMenu >
+		<p:selectOneMenu value="#{mBAdministracionColab.tipoColab}">
 		 <f:selectItem itemLabel="Selecciona Opción" itemValue="" />
-            <f:selectItem itemLabel="COLABORADOR" itemValue="1" />
-            <f:selectItem itemLabel="PROMOVENDEDOR" itemValue="2" />
-            <f:selectItem itemLabel="cOLABORADOR DE ESTUDIANTES" itemValue="3" />
+            <f:selectItem itemLabel="Colaborador" itemValue="1" />
+            <f:selectItem itemLabel="Promovendedor" itemValue="2" />
+            <f:selectItem itemLabel="Colaborador de estudiantes" itemValue="5" />
 		</p:selectOneMenu>
         <h:message  display="tooltip"/>
         
@@ -189,6 +189,13 @@
 		
 		</p:autoComplete>
         <h:message  display="tooltip"/>
+        
+        
+        
+        <p:commandButton style="font-family: Century Gothic, sans-serif;" value="Registrar" 
+						styleClass="ui-priority-primary" icon="fa-send"  actionListener="#{mBAdministracionColab.AltaColaborador()}" update="forma"/>
+        
+        
         
         
       </h:panelGrid>
