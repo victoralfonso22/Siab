@@ -842,12 +842,12 @@ System.out.print("aki esta el codigo postal"+codigo.getCp());
     	                Integer idusuario= Integer.parseInt(sesion.getAttribute("idUsuario").toString());
     	                Date fechaAlta=new Date();
     	            
-    	            	c.setRfc(colaborador.getRfc());
-    	            	c.setNombres(colaborador.getNombres());
-    	            	c.setApellidoPaterno(colaborador.getApellidoPaterno());
-    	            	c.setApellidoMaterno(colaborador.getApellidoMaterno());
+    	            	c.setRfc(colaborador.getRfc().toUpperCase());
+    	            	c.setNombres(colaborador.getNombres().toUpperCase());
+    	            	c.setApellidoPaterno(colaborador.getApellidoPaterno().toUpperCase());
+    	            	c.setApellidoMaterno(colaborador.getApellidoMaterno().toUpperCase());
     	            	c.setFechaNacimiento(colaborador.getFechaNacimiento());
-    	            	c.setCalle(colaborador.getCalle());
+    	            	c.setCalle(colaborador.getCalle().toUpperCase());
     	            	c.setNumeroInterior(colaborador.getNumeroInterior());
     	            	c.setNumeroExterior(colaborador.getNumeroExterior());
     	            	c.setIdEstado(lugar.getId());
@@ -874,6 +874,9 @@ System.out.print("aki esta el codigo postal"+codigo.getCp());
     	            	c.setFechaAlta(fechaAlta);
     	            	c.setIdUsuario(idusuario);
     	            	
+    	            	String np="0";
+    	            	c.setNumeroPersonal(np);
+    	            	
     	            	/**/
     	            
     	            	daoAdministracion.AltaColaborador(session, c);
@@ -889,6 +892,7 @@ System.out.print("aki esta el codigo postal"+codigo.getCp());
     	            	ejecutivo=null;
     	            	referencia=null; 
     	            	tipoColab=0;
+    	            	codigo=null;
     	            	
     	             
     	           /*  
