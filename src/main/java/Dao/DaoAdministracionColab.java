@@ -82,6 +82,23 @@ public class DaoAdministracionColab {
            
            session.save(colaborador);
        }
+	   
+	   
+		  public boolean validaColaborador (Session session,String  rfc)throws Exception{
+			  
+		   String hql = "from Colaboradores where rfc=:rfc ";
+            Query query = session.createQuery(hql);
+             query.setParameter("rfc", rfc);
+           Colaboradores colab= (Colaboradores) query.uniqueResult();
+             //System.out.print("llego la validacion");
+             
+              if (colab != null) {
+            return true;
+        } else {
+            return false;
+        }
+		 
+		}
        
 	  
 	  

@@ -834,9 +834,35 @@ System.out.print("aki esta el codigo postal"+codigo.getCp());
     	            this.session = HibernateUtil.getSessionFactory().openSession();
     	            this.transaction = this.session.beginTransaction();
     	            
-    	            // boolean valor =daoAdministracion.validaPromotor(session, rfc);
+    	             boolean valor =daoAdministracion.validaColaborador(session,colaborador.getRfc());
+    	            
+
+    	            if (valor==true) {
+    	            
+    	             FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: ", "El RFC de Colaborador ya Existe ."));
+    	              return;
+    	            
+    	            
+    	            }
+    	           
+    	            
+    	            
+    	            
     	         
     	            	Colaboradores c =new Colaboradores();
+    	            	
+    	            	
+    	            	
+    	            	// 	if(lugar==null||muni==null||colonias==null||codigo==null){
+    	            	/*
+    	            	if(lugar==null){
+    	            		c.setIdEstado(colaborador.getIdEstado());
+    	            		c.setIdMunicipio(colaborador.getIdMunicipio());
+    	            		c.setIdLocalidad(colaborador.getIdLocalidad());
+    	            		c.setIdCodigoPostal(colaborador.getIdCodigoPostal());
+    	            	}*/
+    	            		
+    	            		
     	            	
     	            	HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
     	                Integer idusuario= Integer.parseInt(sesion.getAttribute("idUsuario").toString());
@@ -850,12 +876,17 @@ System.out.print("aki esta el codigo postal"+codigo.getCp());
     	            	c.setCalle(colaborador.getCalle().toUpperCase());
     	            	c.setNumeroInterior(colaborador.getNumeroInterior());
     	            	c.setNumeroExterior(colaborador.getNumeroExterior());
+    	            	
+    	            	
+    	            	
+    	            	
     	            	c.setIdEstado(lugar.getId());
     	            	c.setIdMunicipio(muni.getId());
     	            	c.setIdLocalidad(colonias.getId());
     	            	
     	            	//String codigo2  = Integer.parseInt(codigo.getId());
     	            	
+    	
     	            	String cadenaCodigo= Integer.toString(codigo.getId());
     	            	
     	            	c.setIdCodigoPostal(cadenaCodigo);

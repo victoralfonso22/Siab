@@ -57,10 +57,11 @@
        
        
        
-       	<p:outputLabel value="Nombres:" >
-       	</p:outputLabel>
-        <p:inputText id="dato1" value="#{mBAdministracionColab.colaborador.nombres}" />
-      	<h:message   />
+       	<p:outputLabel value="Nombres:" />
+      <p:inputText id="dato1" value="#{mBAdministracionColab.colaborador.nombres}" >
+      <pe:keyFilter  regEx="/[a-z\ñ\s]/i"/>
+      </p:inputText>
+      <h:message   />
       
       
       
@@ -114,28 +115,38 @@
 	 
 	 <p:outputLabel for="telC" value="Telefono Casa:" />
      <p:inputText id="telC" value="#{mBAdministracionColab.colaborador.telefonoCasa}" label="Telefono Casa" maxlength="10" >
-     <p:clientValidator/>
+       <pe:keyFilter regEx="/[\d\-\.]/"/>
      </p:inputText>
      <p:message for="telC"   />
      
      <p:outputLabel for="telO" value="Telefono Oficina:" />
-     <p:inputText id="telO" value="#{mBAdministracionColab.colaborador.telefonoOficina}" label="Telefono Oficina" />
+     <p:inputText id="telO" value="#{mBAdministracionColab.colaborador.telefonoOficina}" label="Telefono Oficina" maxlength="10">
+     <pe:keyFilter regEx="/[\d\-\.]/"/>
+     </p:inputText>
      <p:message for="telO"   />
      
      
      <p:outputLabel for="ext" value="Ext.:" />
-     <p:inputText id="ext"  value="#{mBAdministracionColab.colaborador.extensionOficina}"  label="Ext. "  style="width: 30px"/>
+     <p:inputText id="ext"  value="#{mBAdministracionColab.colaborador.extensionOficina}"  label="Ext. "  style="width: 30px">
+     <pe:keyFilter regEx="/[\d\-\.]/"/>
+     </p:inputText>
    	 <p:message for="ext"   />
    	 
    	 <p:outputLabel for="cel" value="Celular:" />
-     <p:inputText id="cel"  value="#{mBAdministracionColab.colaborador.celular}" required="true" label="Celular" />  
+     <p:inputText id="cel"  value="#{mBAdministracionColab.colaborador.celular}" required="true" label="Celular" >  
+        <pe:keyFilter regEx="/[\d\-\.]/"/>
+     </p:inputText>
      <p:message for="cel"   />  
      
   
         <p:outputLabel  value="Estado :" />
-		<p:autoComplete     required="true" value="#{mBAdministracionColab.lugar}" completeMethod="#{mBAdministracionColab.completeLugar}"
+		<p:autoComplete    value="#{mBAdministracionColab.lugar}" completeMethod="#{mBAdministracionColab.completeLugar}"
 		var="lugar" itemLabel="#{lugar.nombre}" itemValue="#{lugar}" converter="estadosConverter"  forceSelection="true" minQueryLength="3" effect="explode"> 
 		<p:ajax event="itemSelect" listener="#{mBAdministracionColab.generaMunicipios}"  update="panel" />
+		
+	
+		
+		
 		</p:autoComplete>
 		<h:message   display="tooltip"/>
 
@@ -185,7 +196,7 @@
         
          <p:outputLabel  value="Referencia Bancaria :" />
 		<p:autoComplete  value="#{mBAdministracionColab.referencia}"  completeMethod="#{mBAdministracionColab.completeReferencia}" 
-		var="referencia" itemLabel="#{referencia.referencia}" itemValue="#{referencia}" converter="ReferenciasConverter" forceSelection="true" minQueryLength="2" effect="explode" maxResults="10">
+		var="referencia" itemLabel="#{referencia.referencia}" itemValue="#{referencia}" converter="ReferenciasConverter" forceSelection="true" minQueryLength="2" effect="explode" maxResults="10" size="10">
 		
 		</p:autoComplete>
         <h:message  display="tooltip"/>
@@ -195,10 +206,8 @@
         <p:commandButton style="font-family: Century Gothic, sans-serif;" value="Registrar" 
 						styleClass="ui-priority-primary" icon="fa-send"  actionListener="#{mBAdministracionColab.AltaColaborador()}" update="forma"/>
         
-        
-        
-        
-      </h:panelGrid>
+       
+</h:panelGrid>
            
   
             

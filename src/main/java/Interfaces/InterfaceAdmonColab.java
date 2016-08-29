@@ -30,6 +30,8 @@ public interface InterfaceAdmonColab {
 	  
 	  public void AltaColaborador(Session session, Colaboradores colaborador )throws Exception;
 	  
+	  public boolean validaColaborador (Session session,String  rfc)throws Exception;
+	  
 	  
 
 }

@@ -1089,7 +1089,7 @@ public class MBAdminstracionE implements Serializable {
             
          System.out.print(ext);
          
-         
+          
          Promotores p2 = new Promotores();
          p2.setRfc(rfc.toUpperCase());
          p2.setNombres(nombre.toUpperCase());
